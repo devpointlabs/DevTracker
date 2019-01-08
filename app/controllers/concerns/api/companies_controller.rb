@@ -1,5 +1,5 @@
 class Api::CompaniesController < ApplicationController
-  beore_action :set_company, only: [:update, :destroy]
+  before_action :set_company, only: [:update, :destroy]
 
   def index
     render json: Company.all

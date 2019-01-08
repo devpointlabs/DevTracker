@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  salary: 1
+  accepted: false
+  application: one
+
+two:
+  salary: 1
+  accepted: false
+  application: two

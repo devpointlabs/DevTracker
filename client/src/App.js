@@ -7,7 +7,6 @@ import Navbar from './components/NavBar';
 import FetchUser from './components/FetchUser'
 import { Route, Switch, } from 'react-router-dom';
 import ProtectedRoute from "./components/ProtectedRoute";
-import './App.css';
 
 const App = () => (
   <>

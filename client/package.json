@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "components": "^0.1.0",
+    "devise-axios": "^1.0.24",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",

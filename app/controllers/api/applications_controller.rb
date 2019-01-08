@@ -17,7 +17,12 @@ class Api::ApplicationsController < ApplicationController
   end
 
   def update
-    if @application.update
+    @application.save(application_params)
+    if application.save
+      render json: @application
+    else
+      render json: {errors: application.errors}
+    end
   end
 
   def destroy
@@ -35,6 +40,6 @@ class Api::ApplicationsController < ApplicationController
   end
 
   def application_params
-    params.require(:application).permit(:)
+    params.require(:application).permit(:submission_date, :notes, :title, :status)
   end
 end

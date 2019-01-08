@@ -1,41 +1,30 @@
 class Api::CompaniesController < ApplicationController
-  beore_action :set_company, only: [:show, :update, :edit, :destroy]
+  beore_action :set_company, only: [:update, :destroy]
 
   def index
-    @companies = Company.all
+    render json: Company.all
   end
 
-  def show
-  end
-
-  def new
-    @company = Company.new
-  end
-
-  def edit
-  end
-  
   def create
-    @company = Company.new(company_params)
+    company = Company.new(company_params)
 
-    if @company.save
-      redirect_to companies_path
+    if company.save
+      render json: company
     else 
-      render :new
+      render json: company.errors, status: 422
     end
   end
 
   def update
     if @company.update(company_params)
-      redirect_to @company
+      render json: @company
     else
-      render :edit
+      render json: @company.errors, status: 422
     end
   end
 
   def destroy
     @company.destroy
-    redirect_to companies_path
   end
 
   private
@@ -45,6 +34,6 @@ class Api::CompaniesController < ApplicationController
     end
 
     def company_params
-      params.require(:company).permit(:name)
+      params.require(:company).permit(:name, :city, :state, :zip, :website_url)
     end
 end

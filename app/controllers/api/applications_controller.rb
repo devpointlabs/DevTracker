@@ -1,13 +1,10 @@
 class Api::ApplicationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, except: [:index]
+  before_action :set_user
+  before_action :set_application, only: [:update, :destroy]
 
   def index
-    render json: Application.all
-  end
-
-  def my_applications
-    render json: @user.posts
+    render json: @user.applications.all
   end
 
   def create
@@ -20,13 +17,7 @@ class Api::ApplicationsController < ApplicationController
   end
 
   def update
-  end
-
-  def destroy
-    @application.destroy
-  end
-
-  def show
+    if @application.update
   end
 
   def destroy
@@ -37,5 +28,13 @@ class Api::ApplicationsController < ApplicationController
 
   def set_user
     @user = User.find(params[:user_id])
+  end
+
+  def set_application
+    @application = @user.application.find(params[:id])
+  end
+
+  def application_params
+    params.require(:application).permit(:)
   end
 end

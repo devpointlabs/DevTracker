@@ -3,12 +3,13 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :users do
-      resources :applications do
-        resources :interviews
-        resources :offers
-      end
+      resources :applications
     end
     resources :companies
+    resources :applications do
+      resources :interviews
+      resources :offers
+    end
   end
 
 

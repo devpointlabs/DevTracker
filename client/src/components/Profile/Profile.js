@@ -1,7 +1,6 @@
 import React from 'react';
 import { AuthConsumer, } from '../../providers/AuthProvider';
 import styled from 'styled-components';
-import { throws } from 'assert';
 
 const defaultImage = 'https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png';
 
@@ -55,7 +54,6 @@ class Profile extends React.Component {
   }
 
   editView = () => {
-    const { auth: { user }, } = this.props;
     const { formValues: { email, } } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
@@ -78,9 +76,7 @@ class Profile extends React.Component {
       <Container>
         <br />
         <div>
-          <h1>
-            {editing ? this.editView() : this.profileView()}
-          </h1>
+          {editing ? this.editView() : this.profileView()}
           <button onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</button>
         </div>
       </Container>

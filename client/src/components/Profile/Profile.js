@@ -47,10 +47,9 @@ class Profile extends React.Component {
     const { auth: { user }, } = this.props;
     return (
       <>
-        <Container>
-          <ProfileImage src={user.image || defaultImage} />
-        </Container>
-        <Header>{user.email}</Header>
+        <h1>Profile View</h1>
+        <ProfileImage src={user.image || defaultImage} />
+        <Body>{user.email}</Body>
       </>
     )
   }
@@ -60,7 +59,7 @@ class Profile extends React.Component {
     const { formValues: { email, } } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
-       <input
+        <input
           label="Email"
           name="email"
           value={email}
@@ -82,9 +81,7 @@ class Profile extends React.Component {
           <h1>
             {editing ? this.editView() : this.profileView()}
           </h1>
-          <h2>
-            <button onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</button>
-          </h2>
+          <button onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</button>
         </div>
       </Container>
     )
@@ -102,24 +99,15 @@ const ConnectedProfile = (props) => (
 export default ConnectedProfile;
 
 
-const Form =styled.div `
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;`
+const Form = styled.div`
+`
 
-const ProfileImage = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;`
+const ProfileImage = styled.img`
+`
 
 
-const Header = styled.div`
-    display: flex;
-    align-content: center;`
+const Body = styled.div`
+`
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: column;`
+`

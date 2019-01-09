@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthConsumer, } from "../providers/AuthProvider";
+import { AuthConsumer, } from "../../providers/AuthProvider";
 import styled from 'styled-components'
 
 

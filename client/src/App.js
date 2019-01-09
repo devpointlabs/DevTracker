@@ -1,16 +1,17 @@
 import React from 'react';
 import Home from './components/Home';
-import Login from './components/Login';
-import Register from './components/Register';
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
 import NoMatch from './components/NoMatch';
-import Navbar from './components/NavBar';
-import FetchUser from './components/FetchUser'
+// import Navbar from './components/NavBar';
+import FetchUser from './components/Auth/FetchUser'
 import { Route, Switch, } from 'react-router-dom';
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/Auth/ProtectedRoute";
+import './App.scss';
 
 const App = () => (
   <>
-  <Navbar />
+  {/* <Navbar /> */}
   <FetchUser>
   <Switch>
     <ProtectedRoute exact path="/" component={Home} />

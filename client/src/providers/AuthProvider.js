@@ -58,7 +58,8 @@ class AuthProvider extends React.Component {
           handleRegister: this.handleRegister,
           handleLogin: this.handleLogin,
           handleLogout: this.handleLogout,
-          setUser: user => this.setState({ user })
+          setUser: user => this.setState({ user }),
+          updateUser: this.updateUser
         }}
       >
         {this.props.children}

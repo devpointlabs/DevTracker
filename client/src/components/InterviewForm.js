@@ -2,17 +2,15 @@ import React from "react";
 import axios from "axios";
 import { AuthConsumer } from "../providers/AuthProvider";
 
-class CompanyForm extends React.Component {
+class InterviewForm extends React.Component {
   state = {
-    name: "",
-    city: "",
-    state: "",
-    zip: "",
-    website_url: ""
+    date: "",
+    title: "",
+    notes: ""
   };
 
   componentDidMount() {
-    //to create a company you don't need this. This is for editing and will be added later.
+    // to be added later for editing.
   }
 
   handleChange = e => {

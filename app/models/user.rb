@@ -7,5 +7,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
   has_many :applications
-  has_many :companies, through :applications
+  has_many :companies, through: :applications
 end

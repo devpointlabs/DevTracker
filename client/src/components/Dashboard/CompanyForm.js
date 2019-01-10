@@ -42,6 +42,7 @@ class CompanyForm extends React.Component {
           value={name}
           onChange={this.handleChange}
         />
+        <label for="city">City</label>
         <input
           name="city"
           placeholder="Company City"
@@ -49,6 +50,7 @@ class CompanyForm extends React.Component {
           value={city}
           onChange={this.handleChange}
         />
+        <label for="state">State</label>
         <input
           name="state"
           placeholder="Company State"
@@ -56,6 +58,7 @@ class CompanyForm extends React.Component {
           value={state}
           onChange={this.handleChange}
         />
+        <label for="zip">Zip</label>
         <input
           name="zip"
           placeholder="Company Zip"
@@ -63,6 +66,7 @@ class CompanyForm extends React.Component {
           value={zip}
           onChange={this.handleChange}
         />
+        <label for="website_url">Website URL</label>
         <input
           name="website_url"
           placeholder="Company Website URL"

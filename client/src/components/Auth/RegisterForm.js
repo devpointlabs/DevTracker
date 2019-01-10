@@ -2,14 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { AuthConsumer } from "../../providers/AuthProvider";
 import { withRouter } from "react-router";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
+// unstonishing
+// susano (sause-e-no)
 
 class RegisterForm extends React.Component {
   state = {
     email: "",
     password: "",
     passwordConfirmation: "",
-    matching: false
+    matching: false,
+    error: false,
+    errorMessage: ""
   };
 
   handleSubmit = e => {
@@ -18,7 +22,18 @@ class RegisterForm extends React.Component {
       auth: { handleRegister },
       history
     } = this.props;
-    handleRegister({ ...this.state }, history);
+    handleRegister({ ...this.state }, history, this.handleError);
+  };
+
+  handleError = error => {
+    console.log(error.response)
+    let errors = error.response.data.errors.full_messages[0];
+    if (errors) {
+      this.setState({
+        error: true,
+        errorMessage: errors
+      });
+    }
   };
 
   checkPasswords = () => {
@@ -41,7 +56,14 @@ class RegisterForm extends React.Component {
   };
 
   render() {
-    const { email, password, passwordConfirmation, matching } = this.state;
+    const {
+      email,
+      password,
+      passwordConfirmation,
+      matching,
+      errorMessage,
+      error
+    } = this.state;
     let matching_errors;
     if (password.length > 0 && matching === false) {
       matching_errors = true;
@@ -57,6 +79,11 @@ class RegisterForm extends React.Component {
       <>
         <Form onSubmit={this.handleSubmit}>
           <h1>Sign Up</h1>
+          {error ? (
+            <Errors>
+              <p className="error-message">{errorMessage}</p>
+            </Errors>
+          ) : null}
           <label>* Email</label>
           <input
             name="email"
@@ -134,11 +161,31 @@ class RegisterForm extends React.Component {
             )}
           </Task>
         </TaskList>
-        <p>Already have an account? <Link to="/login">Sign in!</Link></p>
+        <p>
+          Already have an account? <Link to="/login">Sign in!</Link>
+        </p>
       </>
     );
   }
 }
+
+const Errors = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #e51c23;
+  padding: 15px 0;
+  color: white;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 25px;
+
+  .error-message {
+    color: white;
+    margin: 0;
+  }
+`;
 
 const TaskList = styled.ul`
   list-style: none;

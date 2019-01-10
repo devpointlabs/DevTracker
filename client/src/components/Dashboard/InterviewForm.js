@@ -23,52 +23,41 @@ class InterviewForm extends React.Component {
     const interviews = this.state;
     e.preventDefault();
     axios
-      .post(`/api/users/${user.id}/companies`, interviews)
+      .post(`/api/users/${user.id}/interviews`, interviews)
       .then(res => this.props.history.push(`/profile`));
   };
 
   render() {
-    const { name, city, state, zip, website_url } = this.state;
+    const { date, title, notes } = this.state;
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Input
-            name="name"
-            placeholder="Company Name"
+          <label for="date">Date</label>
+          <input
+            name="date"
+            placeholder="Interview Date"
             required
             autoFocus
-            value={name}
+            value={date}
             onChange={this.handleChange}
           />
-          <Form.Input
+          <label for="time">Time</label>
+          <input
             name="city"
-            placeholder="Company City"
+            placeholder="Interview Time"
             required
-            value={city}
+            value={time}
             onChange={this.handleChange}
           />
-          <Form.Input
-            name="state"
-            placeholder="Company State"
+          <label for="notes">Notes</label>
+          <input
+            name="notes"
+            placeholder="Interview Notes"
             required
-            value={state}
+            value={notes}
             onChange={this.handleChange}
           />
-          <Form.Input
-            name="zip"
-            placeholder="Company Zip"
-            required
-            value={zip}
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            name="website_url"
-            placeholder="Company Website URL"
-            required
-            value={website_url}
-            onChange={this.handleChange}
-          />
-          <Form.Button color="green">Submit</Form.Button>
+          <input type="submit" value="Submit" />
         </Form>
       </div>
     );

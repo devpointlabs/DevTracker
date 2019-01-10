@@ -208,9 +208,10 @@ const Item = styled.li`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 15px 20px;
+  width: 90px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
   color: #666;
   background-color: ${props => (props.location === props.comp ? "#eee" : null)};
   &:hover {
@@ -224,8 +225,8 @@ const Item = styled.li`
     transform: scale(1.1);
   }
   .nav-icon {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     margin-bottom: 5px;
     fill: #666;
     transition: 0.4s;
@@ -254,6 +255,14 @@ const AccountMenu = styled.ul`
 
   .close-menu {
     margin-bottom: 10px;
+  }
+
+  svg {
+    width: 15px;
+    height: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    fill: #666;
   }
 
   a {
@@ -305,14 +314,6 @@ const MenuItem = styled.li`
 
   &:hover > svg {
     fill: #4a00e0;
-  }
-
-  svg {
-    width: 15px;
-    height: 15px;
-    margin-right: 10px;
-    margin-left: 10px;
-    fill: #666;
   }
 
   a {

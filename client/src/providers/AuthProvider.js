@@ -13,7 +13,8 @@ class AuthProvider extends React.Component {
       .put(`/api/users/${id}?email=${user.email}`, data)
       .then(res => this.setState({ user: res.data }));
   };
-  handleRegister = (user, history) => {
+
+  handleRegister = (user, history, errorCallback) => {
     axios
       .post("/api/auth", user)
       .then(res => {
@@ -21,18 +22,18 @@ class AuthProvider extends React.Component {
         history.push("/");
       })
       .catch(err => {
-        console.log(err);
+        errorCallback(err);
       });
   };
 
-  handleLogin = (user, history) => {
+  handleLogin = (user, history, errorCallback) => {
     axios.post("/api/auth/sign_in", user)
     .then( res => {
       this.setState({ user: res.data.data, });
       history.push("/")
     })
     .catch( err => {
-      console.log(err);
+      errorCallback(err);
     })
   }
 

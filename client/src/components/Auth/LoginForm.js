@@ -5,7 +5,7 @@ import { withRouter } from "react-router";
 
 
 class LoginForm extends React.Component {
-  state = { email: "", password: "" };
+  state = { email: "", password: "", error: false, errorMessage: "" };
 
   handleSubmit = e => {
     const {
@@ -15,8 +15,16 @@ class LoginForm extends React.Component {
     e.preventDefault();
     const { email, password } = this.state;
     console.log(email, password);
-    handleLogin({ ...this.state }, history);
+    handleLogin({ ...this.state }, history, this.handleError);
   };
+
+  handleError = (error) => {
+    let errors = error.response.data.errors[0];
+    this.setState({
+      error: true,
+      errorMessage: errors
+    })
+  }
 
   handleChange = e => {
     const { name, value } = e.target;
@@ -24,10 +32,15 @@ class LoginForm extends React.Component {
   };
 
   render() {
-    const { email, password } = this.state; 
+    const { email, password, error, errorMessage } = this.state; 
     return (
       <Form onSubmit={this.handleSubmit}>
         <h1>Sign in</h1>
+        {error ? (
+            <Errors>
+              <p className="error-message">{errorMessage}</p>
+            </Errors>
+          ) : null}
         <label>Email</label>
         <input
           name="email"
@@ -54,6 +67,24 @@ class LoginForm extends React.Component {
     );
   }
 }
+
+const Errors = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #e51c23;
+  padding: 15px 0;
+  color: white;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 25px;
+
+  .error-message {
+    color: white;
+    margin: 0;
+  }
+`;
 
 const Form = styled.form`
   display: flex;

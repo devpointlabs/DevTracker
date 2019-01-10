@@ -8,5 +8,5 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
   has_many :applications
   has_many :companies, through: :applications
+  has_many :todos, dependent: :destroy
 end
-

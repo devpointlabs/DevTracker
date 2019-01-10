@@ -32,47 +32,46 @@ class CompanyForm extends React.Component {
   render() {
     const { name, city, state, zip, website_url } = this.state;
     return (
-      <div>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Input
-            name="name"
-            placeholder="Company Name"
-            required
-            autoFocus
-            value={name}
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            name="city"
-            placeholder="Company City"
-            required
-            value={city}
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            name="state"
-            placeholder="Company State"
-            required
-            value={state}
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            name="zip"
-            placeholder="Company Zip"
-            required
-            value={zip}
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            name="website_url"
-            placeholder="Company Website URL"
-            required
-            value={website_url}
-            onChange={this.handleChange}
-          />
-          <Form.Button color="green">Submit</Form.Button>
-        </Form>
-      </div>
+      <Form onSubmit={this.handleSubmit}>
+        <label for="name">Name</label>
+        <input
+          name="name"
+          placeholder="Company Name"
+          required
+          autoFocus
+          value={name}
+          onChange={this.handleChange}
+        />
+        <input
+          name="city"
+          placeholder="Company City"
+          required
+          value={city}
+          onChange={this.handleChange}
+        />
+        <input
+          name="state"
+          placeholder="Company State"
+          required
+          value={state}
+          onChange={this.handleChange}
+        />
+        <input
+          name="zip"
+          placeholder="Company Zip"
+          required
+          value={zip}
+          onChange={this.handleChange}
+        />
+        <input
+          name="website_url"
+          placeholder="Company Website URL"
+          required
+          value={website_url}
+          onChange={this.handleChange}
+        />
+        <input type="submit" value="Submit" />
+      </Form>
     );
   }
 }
@@ -81,7 +80,7 @@ export default class ConnectedPostForm extends React.Component {
   render() {
     return (
       <AuthConsumer>
-        {auth => <PostForm {...this.props} auth={auth} />}
+        {auth => <CompanyForm {...this.props} auth={auth} />}
       </AuthConsumer>
     );
   }

@@ -1,7 +1,51 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+20.times do
+  user = User.create(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    nickname: Faker::Ancient.god,
+    image: Faker::Placeholdit.image,
+    email: Faker::Internet.email,
+    password: "password",
+    cohort: "Winter-18",
+    github: Faker::Internet.url,
+    linkedin: Faker::Internet.free_email,
+    resume: "resume",
+    dob: Faker::Date.birthday(18, 65),
+    college_degree: Faker::Educator.course,
+    employment_status: false,
+    sex: Faker::Gender.binary_type,
+    admin: false,
+  )
+
+  5.times do
+    company = Company.create(
+      name: Faker::Company.name,
+      city: Faker::Address.city,
+      state: Faker::Address.state,
+      zip: Faker::Address.zip,
+      website_url: Faker::Internet.domain_name,
+      )
+
+    application = Application.create(
+      submission_date: Faker::Date.between(2.days.ago, Date.today),
+      notes: Faker::FamousLastWords.last_words,
+      title: Faker::Job.title,
+      status: false,
+      user_id: user.id,
+      company_id: company.id,
+      )
+    
+    interview = Interview.create(
+      date: Faker::Date.forward(23),
+      title: Faker::Job.title,
+      notes: Faker::DumbAndDumber.quote,
+      application_id: application.id,
+      )
+
+    offer = Offer.create(
+      salary: Faker::Commerce.price,
+      accepted: false,
+      application_id: application.id,
+      )
+  end
+end

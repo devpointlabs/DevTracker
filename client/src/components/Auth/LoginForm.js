@@ -1,15 +1,21 @@
 import React from "react";
 import styled from 'styled-components';
 import { AuthConsumer } from "../../providers/AuthProvider";
+import { withRouter } from "react-router";
 
 
 class LoginForm extends React.Component {
   state = { email: "", password: "" };
 
   handleSubmit = e => {
+    const {
+      auth: { handleLogin },
+      history
+    } = this.props;
     e.preventDefault();
     const { email, password } = this.state;
-    this.props.auth.handleLogin({ email, password }, this.props.history);
+    console.log(email, password);
+    handleLogin({ ...this.state }, history);
   };
 
   handleChange = e => {
@@ -22,22 +28,26 @@ class LoginForm extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <h1>Sign in</h1>
-        <label for="email">Email</label>
+        <label>Email</label>
         <input
           name="email"
+          type="email"
           className="field-input"
           onChange={this.handleChange}
           value={email}
           required
           autoFocus
+          autoComplete = "email"
         />
-        <label for="password">Password</label>
+        <label>Password</label>
         <input
+          type="password"
           name="password"
           className="field-input"
           value={password}
           onChange={this.handleChange}
           required
+          autoComplete = "password"
         />
         <input type="submit" value="LOGIN" className="submit" />
       </Form>
@@ -63,6 +73,7 @@ const Form = styled.form`
     margin-top: 25px;
     width: 100%;
     padding: 20px 0;
+    cursor: pointer;
     border-radius: 5px;
     box-shadow: 2px 4px 8px rgba(0,0,0,0.2);
     -webkit-appearance: button;
@@ -83,7 +94,7 @@ const Form = styled.form`
   }
 `;
 
-export default class ConnectedLoginForm extends React.Component {
+class ConnectedLoginForm extends React.Component {
   render() {
     return (
       <AuthConsumer>
@@ -92,3 +103,5 @@ export default class ConnectedLoginForm extends React.Component {
     );
   }
 }
+
+export default withRouter(ConnectedLoginForm);

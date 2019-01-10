@@ -1,25 +1,27 @@
 import React from "react";
-import {Link,} from 'react-router-dom';
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import ParticlesContainer from './ParticlesContainer';
-import LoginForm from './LoginForm';
+import ParticlesContainer from "./ParticlesContainer";
+import LoginForm from "./LoginForm";
 
-const Login = () => (
+const Login = () => {
+  return (
     <Container>
-        <LoginContainer>
-          <LoginForm />
-          <p>New to Dev Tracker? <Link to="/register">Sign up for free!</Link></p>
-        </LoginContainer>
-        <LogoContainer>
-          <ParticlesContainer/>
-          <h1>DevTracker</h1>
-        </LogoContainer>
-      </Container>
-)
+      <LoginContainer>
+        <LoginForm />
+        <p>
+          New to Dev Tracker? <Link to="/register">Sign up for free!</Link>
+        </p>
+      </LoginContainer>
+      <LogoContainer>
+        <ParticlesContainer />
+        <h1>DevTracker</h1>
+      </LogoContainer>
+    </Container>
+  );
+};
 
 export default Login;
-
-
 
 const LoginContainer = styled.div`
   width: 50%;
@@ -36,7 +38,7 @@ const LoginContainer = styled.div`
   }
 
   p {
-    color: rgba(0,0,0,0.8);
+    color: rgba(0, 0, 0, 0.8);
     font-size: 14px;
     margin-top: 25px;
   }
@@ -51,7 +53,7 @@ const LogoContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #8E2DE2, #4A00E0);
+  background: linear-gradient(to bottom right, #8e2de2, #4a00e0);
   position: relative;
 
   h1 {
@@ -69,5 +71,3 @@ const Container = styled.div`
   height: 100%;
   min-height: 100vh;
 `;
-
-

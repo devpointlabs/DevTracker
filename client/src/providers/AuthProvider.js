@@ -25,7 +25,7 @@ class AuthProvider extends React.Component {
       history.push("/")
     })
     .catch( err => {
-      console.log(err.response);
+      console.log(err);
     })
   }
 

@@ -20,10 +20,10 @@ class InterviewForm extends React.Component {
 
   handleSubmit = e => {
     const { user } = this.props.auth;
-    const companies = this.state;
+    const interviews = this.state;
     e.preventDefault();
     axios
-      .post(`/api/users/${user.id}/companies`, companies)
+      .post(`/api/users/${user.id}/companies`, interviews)
       .then(res => this.props.history.push(`/profile`));
   };
 

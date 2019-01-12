@@ -9,6 +9,20 @@ class AuthProvider extends React.Component {
 
   updateUser = (id, user) => {
     let data = new FormData();
+    data.append("email", user.email)
+    data.append("first name", user.first_name)
+    data.append("last name", user.last_name)
+    data.append("image", user.image)
+    data.append("cohort", user.cohort)
+    data.append("dob", user.dob)
+    data.append("college degree", user.college_degree)
+    data.append("employment status", user.employment_status)
+    data.append("sex", user.sex)
+    data.append("github", user.github)
+    data.append("linkedin", user.linkedin)
+    data.append("resume", user.resume)
+    data.append("admin", user.admin)
+
     axios.put(`/api/users/${id}?email=${user.email}`, data)
       .then(res => this.setState({ user: res.data }));
   };

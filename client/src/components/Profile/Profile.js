@@ -120,7 +120,7 @@ class Profile extends React.Component {
         <label>Date of Birth</label>
         <input
           name="dob"
-          value={dob}
+          value={dob}   
           onChange={this.handleChange}
         />
         <label>College Degree</label>

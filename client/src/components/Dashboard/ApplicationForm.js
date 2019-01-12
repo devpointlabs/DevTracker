@@ -3,21 +3,24 @@ import styled, { keyframes } from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { connect } from "react-redux";
-import { getCompanies } from "../../reducers/companies";
+import { getCompanies, addCompany } from "../../reducers/companies";
+import {addApplication} from "../../reducers/applications";
 import states from "./Options";
 import { titles } from "./Options";
+import { application_status } from "./Options";
+import alert from 'sweetalert2';
 
 class ApplicationForm extends React.Component {
   state = {
     posting_url: "",
-    date: new Date(),
+    submission_date: new Date(),
     company_name: "",
     company_city: "",
     company_state: "",
     company_zip: "",
     company_url: "",
-    company_id: "",
-    job_title: "",
+    company_id: undefined,
+    title: "",
     status: "",
     notes: "",
     formPopulated: false
@@ -32,6 +35,7 @@ class ApplicationForm extends React.Component {
     if (company_name.length === 0 && formPopulated === true) {
       this.setState({
         formPopulated: false,
+        company_id: undefined,
         [name]: value
       });
     } else {
@@ -50,7 +54,7 @@ class ApplicationForm extends React.Component {
 
   handleDate = date => {
     this.setState({
-      date: date
+      submission_date: date
     });
   };
 
@@ -85,24 +89,69 @@ class ApplicationForm extends React.Component {
     ));
   };
 
+ 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let {closeForm, dispatch, user} = this.props;
+    let {company_name, company_city, company_zip, company_url, company_state, company_id, submission_date, title, status, notes, posting_url, } = this.state;
+    // if company id is null or undefined, then we are adding a company and an application
+    if(!company_id) {
+      let newId = Math.random().toString().substr(2, 8);
+      let newApplication = {submission_date, notes, title, posting_url, status, company_id: newId, user_id: user.id }
+      dispatch(addCompany(newId, company_name, company_zip, company_state, company_city, company_url));
+      dispatch(addApplication(newApplication));
+      alert(
+        'Application Added!',
+        'The application you submitted has been successfully created',
+        'success'
+      )
+      closeForm();
+    } else {
+      let newApplication = {submission_date, notes, title, posting_url, status, company_id: company_id, user_id: user.id };
+      dispatch(addApplication(newApplication));
+      alert(
+        'Application Added!',
+        'The application you submitted has been successfully created',
+        'success'
+      )
+      closeForm();
+    }
+
+    // if company id is provided, then we are just adding an application for an already made company
+    this.setState({
+      posting_url: "",
+      submission_date: new Date(),
+      company_name: "",
+      company_city: "",
+      company_state: "",
+      company_zip: "",
+      company_url: "",
+      company_id: undefined,
+      title: "",
+      status: "",
+      notes: "",
+      formPopulated: false
+    })
+  }
+
   render() {
     let {
       posting_url,
-      date,
+      submission_date,
       company_name,
       company_city,
       company_state,
       company_zip,
       formPopulated,
       company_url,
-      job_title,
+      title,
       status,
       notes
     } = this.state;
     return (
       <ApplicationContainer>
-        <Form>
-            <h3>New Application</h3>
+        <Form onSubmit={this.handleSubmit}>
+          <h3>New Application</h3>
           <input
             required
             name="posting_url"
@@ -110,11 +159,12 @@ class ApplicationForm extends React.Component {
             onChange={this.handleChange}
             className="input"
             placeholder="Job Post Url"
+            autoFocus
           />
           <DatePicker
             placeholder="Application Date"
-            name="date"
-            selected={date}
+            name="submission_date"
+            selected={submission_date}
             onChange={this.handleDate}
             className="date-picker"
           />
@@ -184,11 +234,11 @@ class ApplicationForm extends React.Component {
             placeholder="Company Website Url"
           />
           <select
-            value={job_title}
+            value={title}
             onChange={this.handleChange}
             className="title-dropdown"
             required
-            name="job_title"
+            name="title"
           >
             <option value="">Job Title</option>
             {titles.map((title, index) => {
@@ -199,6 +249,30 @@ class ApplicationForm extends React.Component {
               );
             })}
           </select>
+          <select
+            value={status}
+            onChange={this.handleChange}
+            className="status-dropdown"
+            required
+            name="status"
+          >
+            <option value="">Status</option>
+            {application_status.map((status, index) => {
+              return (
+                <option value={status.value} key={index}>
+                  {status.label}
+                </option>
+              );
+            })}
+          </select>
+          <textarea
+            className="notes"
+            name="notes"
+            value={notes}
+            onChange={this.handleChange}
+            placeholder="Additional notes..."
+          />
+          <input type="submit" value="Submit" className="submit" />
         </Form>
       </ApplicationContainer>
     );
@@ -219,6 +293,7 @@ const ApplicationContainer = styled.div`
   top: 0;
   left: 0;
   height: 100%;
+  min-height: 100vh;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 999;
@@ -227,19 +302,48 @@ const ApplicationContainer = styled.div`
   justify-content: center;
   align-items: center;
   animation: ${fadeIn} 0.3s linear;
+  overflow: hidden;
 `;
 
 const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  display: block;
   background-color: white;
-  width: 500px;
   border-radius: 5px;
+  overflow-y: scroll;
   border: 1px solid #666;
   padding: 2em;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+
+  .submit {
+    width: 100%;
+    -webkit-appearance: button;
+    text-align: center;
+    margin-top: 1em;
+    height: 40px;
+    background: #8e2de2;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .notes {
+    resize: none;
+    height: 100px;
+    min-height: 100px;
+    margin-top: 1em;
+    padding: 10px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.03);
+    font-size: 14px;
+    width: 100%;
+
+    &::placeholder {
+      padding-left: 10px;
+      font-size: 14px;
+      color: #ccc;
+    }
+  }
 
   .date-picker {
     height: 40px;
@@ -261,6 +365,15 @@ const Form = styled.form`
   }
 
   .title-dropdown {
+    width: 100%;
+    height: 40px;
+    border: none;
+    font-size: 14px;
+    color: #666;
+    margin: 1em 0 0;
+  }
+
+  .status-dropdown {
     width: 100%;
     height: 40px;
     border: none;

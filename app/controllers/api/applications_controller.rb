@@ -40,6 +40,6 @@ class Api::ApplicationsController < ApplicationController
   end
 
   def application_params
-    params.require(:application).permit(:submission_date, :notes, :title, :status)
+    params.require(:application).permit(:submission_date, :notes, :title, :status, :posting_url, :user_id, :company_id)
   end
 end

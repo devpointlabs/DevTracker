@@ -14,8 +14,7 @@ class Dashboard extends React.Component {
     openTask: false
   };
 
-  openApplication = (event) => {
-    event.stopPropagation();
+  openApplication = () => {
     this.setState(state => ({openApplication: !state.openApplication}))
   }
     
@@ -29,7 +28,7 @@ class Dashboard extends React.Component {
         <NavBar />
         {!user.admin ? (
           <DashboardContainer>
-            {openApplication ? <ApplicationForm closeForm={this.openApplication}/> : null}
+            {openApplication ? <ApplicationForm closeForm={this.openApplication} user={user}/> : null}
             <DashboardTitle>Dashboard</DashboardTitle>
             <TilesContainer>
               <LeftContainer>

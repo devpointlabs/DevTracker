@@ -21,8 +21,8 @@
     company = Company.create(
       name: Faker::Company.name,
       city: Faker::Address.city,
-      state: Faker::Address.state,
-      zip: Faker::Address.zip,
+      state: Faker::Address.state_abbr,
+      zip: Faker::Address.zip[0...5].to_i,
       website_url: Faker::Internet.domain_name,
       )
 

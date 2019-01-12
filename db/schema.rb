@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_08_220859) do
+ActiveRecord::Schema.define(version: 2019_01_11_212920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,22 @@ ActiveRecord::Schema.define(version: 2019_01_08_220859) do
     t.string "website_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "job"
+    t.string "title"
+    t.string "email"
+    t.string "linkedin"
+    t.string "workphone"
+    t.string "personal_phone"
+    t.string "note_box"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
   create_table "interviews", force: :cascade do |t|
@@ -74,23 +90,23 @@ ActiveRecord::Schema.define(version: 2019_01_08_220859) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "first_name"
-    t.string "last_name"
+    t.string "first_name", default: "", null: false
+    t.string "last_name", default: "", null: false
     t.string "nickname"
-    t.string "image"
+    t.string "image", default: "", null: false
     t.string "email"
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "cohort"
-    t.date "dob"
-    t.string "college_degree"
-    t.string "employment_status"
-    t.string "sex"
-    t.string "github"
-    t.string "linkedin"
-    t.string "resume"
-    t.boolean "admin"
+    t.date "cohort", default: "0001-01-01"
+    t.date "dob", default: "0001-01-01"
+    t.string "college_degree", default: ""
+    t.string "employment_status", default: ""
+    t.string "sex", default: ""
+    t.string "github", default: ""
+    t.string "linkedin", default: ""
+    t.string "resume", default: ""
+    t.boolean "admin", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -99,6 +115,7 @@ ActiveRecord::Schema.define(version: 2019_01_08_220859) do
 
   add_foreign_key "applications", "companies"
   add_foreign_key "applications", "users"
+  add_foreign_key "contacts", "users"
   add_foreign_key "interviews", "applications"
   add_foreign_key "offers", "applications"
 end

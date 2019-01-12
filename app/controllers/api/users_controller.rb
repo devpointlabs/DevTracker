@@ -19,9 +19,22 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  def update
+  def update 
     user = User.find(params[:id])
     user.email = params[:email] ? params[:email] : user.email
+    user.first_name = params[:first_name] ? params[:first_name] : user.first_name
+    user.last_name = params[:last_name] ? params[:last_name] : user.last_name
+    user.image = params[:image] ? params[:image] : user.image
+    user.cohort = params[:cohort] ? params[:cohort] : user.cohort
+    user.dob = params[:dob] ? params[:dob] : user.dob
+    user.college_degree = params[:college_degree] ? params[:college_degree] : user.college_degree
+    user.employment_status = params[:employment_status] ? params[:employment_status] : user.employment_status
+    user.sex = params[:sex] ? params[:sex] : user.sex
+    user.github = params[:github] ? params[:github] : user.github 
+    user.linkedin = params[:linkedin] ? params[:linkedin] : user.linkedin
+    user.resume = params[:resume] ? params[:resume] : user.resume
+    user.admin = params[:admin] ? params[:admin] : user.admin
+
 
     file = params[:file]
 
@@ -53,6 +66,6 @@ class Api::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :cohort, :dob, :college_degree, :employment_status, :sex, :github, :linkedin, :resume, :admin)
+    params.require(:user).permit(:first_name, :last_name, :image, :cohort, :dob, :college_degree, :employment_status, :sex, :github, :linkedin, :resume, :admin)
   end
 end

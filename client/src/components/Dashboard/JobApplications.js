@@ -7,6 +7,7 @@ class JobApplications extends React.Component {
   };
 
   render() {
+    let {openForm} = this.props;
     return (
       <ApplicationsContainer>
         <SectionTitle>Job Applications</SectionTitle>
@@ -35,7 +36,7 @@ class JobApplications extends React.Component {
                 Job applications with recent activity will show up here so you
                 can see what's going on with your job search.
               </p>
-              <button className="new-application">New Application</button>
+              <button className="new-application" onClick={openForm}>New Application</button>
             </>
           ) : null}
         </ApplicationsContent>

@@ -2,7 +2,7 @@ class Api::TodosController < ApplicationController
   before_action :set_todo, only: [:show, :update, :destroy]
 
   def index
-    render json: Todo.all
+    render json: current_user.todos.all
   end
 
   def show
@@ -10,12 +10,12 @@ class Api::TodosController < ApplicationController
   end
 
   def create
-    todo = Todo.new(todo_params)
+    todo = current_user.todos.new(todo_params)
 
     if todo.save
       render json: todo
     else
-      render json: @todo.errors, status: 422
+      render json: todo.errors, status: 422
     end
   end
 
@@ -34,7 +34,7 @@ class Api::TodosController < ApplicationController
   private
 
   def set_todo
-    @todo = Todo.find(params[:id])
+    @todo = current_user.todos.find(params[:id])
   end
 
   def todo_params

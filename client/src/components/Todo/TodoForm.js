@@ -1,12 +1,12 @@
 import React from "react";
-import axios from "axios";
 
 class TodoForm extends React.Component {
   state = { task: "" };
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addTask(...this.state);
+    this.props.addTask(this.state.task)
+    this.setState({ task: "" })
   };
 
   handleChange = e => {
@@ -18,7 +18,7 @@ class TodoForm extends React.Component {
   render() {
     const { task } = this.state;
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <input
           name="task"
           placeholder="Add Task"

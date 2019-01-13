@@ -1,18 +1,55 @@
 import React from "react";
 import styled from "styled-components";
+import { AuthConsumer } from "../../providers/AuthProvider";
+import { connect } from "react-redux";
+import { getApplications } from "../../reducers/applications";
+import moment from "moment";
 
 class JobApplications extends React.Component {
-  state = {
-    applications: []
+  componentDidMount() {
+    let {
+      auth: { user },
+      dispatch
+    } = this.props;
+    dispatch(getApplications(user.id));
+  }
+
+  returnColor = status => {
+    switch (status) {
+      case "Interested":
+        return "rgba(140, 140, 140, 0.2)";
+      case "Applied":
+        return "rgba(109, 167, 214, 0.2)";
+      case "Phone Call":
+        return "rgba(213, 103, 245, 0.2";
+      case "Assignment":
+        return "rgba(236, 178, 105, 0.2)";
+      case "Interview":
+        return "rgba(42, 121, 218, 0.2)";
+      case "Offer":
+        return "rgba(75, 206, 85, 0.2)";
+      case "Accepted":
+        return "rgba(22, 128, 0, 0.2)";
+      case "Withdrawn":
+        return "rgba(102, 102, 102, 0.2)";
+      case "Not Interested":
+        return "#BF5152";
+      default:
+        return null;
+    }
   };
 
   render() {
-    let {openForm} = this.props;
+    let {
+      auth: { user },
+      applications
+    } = this.props;
+    let { openForm } = this.props;
     return (
       <ApplicationsContainer>
         <SectionTitle>Job Applications</SectionTitle>
         <ApplicationsContent>
-          {this.state.applications.length === 0 ? (
+          {this.props.applications.length === 0 ? (
             <>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -36,14 +73,106 @@ class JobApplications extends React.Component {
                 Job applications with recent activity will show up here so you
                 can see what's going on with your job search.
               </p>
-              <button className="new-application" onClick={openForm}>New Application</button>
+              <button className="new-application" onClick={openForm}>
+                New Application
+              </button>
             </>
-          ) : null}
+          ) : (
+            <ApplicationList>
+              <AddNew onClick={openForm}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                  <path d="M369.9 97.9L286 14C277 5 264.8-.1 252.1-.1H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V131.9c0-12.7-5.1-25-14.1-34zm-22.6 22.7c2.1 2.1 3.5 4.6 4.2 7.4H256V32.5c2.8.7 5.3 2.1 7.4 4.2l83.9 83.9zM336 480H48c-8.8 0-16-7.2-16-16V48c0-8.8 7.2-16 16-16h176v104c0 13.3 10.7 24 24 24h104v304c0 8.8-7.2 16-16 16zm-48-180v8c0 6.6-5.4 12-12 12h-68v68c0 6.6-5.4 12-12 12h-8c-6.6 0-12-5.4-12-12v-68h-68c-6.6 0-12-5.4-12-12v-8c0-6.6 5.4-12 12-12h68v-68c0-6.6 5.4-12 12-12h8c6.6 0 12 5.4 12 12v68h68c6.6 0 12 5.4 12 12z" />
+                </svg>
+                Add new
+              </AddNew>
+              {applications.map(app => {
+                return (
+                  <Application key={app.id}>
+                    <h4 className="app-status">{app.status}</h4>
+                    <UpdatedAt color={this.returnColor(app.status)}>
+                      <p>Updated {moment(app.updated_at).fromNow()}</p>
+                    </UpdatedAt>
+                  </Application>
+                );
+              })}
+            </ApplicationList>
+          )}
         </ApplicationsContent>
       </ApplicationsContainer>
     );
   }
 }
+
+const AddNew = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  border: 1px solid rgba(74, 0, 224, 0.7);
+  background-color: rgba(74, 0, 224, 0.05);
+  color: #666;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(74, 0, 224, 0.2);
+  }
+
+  svg {
+    width: 30px;
+    margin-bottom: 5px;
+    fill: #666;
+  }
+`;
+
+const UpdatedAt = styled.div`
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  padding: 10px 0;
+  background-color: ${props => props.color};
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+`;
+
+const ApplicationList = styled.div`
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1em;
+`;
+
+const Application = styled.div`
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-weight: lighter;
+  cursor: pointer;
+  position: relative;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .app-status {
+    font-weight: lighter;
+    font-size: 14px;
+    color: #666;
+    padding: 20px 0;
+  }
+`;
 
 const ApplicationsContent = styled.div`
   display: flex;
@@ -61,9 +190,9 @@ const ApplicationsContent = styled.div`
     border: none;
     transition: 0.3s linear;
     cursor: pointer;
-    box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
     &:hover {
-        box-shadow: none;
+      box-shadow: none;
     }
   }
 
@@ -101,4 +230,18 @@ const SectionTitle = styled.h3`
   color: #666;
 `;
 
-export default JobApplications;
+const mapStateToProps = state => {
+  return { applications: state.applications };
+};
+
+export class ConnectedJobApplications extends React.Component {
+  render() {
+    return (
+      <AuthConsumer>
+        {auth => <JobApplications {...this.props} auth={auth} />}
+      </AuthConsumer>
+    );
+  }
+}
+
+export default connect(mapStateToProps)(ConnectedJobApplications);

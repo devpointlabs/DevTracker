@@ -1,6 +1,15 @@
 import axios from "axios";
 
 const ADD_APPLICATION = "ADD_APPLICATION";
+const GET_APPLICATIONS = "GET_APPLICATIONS";
+
+export const getApplications = (user_id) => {
+  return dispatch => {
+    axios.get(`/api/users/${user_id}/applications`)
+    .then(res => dispatch({ type: GET_APPLICATIONS, applications: res.data }))
+    .catch(err => console.log(err));
+  }
+}
 
 export const addApplication = (application) => {
   return dispatch => {
@@ -15,6 +24,8 @@ export const addApplication = (application) => {
 
 export default (state = [], action) => {
   switch (action.type) {
+    case GET_APPLICATIONS:
+      return action.applications;
     case ADD_APPLICATION:
       return [action.application, ...state];
     default:

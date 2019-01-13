@@ -51,15 +51,16 @@ export const states = [
     { value: 'WY', label: 'Wyoming' },
 ]
 
-export const status = [
-    { value: 'Interested', label: 'Interested' },
-    { value: 'Applied', label: 'Applied' },
-    { value: 'Phone Call', label: 'Phone Call' },
-    { value: 'Assignment', label: 'Assignment' },
-    { value: 'Offer', label: 'Offer' },
-    { value: 'Accepted', label: 'Accepted' },
-    { value: 'Withdrawn', label: 'Withdrawn' },
-    { value: 'Not Interested', label: 'Not Interested' }
+export const application_status = [
+    { value: 'Interested', label: 'Interested', color: '#8C8C8C' },
+    { value: 'Applied', label: 'Applied', color: '#6DA7D6' },
+    { value: 'Phone Call', label: 'Phone Call', color: '#D567F5' },
+    { value: 'Assignment', label: 'Assignment', color: '#ECB269' },
+    { value: 'Interview', label: 'Interview', color: '#2A79DA' },
+    { value: 'Offer', label: 'Offer', color: '#4BCE55' },
+    { value: 'Accepted', label: 'Accepted', color: '#168000' },
+    { value: 'Withdrawn', label: 'Withdrawn', color: '#666' },
+    { value: 'Not Interested', label: 'Not Interested', color: '#BF5152' }
 ]
 
 export const titles = [

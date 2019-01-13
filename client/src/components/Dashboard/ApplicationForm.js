@@ -148,9 +148,13 @@ class ApplicationForm extends React.Component {
       status,
       notes
     } = this.state;
+    let {closeForm} = this.props;
     return (
       <ApplicationContainer>
         <Form onSubmit={this.handleSubmit}>
+          <CloseMenu onClick={closeForm}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 464c-118.7 0-216-96.1-216-216 0-118.7 96.1-216 216-216 118.7 0 216 96.1 216 216 0 118.7-96.1 216-216 216zm94.8-285.3L281.5 256l69.3 69.3c4.7 4.7 4.7 12.3 0 17l-8.5 8.5c-4.7 4.7-12.3 4.7-17 0L256 281.5l-69.3 69.3c-4.7 4.7-12.3 4.7-17 0l-8.5-8.5c-4.7-4.7-4.7-12.3 0-17l69.3-69.3-69.3-69.3c-4.7-4.7-4.7-12.3 0-17l8.5-8.5c4.7-4.7 12.3-4.7 17 0l69.3 69.3 69.3-69.3c4.7-4.7 12.3-4.7 17 0l8.5 8.5c4.6 4.7 4.6 12.3 0 17z"/></svg>
+          </CloseMenu>
           <h3>New Application</h3>
           <input
             required
@@ -305,6 +309,19 @@ const ApplicationContainer = styled.div`
   overflow: hidden;
 `;
 
+const CloseMenu = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1em;
+  cursor: pointer;
+  svg {
+    width: 25px;
+    height: 25px;
+    fill: #666;
+  }
+`;
+
 const Form = styled.form`
   display: block;
   background-color: white;
@@ -313,6 +330,7 @@ const Form = styled.form`
   border: 1px solid #666;
   padding: 2em;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+  position: relative;
 
   .submit {
     width: 100%;

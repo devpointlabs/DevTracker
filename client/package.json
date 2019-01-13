@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "components": "^0.1.0",
     "devise-axios": "^1.0.24",
+    "moment": "^2.23.0",
     "node-sass": "^4.11.0",
     "particles": "^0.3.1",
     "react": "^16.7.0",

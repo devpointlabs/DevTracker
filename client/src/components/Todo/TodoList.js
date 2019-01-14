@@ -23,7 +23,6 @@ class TodoList extends React.Component {
       })
   };
 
-  //this is how to delete when you're not being rerouted, when the page isn't being reloaded and therefore componentDidMount() is not getting fired. This is how to delete without rendering a page.
   deleteTask = (taskId) => {
     const { auth: { user: { id } } } = this.props
     axios.delete(`/api/users/${id}/todos/${taskId}`)

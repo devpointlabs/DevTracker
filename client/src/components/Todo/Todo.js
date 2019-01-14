@@ -3,7 +3,6 @@ import Axios from "axios";
 class Todo extends React.Component {
 
   handleChange = e => {
-    //set the state of what's in the input field to the state of the TodoForm component.
     const { name, value } = e.target;
     this.setState({ [name]: value })
   };

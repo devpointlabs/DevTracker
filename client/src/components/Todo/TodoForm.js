@@ -1,6 +1,5 @@
 import React from "react";
 import DatePicker from "react-datepicker";
-
 class TodoForm extends React.Component {
   state = { name: "", date: new Date() };
 
@@ -17,7 +16,6 @@ class TodoForm extends React.Component {
   };
 
   handleChange = e => {
-    //set the state of what's in the input field to the state of the TodoForm component.
     const { name, value } = e.target;
     this.setState({ [name]: value })
   };

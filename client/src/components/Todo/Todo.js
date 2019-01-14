@@ -1,11 +1,20 @@
 import React from "react";
+import Axios from "axios";
 class Todo extends React.Component {
 
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value })
+  };
+
+
+
   render() {
-    const { task } = this.props
+    const { name, date, id, deleteTask } = this.props
     return (
       <>
-        <h1>{task.name}</h1>
+        <h1>{name} | {date}</h1>
+        <button onClick={() => deleteTask(id)}>Delete</button>
       </>
     )
   }

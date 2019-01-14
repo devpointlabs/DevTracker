@@ -36,13 +36,29 @@ class TodoList extends React.Component {
       })
   }
 
+  toggleComplete = (taskId) => {
+    const { auth: { user: { id } } } = this.props
+    this.setState({
+      tasks: this.state.tasks.map(task => {
+        if (task.id === taskId) {
+          axios.put(`/api/users/${id}/todos/${taskId}`, { completed: !task.completed })
+          return {
+            ...task,
+            completed: !task.completed,
+          }
+        }
+        return task;
+      })
+    })
+  }
+
   render() {
     const { tasks } = this.state;
     return (
       <div>
         <TodoForm addTask={this.addTask} />
         {tasks.map(task =>
-          <Todo key={task.id} {...task} deleteTask={this.deleteTask} />
+          <Todo key={task.id} {...task} deleteTask={this.deleteTask} toggleComplete={this.toggleComplete} />
         )}
       </div>
     );

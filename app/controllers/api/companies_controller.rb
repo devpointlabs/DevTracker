@@ -34,6 +34,6 @@ class Api::CompaniesController < ApplicationController
     end
 
     def company_params
-      params.require(:company).permit(:name, :city, :state, :zip, :website_url)
+      params.require(:company).permit(:id, :name, :city, :state, :zip, :website_url)
     end
 end

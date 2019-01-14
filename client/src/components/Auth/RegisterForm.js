@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { AuthConsumer } from "../../providers/AuthProvider";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-// unstonishing
-// susano (sause-e-no)
 
 class RegisterForm extends React.Component {
   state = {

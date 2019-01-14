@@ -116,7 +116,7 @@ class NavBar extends React.Component {
       </Navigation>
     );
     let adminMenu = (
-      <Navigation>
+      <Navigation className="navigation">
         <SiteLogo>
           <Link to="/">devTracker</Link>
         </SiteLogo>
@@ -238,7 +238,7 @@ const AccountMenu = styled.ul`
   top: 0;
   right: 0;
   width: 250px;
-  margin-top: 95px;
+  margin-top: 75px;
   margin-right: 5px;
   border-radius: 5px;
   background-color: white;

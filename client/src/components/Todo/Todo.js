@@ -8,12 +8,14 @@ class Todo extends React.Component {
 
 
 
+
   render() {
-    const { name, date, id, deleteTask } = this.props
+    const { name, date, id, deleteTask, toggleComplete, completed } = this.props
     return (
       <>
-        <h1>{name} | {date}</h1>
+        <h1 style={completed ? { ...styles.task, ...styles.complete } : styles.task}>{name} | {date}</h1>
         <button onClick={() => deleteTask(id)}>Delete</button>
+        <button onClick={() => toggleComplete(id)}>Complete</button>
       </>
     )
   }
@@ -21,3 +23,8 @@ class Todo extends React.Component {
 
 
 export default Todo;
+
+const styles = {
+  task: { cursor: "pointer", },
+  complete: { color: "grey", textDecoration: "line-through" }
+}

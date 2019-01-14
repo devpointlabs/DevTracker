@@ -1,5 +1,4 @@
 import React from "react";
-import Axios from "axios";
 class Todo extends React.Component {
 
   handleChange = e => {

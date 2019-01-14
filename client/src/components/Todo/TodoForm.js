@@ -1,12 +1,19 @@
 import React from "react";
+import DatePicker from "react-datepicker";
 
 class TodoForm extends React.Component {
-  state = { task: "" };
+  state = { name: "", date: new Date() };
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.addTask(this.state.task)
-    this.setState({ task: "" })
+    const { name, date } = this.state;
+    let task = {
+      name,
+      date,
+      completed: false
+    }
+    this.props.addTask(task)
+    this.setState({ name: "", date: new Date() })
   };
 
   handleChange = e => {
@@ -15,17 +22,30 @@ class TodoForm extends React.Component {
     this.setState({ [name]: value })
   };
 
+  handleDate = date => {
+    this.setState({
+      date: date
+    });
+  };
+
   render() {
-    const { task } = this.state;
+    const { name, date } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <input
-          name="task"
+          name="name"
           placeholder="Add Task"
           required
           autoFocus
-          value={task}
+          value={name}
           onChange={this.handleChange}
+        />
+        <DatePicker
+          placeholder="Due Date"
+          name="date"
+          selected={date}
+          onChange={this.handleDate}
+          className="date-picker"
         />
         <input type="submit" value="Submit" />
       </form>

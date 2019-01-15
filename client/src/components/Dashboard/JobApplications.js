@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { AuthConsumer } from "../../providers/AuthProvider";
 import { connect } from "react-redux";
 import { getApplications } from "../../reducers/applications";
@@ -26,7 +27,7 @@ class JobApplications extends React.Component {
         return "rgba(236, 178, 105, 0.1)";
       case "Interview":
         return "rgba(42, 121, 218, 0.1)";
-      case "Offer":
+      case "Offer": 
         return "rgba(75, 206, 85, 0.1)";
       case "Accepted":
         return "rgba(22, 128, 0, 0.1)";
@@ -40,14 +41,19 @@ class JobApplications extends React.Component {
   };
 
   render() {
-    let {
-      auth: { user },
-      applications
-    } = this.props;
+    let { applications } = this.props;
     let { openForm } = this.props;
     return (
       <ApplicationsContainer>
         <SectionTitle>Job Applications</SectionTitle>
+        <Link to={"/tracker"}>
+          <SeeAll>
+            See All
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z" />
+            </svg>
+          </SeeAll>
+        </Link>
         <ApplicationsContent>
           {this.props.applications.length === 0 ? (
             <>
@@ -88,7 +94,8 @@ class JobApplications extends React.Component {
               {applications.map(app => {
                 return (
                   <Application key={app.id}>
-                    <h4 className="app-status">{app.status}</h4>
+                    <h1>{app.company_name}</h1>
+                    <h5>{app.status}</h5>
                     <UpdatedAt color={this.returnColor(app.status)}>
                       <p>Updated {moment(app.updated_at).fromNow()}</p>
                     </UpdatedAt>
@@ -102,6 +109,33 @@ class JobApplications extends React.Component {
     );
   }
 }
+
+const SeeAll = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 14px;
+  margin: 1.25em;
+
+  &:hover {
+    color: #4a00e0;
+  }
+
+  &:hover > svg {
+    fill: #4a00e0;
+  }
+
+  svg {
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+  }
+`;
 
 const AddNew = styled.div`
   display: flex;
@@ -162,7 +196,7 @@ const Application = styled.div`
     background-color: rgba(0, 0, 0, 0.02);
   }
 
-  .app-status {
+  .company-name {
     font-weight: lighter;
     font-size: 14px;
     color: #666;
@@ -220,6 +254,7 @@ const ApplicationsContainer = styled.div`
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  position: relative;
 `;
 
 const SectionTitle = styled.h3`

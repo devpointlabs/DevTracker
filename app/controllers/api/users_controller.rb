@@ -33,7 +33,6 @@ class Api::UsersController < ApplicationController
     user.github = params[:github] ? params[:github] : user.github 
     user.linkedin = params[:linkedin] ? params[:linkedin] : user.linkedin
     user.resume = params[:resume] ? params[:resume] : user.resume
-    user.admin = params[:admin] ? params[:admin] : user.admin
 
 
     file = params[:file]
@@ -66,6 +65,6 @@ class Api::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :image, :cohort, :dob, :college_degree, :employment_status, :sex, :github, :linkedin, :resume, :admin)
+    params.require(:user).permit(:first_name, :last_name, :image, :cohort, :dob, :college_degree, :employment_status, :sex, :github, :linkedin, :resume)
   end
 end

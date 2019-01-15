@@ -4,7 +4,7 @@ class Api::ApplicationsController < ApplicationController
   before_action :set_application, only: [:update, :destroy]
 
   def index
-    render json: @user.applications.all
+    render json: Application.all_data(@user.id)
   end
 
   def create

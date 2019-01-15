@@ -21,9 +21,8 @@ class AuthProvider extends React.Component {
     data.append("github", user.github)
     data.append("linkedin", user.linkedin)
     data.append("resume", user.resume)
-    data.append("admin", user.admin)
 
-    axios.put(`/api/users/${id}?email=${user.email}`, data)
+    axios.put(`/api/users/${id}?email=${user.email}&first_name=${user.first_name}&last_name=${user.last_name}&image=${user.image}&cohort=${user.cohort}&dob=${user.dob}&college_degree=${user.college_degree}&employment_status=${user.employment_status}&sex=${user.sex}&github=${user.github}&linkedin=${user.linkedin}&resume=${user.resume}`, data)
       .then(res => this.setState({ user: res.data }));
   };
 

@@ -19,7 +19,6 @@ class Profile extends React.Component {
       github: '',
       linkedin: '',
       resume: '',
-      admin: '',
     },
   };
 
@@ -82,7 +81,7 @@ class Profile extends React.Component {
       github,
       linkedin,
       resume,
-      admin } } = this.state;
+      } } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
         <label>Email</label>
@@ -159,12 +158,6 @@ class Profile extends React.Component {
         <input
           name="resume"
           value={resume}
-          onChange={this.handleChange}
-        />
-        <label>Admin</label>
-        <input
-          name="admin"
-          value={admin}
           onChange={this.handleChange}
         />
         <button>Update</button>

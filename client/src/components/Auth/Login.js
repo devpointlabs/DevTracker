@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import ParticlesContainer from "./ParticlesContainer";
 import LoginForm from "./LoginForm";
+import logo from '../../assets/logo.png';
 
 const Login = () => {
   return (
@@ -15,7 +16,7 @@ const Login = () => {
       </LoginContainer>
       <LogoContainer>
         <ParticlesContainer />
-        <h1>DevTracker</h1>
+        <img src={logo} className="logo" alt="site-logo"/>
       </LogoContainer>
     </Container>
   );
@@ -55,6 +56,10 @@ const LogoContainer = styled.div`
   min-height: 100vh;
   background: linear-gradient(to bottom right, #8e2de2, #4a00e0);
   position: relative;
+
+  .logo {
+    max-width: 450px;
+  }
 
   h1 {
     color: white;

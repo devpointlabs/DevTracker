@@ -2,6 +2,7 @@ import React from "react";
 import { AuthConsumer } from "../../providers/AuthProvider";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
+import logo from '../../assets/logo-color.png';
 
 class NavBar extends React.Component {
   state = { accountMenuOpen: false };
@@ -19,7 +20,7 @@ class NavBar extends React.Component {
     let userMenu = (
       <Navigation>
         <SiteLogo>
-          <Link to="/">devTracker</Link>
+          <Link to="/"><img src={logo} className="logo" alt="site-logo"/></Link>
         </SiteLogo>
         <NavItems>
           <Link to="/">
@@ -208,8 +209,8 @@ const Item = styled.li`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 15px 20px;
-  width: 90px;
+  padding: 25px;
+  width: 100px;
   cursor: pointer;
   font-size: 12px;
   color: #666;
@@ -326,19 +327,17 @@ const MenuItem = styled.li`
   }
 `;
 
-const SiteLogo = styled.h2`
-  color: black;
-  padding: 20px 1em;
-
-  a {
-    text-decoration: none;
-    color: black;
+const SiteLogo = styled.div`
+  .logo {
+    padding: 20px 30px;
+    max-width: 100px;
   }
 `;
 
 const NavItems = styled.ul`
   list-style: none;
   display: flex;
+  height: 100%;
 
   a {
     text-decoration: none;

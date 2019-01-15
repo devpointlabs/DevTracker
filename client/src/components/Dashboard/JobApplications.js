@@ -18,21 +18,21 @@ class JobApplications extends React.Component {
   returnColor = status => {
     switch (status) {
       case "Interested":
-        return "rgba(140, 140, 140, 0.2)";
+        return "rgba(140, 140, 140, 0.1)";
       case "Applied":
-        return "rgba(109, 167, 214, 0.2)";
+        return "rgba(109, 167, 214, 0.1)";
       case "Phone Call":
-        return "rgba(213, 103, 245, 0.2";
+        return "rgba(213, 103, 245, 0.1)";
       case "Assignment":
-        return "rgba(236, 178, 105, 0.2)";
+        return "rgba(236, 178, 105, 0.1)";
       case "Interview":
-        return "rgba(42, 121, 218, 0.2)";
+        return "rgba(42, 121, 218, 0.1)";
       case "Offer": 
-        return "rgba(75, 206, 85, 0.2)";
+        return "rgba(75, 206, 85, 0.1)";
       case "Accepted":
-        return "rgba(22, 128, 0, 0.2)";
+        return "rgba(22, 128, 0, 0.1)";
       case "Withdrawn":
-        return "rgba(102, 102, 102, 0.2)";
+        return "rgba(102, 102, 102, 0.1)";
       case "Not Interested":
         return "#BF5152";
       default:
@@ -183,10 +183,6 @@ const ApplicationList = styled.div`
 
 const Application = styled.div`
   height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background-color: white;
   font-weight: lighter;
   cursor: pointer;
@@ -197,14 +193,16 @@ const Application = styled.div`
   border-radius: 5px;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.02);
   }
 
   .company-name {
     font-weight: lighter;
     font-size: 14px;
     color: #666;
-    padding: 20px 0;
+    font-family: "Open Sans", sans-serif;
+    padding: 20px;
+    text-align: center;
   }
 `;
 

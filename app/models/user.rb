@@ -9,5 +9,5 @@ class User < ActiveRecord::Base
   has_many :contacts
   has_many :applications
   has_many :companies, through: :applications
+  has_many :todos, dependent: :destroy
 end
-

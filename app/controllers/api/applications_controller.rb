@@ -4,11 +4,11 @@ class Api::ApplicationsController < ApplicationController
   before_action :set_application, only: [:update, :destroy]
 
   def index
-    render json: @user.applications.all
+    render json: Application.all_data(@user.id)
   end
 
   def create
-    post = @user.applications.new(application_params)
+    application = @user.applications.new(application_params)
     if application.save
       render json: application
     else
@@ -40,6 +40,6 @@ class Api::ApplicationsController < ApplicationController
   end
 
   def application_params
-    params.require(:application).permit(:submission_date, :notes, :title, :status)
+    params.require(:application).permit(:submission_date, :notes, :title, :status, :posting_url, :user_id, :company_id)
   end
 end

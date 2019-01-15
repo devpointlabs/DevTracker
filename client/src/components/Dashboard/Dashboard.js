@@ -5,22 +5,30 @@ import Events from "./Events";
 import JobApplications from "./JobApplications";
 import Tasks from "./Tasks";
 import { AuthConsumer } from "../../providers/AuthProvider";
+import ApplicationForm from './ApplicationForm';
 import { withRouter } from "react-router-dom";
 
 class Dashboard extends React.Component {
+  state = {
+    openApplication: false,
+    openTask: false
+  };
+
+  openApplication = () => {
+    this.setState(state => ({openApplication: !state.openApplication}))
+  }
+    
   render() {
     let {
-      auth: { user, handleLogout },
-      history,
-      location
+      auth: { user }
     } = this.props;
-
+    let {openApplication} = this.state;
     return (
       <>
         <NavBar />
-
         {!user.admin ? (
           <DashboardContainer>
+            {openApplication ? <ApplicationForm closeForm={this.openApplication} user={user}/> : null}
             <DashboardTitle>Dashboard</DashboardTitle>
             <TilesContainer>
               <LeftContainer>
@@ -33,7 +41,7 @@ class Dashboard extends React.Component {
               </LeftContainer>
               <RightContainer>
                 <Tile>
-                  <JobApplications />
+                  <JobApplications openForm={this.openApplication}/>
                 </Tile>
               </RightContainer>
             </TilesContainer>
@@ -64,7 +72,7 @@ const LeftContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex: 1;
-  margin-right: .5em;
+  margin-right: 0.5em;
 `;
 
 const DashboardContainer = styled.div`

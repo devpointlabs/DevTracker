@@ -101,23 +101,23 @@ ActiveRecord::Schema.define(version: 2019_01_14_174754) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "first_name"
-    t.string "last_name"
+    t.string "first_name", default: "", null: false
+    t.string "last_name", default: "", null: false
     t.string "nickname"
-    t.string "image"
+    t.string "image", default: "", null: false
     t.string "email"
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "cohort"
-    t.date "dob"
-    t.string "college_degree"
-    t.string "employment_status"
-    t.string "sex"
-    t.string "github"
-    t.string "linkedin"
-    t.string "resume"
-    t.boolean "admin"
+    t.date "cohort", default: "0001-01-01"
+    t.date "dob", default: "0001-01-01"
+    t.string "college_degree", default: ""
+    t.string "employment_status", default: ""
+    t.string "sex", default: ""
+    t.string "github", default: ""
+    t.string "linkedin", default: ""
+    t.string "resume", default: ""
+    t.boolean "admin", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

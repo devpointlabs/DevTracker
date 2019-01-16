@@ -392,7 +392,6 @@ const Form = styled.form`
   .input {
     width: 100%;
     padding: 15px 10px;
-    border-radius: 5px;
     color: #666;
     border: none;
     background-color: rgba(0, 0, 0, 0.03);
@@ -419,11 +418,13 @@ const SearchResults = styled.ul`
 
 const Result = styled.li`
   width: 100%;
-  padding: 10px 5px;
-  font-size: 12px;
+  padding: 15px 10px;
+  font-size: 15px;
   cursor: pointer;
+  background-color: white;
+  border: 1px solid #ccc;
   &:hover {
-    background-color: #eee;
+    background-color: #ccc;
   }
 `;
 

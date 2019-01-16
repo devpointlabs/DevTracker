@@ -110,7 +110,6 @@ const Button = styled.button`
   -webkit-appearance: button;
   padding: 15px 30px;
   font-size: 16px;
-  font-weight: bold;
   color: white;
   background: #6e54a3;
   border: none;

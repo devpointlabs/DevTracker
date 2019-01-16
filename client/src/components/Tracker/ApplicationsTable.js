@@ -40,6 +40,10 @@ class ApplicationsTable extends Component {
   render() {
     let {applications, colorPicker, view} = this.props;
     let sortedApplications = applications;
+    sortedApplications = sortedApplications.sort((a,b) => {
+      console.log(a.company_name);
+      console.log(b.company_name);
+    })
     // console.log(typeof(sortedApplications));
     // let {company, title, status, city, state, applied, reversed} = this.state;
     // if(company && !reversed) {
@@ -141,7 +145,12 @@ const Table = styled.table`
     font-size: 12px;
     font-family: "Sarabun", sans-serif;
     padding: 30px;
+    border-radius: 5px;
+    cursor: pointer;
     text-align: left;
+    &:hover {
+      background-color: rgba(255,255,255,0.7);
+    }
   }
 
   td {

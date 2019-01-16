@@ -122,11 +122,7 @@ const Table = styled.table`
     font-family: "Sarabun", sans-serif;
     padding: 30px;
     border-radius: 5px;
-    cursor: pointer;
     text-align: left;
-    &:hover {
-      background-color: rgba(255,255,255,0.7);
-    }
   }
 
   td {

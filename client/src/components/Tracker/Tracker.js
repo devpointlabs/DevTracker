@@ -1,23 +1,40 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import NavBar from "../Dashboard/NavBar";
 import { connect } from "react-redux";
 import { AuthConsumer } from "../../providers/AuthProvider";
 import { getApplications } from "../../reducers/applications";
 import ApplicationForm from "../Dashboard/ApplicationForm";
 import ApplicationsTable from "./ApplicationsTable";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
+import { application_status } from "../Dashboard/Options";
 
 class Tracker extends React.Component {
   state = {
     openApplication: false,
-    input: ''
+    input: "",
+    status: ""
   };
 
-  handleChange = ({target: {name, value}}) => {
+  handleChange = ({ target: { name, value } }) => {
     this.setState({
       [name]: value
-    })
-  }
+    });
+  };
+
+  handleSelection = e => {
+    if(e.value === "None") {
+      this.setState({
+        status: ''
+      })
+    } else {
+      this.setState({
+        status: e.value
+      })
+    }
+    
+  };
 
   componentDidMount() {
     let {
@@ -66,12 +83,19 @@ class Tracker extends React.Component {
       auth: { user },
       applications
     } = this.props;
-    let { openApplication, input } = this.state;
-    if(input.length > 0) {
+    let { openApplication, input, status } = this.state;
+    if (input.length > 0) {
       applications = applications.filter(app => {
-        if(app.company_name.toLowerCase().includes(input.toLowerCase())) {
+        if (app.company_name.toLowerCase().includes(input.toLowerCase())) {
+          return app;
+        } else return null;
+      });
+    }
+    if(status.length > 0) {
+      applications = applications.filter(app => {
+        if(app.status === status) {
           return app
-        }
+        } else return null
       })
     }
     return (
@@ -83,12 +107,21 @@ class Tracker extends React.Component {
               closeForm={this.openApplication}
               user={user}
               update={this.updateApplications}
+              onChange={this.handleChange}
             />
           ) : null}
           <TableHeader>
             <ApplicationTitle>Job Applications</ApplicationTitle>
             <ButtonContainer>
-              <CompanyFilter 
+              <Dropdown
+                name="status"
+                placeholder="Filter by status"
+                options={application_status}
+                className="status-selection"
+                value={status}
+                onChange={this.handleSelection}
+              />
+              <CompanyFilter
                 name="input"
                 value={input}
                 placeholder="Search by company name..."
@@ -114,6 +147,15 @@ class Tracker extends React.Component {
   }
 }
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 const TableHeader = styled.div`
   display: flex;
   flex-direction: row;
@@ -125,6 +167,27 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  .status-selection {
+    min-width: 200px;
+    border-radius: 5px;
+    
+    .Dropdown-placeholder {
+      color: #666;
+    }
+
+    .Dropdown-control {
+      height: 48px;
+      line-height: 48px;
+      vertical-align: middle;
+      padding: 0 10px;
+      border-radius: 5px;
+      border: none;
+      -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+  }
 `;
 
 const CompanyFilter = styled.input`
@@ -136,11 +199,11 @@ const CompanyFilter = styled.input`
   border-radius: 5px;
   outline: none;
   border: none;
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   &::placeholder {
-    color: #ccc;
+    color: #666;
   }
 `;
 
@@ -152,6 +215,7 @@ const ApplicationsContainer = styled.div`
   margin: 0 auto;
   padding: 25px 1em;
   position: relative;
+  animation: ${fadeIn} 0.5s linear;
 `;
 
 const ApplicationTitle = styled.h1`

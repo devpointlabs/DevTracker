@@ -92,7 +92,7 @@ class ApplicationForm extends React.Component {
  
   handleSubmit = (e) => {
     e.preventDefault();
-    let {closeForm, dispatch, user} = this.props;
+    let { closeForm, dispatch, user } = this.props;
     let {company_name, company_city, company_zip, company_url, company_state, company_id, submission_date, title, status, notes, posting_url, } = this.state;
     // if company id is null or undefined, then we are adding a company and an application
     if(!company_id) {

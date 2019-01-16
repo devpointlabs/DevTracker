@@ -63,14 +63,8 @@ class JobApplications extends React.Component {
                 viewBox="0 0 576 512"
                 className="folder"
               >
-                <defs>
-                  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#8e2de2" />
-                    <stop offset="100%" stopColor="#4a00e0" />
-                  </linearGradient>
-                </defs>
                 <path
-                  fill="url(#grad1)"
+                  fill="#6E54A3"
                   d="M572.694 292.093L500.27 416.248A63.997 63.997 0 0 1 444.989 448H45.025c-18.523 0-30.064-20.093-20.731-36.093l72.424-124.155A64 64 0 0 1 152 256h399.964c18.523 0 30.064 20.093 20.73 36.093zM152 224h328v-48c0-26.51-21.49-48-48-48H272l-64-64H48C21.49 64 0 85.49 0 112v278.046l69.077-118.418C86.214 242.25 117.989 224 152 224z"
                 />
               </svg>
@@ -236,15 +230,17 @@ const ApplicationsContent = styled.div`
   padding: 2em;
 
   .new-application {
-    padding: 10px 15px;
+    padding: 15px 30px;
     -webkit-appearance: button;
     margin-top: 20px;
-    background: #8e2de2;
+    background: #8E2DE2;
     color: white;
     border: none;
+    font-size: 14px;
+    border-radius: 5px;
     transition: 0.3s linear;
     cursor: pointer;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.2);
     &:hover {
       box-shadow: none;
     }

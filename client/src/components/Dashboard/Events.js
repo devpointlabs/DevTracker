@@ -18,14 +18,8 @@ class Events extends React.Component {
                 viewBox="0 0 512 512"
                 className="suitcase"
               >
-                <defs>
-                  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#6E54A3" />
-                    <stop offset="100%" stopColor="#53407A" />
-                  </linearGradient>
-                </defs>
                 <path
-                  fill="url(#grad1)"
+                  fill="#6E54A3"
                   d="M128 480h256V80c0-26.5-21.5-48-48-48H176c-26.5 0-48 21.5-48 48v400zm64-384h128v32H192V96zm320 80v256c0 26.5-21.5 48-48 48h-48V128h48c26.5 0 48 21.5 48 48zM96 480H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48h48v352z"
                 />
               </svg>

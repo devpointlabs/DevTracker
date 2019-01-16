@@ -149,7 +149,7 @@ const Table = styled.table`
   }
 
   td {
-    padding: 25px;
+    padding: 35px;
     font-size: 14px;
 
     .status {

@@ -20,8 +20,8 @@ class Tasks extends React.Component {
               >
               <defs>
                 <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#8e2de2" />
-                  <stop offset="100%" stopColor="#4a00e0" />
+                  <stop offset="0%" stopColor="#6E54A3" />
+                  <stop offset="100%" stopColor="#53407A" />
                 </linearGradient>
               </defs>
                 <path 
@@ -54,7 +54,7 @@ const TasksContent = styled.div`
     padding: 10px 15px;
     -webkit-appearance: button;
     margin-top: 20px;
-    background: #8e2de2;
+    background: #6E54A3;
     color: white;
     border: none;
     transition: 0.3s linear;

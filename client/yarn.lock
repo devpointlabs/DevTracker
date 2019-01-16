@@ -3283,6 +3283,13 @@ dtrace-provider@0.2.8:
   resolved "https://registry.yarnpkg.com/dtrace-provider/-/dtrace-provider-0.2.8.tgz#e243f19219aa95fbf0d8f2ffb07f5bd64e94fe20"
   integrity sha1-4kPxkhmqlfvw2PL/sH9b1k6U/iA=
 
+dtrace-provider@0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/dtrace-provider/-/dtrace-provider-0.6.0.tgz#0b078d5517937d873101452d9146737557b75e51"
+  integrity sha1-CweNVReTfYcxAUUtkUZzdVe3XlE=
+  dependencies:
+    nan "^2.0.8"
+
 duplexer@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"
@@ -6685,7 +6692,7 @@ mv@~2:
     ncp "~2.0.0"
     rimraf "~2.4.0"
 
-nan@^2.10.0, nan@^2.9.2:
+nan@^2.0.8, nan@^2.10.0, nan@^2.9.2:
   version "2.12.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.12.1.tgz#7b1aa193e9aa86057e3c7bbd0ac448e770925552"
   integrity sha512-JY7V6lRkStKcKTvHO5NVSQRv+RV+FIL5pvDoLiAtSL9pKlC5x9PKQcZDsq7m4FO4d57mkhC6Z+QhAh3Jdk5JFw==

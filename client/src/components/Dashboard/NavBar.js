@@ -219,10 +219,10 @@ const Item = styled.li`
     background-color: #eee;
   }
   &:hover {
-    color: #4a00e0;
+    color: #6E54A3;
   }
   &:hover > svg {
-    fill: #4a00e0;
+    fill: #6E54A3;
     transform: scale(1.1);
   }
   .nav-icon {

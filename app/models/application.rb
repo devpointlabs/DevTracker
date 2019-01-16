@@ -22,6 +22,7 @@ class Application < ApplicationRecord
       ')
     .joins('INNER JOIN companies c ON c.id = applications.company_id')
     .where('applications.user_id = ?', user)
+    .order('applications.updated_at desc')
   end
 end
 

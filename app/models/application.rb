@@ -1,6 +1,8 @@
 class Application < ApplicationRecord
   belongs_to :user
   belongs_to :company
+  has_many :interviews, dependent: :destroy
+  has_many :offers, dependent: :destroy
 
   def self.all_data(user)
     select('

@@ -5,7 +5,7 @@ import NoMatch from "./components/NoMatch";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Profile from "./components/Profile/Profile";
 import FetchUser from "./components/Auth/FetchUser";
-import TodoList from "./components/Todo/TodoList";
+import Todos from "./components/Todo/Todos";
 import { Route, Switch } from "react-router-dom";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import ContactList from './components/Contact/ContactList'
@@ -22,7 +22,7 @@ const App = () => (
     <ProtectedRoute exact path="/profile" component={Profile} />
     <Route exact path="/register" component={Register} />
     <ProtectedRoute exact path="/contacts" component={ContactList} />
-    <ProtectedRoute exact path="/tasks" component={TodoList} />
+    <ProtectedRoute exact path="/tasks" component={Todos} />
     <ProtectedRoute exact path="/tracker" component={Tracker} />
     <ProtectedRoute component={NoMatch} />
   </Switch>

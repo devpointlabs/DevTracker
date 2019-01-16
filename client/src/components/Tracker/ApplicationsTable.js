@@ -33,17 +33,12 @@ class ApplicationsTable extends Component {
         [column]: true,
         reversed: false
       })
-    }
-    
+    } 
   }
 
   render() {
     let {applications, colorPicker, view} = this.props;
     let sortedApplications = applications;
-    sortedApplications = sortedApplications.sort((a,b) => {
-      console.log(a.company_name);
-      console.log(b.company_name);
-    })
     // console.log(typeof(sortedApplications));
     // let {company, title, status, city, state, applied, reversed} = this.state;
     // if(company && !reversed) {

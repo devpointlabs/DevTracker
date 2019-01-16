@@ -16,18 +16,18 @@ class ContactList extends React.Component {
       })
   }
 
-  deleteContact = (contactId) => {
-    const { auth: { user: { id } } } = this.props
-    axios.delete(`/api/users/${id}/contacts/${contactId}`)
-      .then(res => {
-        const contacts = this.state.contacts.filter(contact => {
-          if (contact.id !== contactId)
-            return contact;
+  // deleteContact = (contactId) => {
+  //   const { auth: { user: { id } } } = this.props
+  //   axios.delete(`/api/users/${id}/contacts/${contactId}`)
+  //     .then(res => {
+  //       const contacts = this.state.contacts.filter(contact => {
+  //         if (contact.id !== contactId)
+  //           return contact;
 
-        })
-        this.setState({ contacts })
-      })
-  }
+  //       })
+  //       this.setState({ contacts })
+  //     })
+  // }
 
   addContact = (contact) => { 
     const {auth: {user: { id }}} = this.props;

@@ -6,7 +6,9 @@ const GET_APPLICATIONS = "GET_APPLICATIONS";
 export const getApplications = (user_id) => {
   return dispatch => {
     axios.get(`/api/users/${user_id}/applications`)
-    .then(res => dispatch({ type: GET_APPLICATIONS, applications: res.data }))
+    .then(res => {
+      dispatch({ type: GET_APPLICATIONS, applications: res.data })
+    })
     .catch(err => console.log(err));
   }
 }

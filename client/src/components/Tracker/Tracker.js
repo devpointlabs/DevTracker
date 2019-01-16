@@ -72,7 +72,7 @@ class Tracker extends React.Component {
             Add Job
           </Button>
           {openApplication ? (
-            <ApplicationForm closeForm={this.openApplication} user={user} />
+            <ApplicationForm closeForm={this.openApplication} user={user}/>
           ) : null}
           <ApplicationTitle>Job Applications</ApplicationTitle>
           <ApplicationsTable

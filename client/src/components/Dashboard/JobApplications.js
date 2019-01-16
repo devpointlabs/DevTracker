@@ -7,15 +7,8 @@ import { getApplications } from "../../reducers/applications";
 import moment from "moment";
 
 class JobApplications extends React.Component {
-  componentDidMount() {
-    let {
-      auth: { user },
-      dispatch
-    } = this.props;
-    dispatch(getApplications(user.id));
-  }
 
-  componentWillReceiveProps() {
+  componentDidMount() {
     let {
       auth: { user },
       dispatch

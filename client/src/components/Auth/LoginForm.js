@@ -13,7 +13,6 @@ class LoginForm extends React.Component {
       history
     } = this.props;
     e.preventDefault();
-    const { email, password } = this.state;
     handleLogin({ ...this.state }, history, this.handleError);
   };
 

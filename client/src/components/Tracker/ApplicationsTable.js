@@ -70,7 +70,7 @@ class ApplicationsTable extends Component {
             <th className="column-title" onClick={() => this.sortTable('status')}>Status</th>
             <th className="column-title" onClick={() => this.sortTable('city')}>City</th>
             <th className="column-title" onClick={() => this.sortTable('state')}>State</th>
-            <th className="column-title" onClick={() => this.sortTable('applied')}>Applied</th>
+            <th className="column-title" onClick={() => this.sortTable('applied')}>Last Updated</th>
           </tr>
         </thead>
         <tbody>
@@ -90,7 +90,7 @@ class ApplicationsTable extends Component {
               </td>
               <td>{app.company_city}</td>
               <td>{app.company_state}</td>
-              <td>{moment(app.submission_date).fromNow()}</td>
+              <td>{moment(app.updated_at).fromNow()}</td>
             </tr>
           ))}
         </tbody>
@@ -141,7 +141,7 @@ const Table = styled.table`
     font-size: 12px;
     font-family: "Sarabun", sans-serif;
     padding: 30px;
-    text-align: center;
+    text-align: left;
   }
 
   td {

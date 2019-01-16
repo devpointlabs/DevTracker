@@ -64,6 +64,7 @@ class Tracker extends React.Component {
       <>
         <NavBar />
         <ApplicationsContainer>
+
           <Button onClick={this.openApplication}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
@@ -87,10 +88,11 @@ class Tracker extends React.Component {
 
 const ApplicationsContainer = styled.div`
   height: 100%;
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 90px);
   width: 100%;
-  background-color: #dadee838;
-  padding: 1em;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 50px 1em;
   position: relative;
 `;
 
@@ -104,7 +106,7 @@ const Button = styled.button`
   position: absolute;
   top: 0;
   right: 0;
-  margin: 30px;
+  margin: 50px 16px 0 0;
   -webkit-appearance: button;
   padding: 15px 30px;
   font-size: 16px;

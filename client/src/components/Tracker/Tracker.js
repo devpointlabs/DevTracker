@@ -171,6 +171,7 @@ const ButtonContainer = styled.div`
   .status-selection {
     min-width: 200px;
     border-radius: 5px;
+    font-size: 12px;
     
     .Dropdown-placeholder {
       color: #666;
@@ -193,8 +194,9 @@ const ButtonContainer = styled.div`
 const CompanyFilter = styled.input`
   min-width: 300px;
   margin: 0 10px;
-  font-size: 16px;
+  font-size: 12px;
   color: #666;
+  height: 48px;
   padding: 15px 10px;
   border-radius: 5px;
   outline: none;

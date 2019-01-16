@@ -59,7 +59,6 @@ class ApplicationForm extends React.Component {
   };
 
   handleResultClick = company => {
-    console.log(company);
     this.setState({
       company_name: company.name,
       company_city: company.city,

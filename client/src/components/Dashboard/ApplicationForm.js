@@ -59,7 +59,6 @@ class ApplicationForm extends React.Component {
   };
 
   handleResultClick = company => {
-    console.log(company);
     this.setState({
       company_name: company.name,
       company_city: company.city,
@@ -92,7 +91,7 @@ class ApplicationForm extends React.Component {
  
   handleSubmit = (e) => {
     e.preventDefault();
-    let {closeForm, dispatch, user} = this.props;
+    let { closeForm, dispatch, user } = this.props;
     let {company_name, company_city, company_zip, company_url, company_state, company_id, submission_date, title, status, notes, posting_url, } = this.state;
     // if company id is null or undefined, then we are adding a company and an application
     if(!company_id) {
@@ -105,7 +104,6 @@ class ApplicationForm extends React.Component {
         'The application you submitted has been successfully created',
         'success'
       )
-      closeForm();
     } else {
       let newApplication = {submission_date, notes, title, posting_url, status, company_id: company_id, user_id: user.id };
       dispatch(addApplication(newApplication));
@@ -114,24 +112,8 @@ class ApplicationForm extends React.Component {
         'The application you submitted has been successfully created',
         'success'
       )
-      closeForm();
     }
-
-    // if company id is provided, then we are just adding an application for an already made company
-    this.setState({
-      posting_url: "",
-      submission_date: new Date(),
-      company_name: "",
-      company_city: "",
-      company_state: "",
-      company_zip: "",
-      company_url: "",
-      company_id: undefined,
-      title: "",
-      status: "",
-      notes: "",
-      formPopulated: false
-    })
+    closeForm();
   }
 
   render() {
@@ -409,7 +391,6 @@ const Form = styled.form`
   .input {
     width: 100%;
     padding: 15px 10px;
-    border-radius: 5px;
     color: #666;
     border: none;
     background-color: rgba(0, 0, 0, 0.03);
@@ -436,11 +417,13 @@ const SearchResults = styled.ul`
 
 const Result = styled.li`
   width: 100%;
-  padding: 10px 5px;
-  font-size: 12px;
+  padding: 15px 10px;
+  font-size: 15px;
   cursor: pointer;
+  background-color: white;
+  border: 1px solid #ccc;
   &:hover {
-    background-color: #eee;
+    background-color: #ccc;
   }
 `;
 

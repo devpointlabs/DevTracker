@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
-  has_many :contacts
-  has_many :applications
+  has_many :contacts, dependent: :destroy
+  has_many :applications, dependent: :destroy
   has_many :companies, through: :applications
   has_many :todos, dependent: :destroy
 end

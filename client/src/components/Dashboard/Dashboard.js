@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import NavBar from "./NavBar";
 import Events from "./Events";
 import JobApplications from "./JobApplications";
@@ -59,6 +59,15 @@ class Dashboard extends React.Component {
   }
 }
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -83,7 +92,8 @@ const DashboardContainer = styled.div`
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 50px 1em;
+  padding: 25px 1em;
+  animation: ${fadeIn} 0.5s linear;
 `;
 
 const DashboardTitle = styled.h1`

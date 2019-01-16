@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import ContactList from './ContactList';
-import Contact from './Contact'
+// import styled from 'styled-components';
+// import ContactList from './ContactList';
+// import Contact from './Contact'
 
 class ContactForm extends React.Component {
   state = {

@@ -10,7 +10,8 @@ class Api::ApplicationsController < ApplicationController
   def create
     application = @user.applications.new(application_params)
     if application.save
-      render json: application
+      new_application = Application.single_record(application.id, @user.id)
+      render json: new_application
     else
       render json: application.errors
     end

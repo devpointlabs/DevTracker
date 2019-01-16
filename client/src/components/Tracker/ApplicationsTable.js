@@ -33,36 +33,12 @@ class ApplicationsTable extends Component {
         [column]: true,
         reversed: false
       })
-    }
-    
+    } 
   }
 
   render() {
     let {applications, colorPicker, view} = this.props;
     let sortedApplications = applications;
-    sortedApplications = sortedApplications.sort((a,b) => {
-      console.log(a.company_name);
-      console.log(b.company_name);
-    })
-    // console.log(typeof(sortedApplications));
-    // let {company, title, status, city, state, applied, reversed} = this.state;
-    // if(company && !reversed) {
-    //   sortedApplications = sortedApplications.sort((a,b) => a.company_name > b.company_name
-    //   })
-    //   console.log(sortedApplications);
-    // }
-
-    // arr.sort((a, b) =&gt; a - b);
-    
-    // else if (company && reversed) {
-    //   sortedApplications = sortedApplications.sort((a,b) => {
-    //     console.log(a,b);
-    //     return b.company_name > a.company_name
-    //   })
-    //   console.log(sortedApplications);
-    // } else {
-    //   sortedApplications = applications;
-    // }
 
     return(
     <>
@@ -114,7 +90,7 @@ const StatusCircle = styled.div`
 
 const Table = styled.table`
   width: 100%;
-  margin-top: 50px;
+  margin-top: 25px;
   border-collapse: separate;
   border-spacing: 0 10px;
 
@@ -146,15 +122,11 @@ const Table = styled.table`
     font-family: "Sarabun", sans-serif;
     padding: 30px;
     border-radius: 5px;
-    cursor: pointer;
     text-align: left;
-    &:hover {
-      background-color: rgba(255,255,255,0.7);
-    }
   }
 
   td {
-    padding: 25px;
+    padding: 35px;
     font-size: 14px;
 
     .status {

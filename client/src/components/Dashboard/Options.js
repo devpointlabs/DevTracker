@@ -52,6 +52,7 @@ export const states = [
 ]
 
 export const application_status = [
+    { value: 'None', label: 'None', color: '' },
     { value: 'Interested', label: 'Interested', color: '#8C8C8C' },
     { value: 'Applied', label: 'Applied', color: '#6DA7D6' },
     { value: 'Phone Call', label: 'Phone Call', color: '#D567F5' },

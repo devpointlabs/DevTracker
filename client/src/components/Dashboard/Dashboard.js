@@ -5,7 +5,7 @@ import Events from "./Events";
 import JobApplications from "./JobApplications";
 import Tasks from "./Tasks";
 import { AuthConsumer } from "../../providers/AuthProvider";
-import ApplicationForm from './ApplicationForm';
+import ApplicationForm from "./ApplicationForm";
 import { withRouter } from "react-router-dom";
 
 class Dashboard extends React.Component {
@@ -15,20 +15,22 @@ class Dashboard extends React.Component {
   };
 
   openApplication = () => {
-    this.setState(state => ({openApplication: !state.openApplication}))
-  }
-    
+    this.setState(state => ({ openApplication: !state.openApplication }));
+  };
+
   render() {
     let {
       auth: { user }
     } = this.props;
-    let {openApplication} = this.state;
+    let { openApplication } = this.state;
     return (
       <>
         <NavBar />
         {!user.admin ? (
           <DashboardContainer>
-            {openApplication ? <ApplicationForm closeForm={this.openApplication} user={user}/> : null}
+            {openApplication ? (
+              <ApplicationForm closeForm={this.openApplication} user={user} />
+            ) : null}
             <DashboardTitle>Dashboard</DashboardTitle>
             <TilesContainer>
               <LeftContainer>
@@ -41,7 +43,7 @@ class Dashboard extends React.Component {
               </LeftContainer>
               <RightContainer>
                 <Tile>
-                  <JobApplications openForm={this.openApplication}/>
+                  <JobApplications openForm={this.openApplication} />
                 </Tile>
               </RightContainer>
             </TilesContainer>
@@ -77,10 +79,11 @@ const LeftContainer = styled.div`
 
 const DashboardContainer = styled.div`
   height: 100%;
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 90px);
   width: 100%;
-  background-color: #dadee838;
-  padding: 1em;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 50px 1em;
 `;
 
 const DashboardTitle = styled.h1`

@@ -19,12 +19,12 @@ const App = () => (
   <Switch>
     <ProtectedRoute exact path="/" component={Dashboard} />
     <Route exact path="/login" component={Login} />
-    <Route exact path="/profile" component={Profile} />
+    <ProtectedRoute exact path="/profile" component={Profile} />
     <Route exact path="/register" component={Register} />
-    <Route exact path="/contacts" component={ContactList} />
-    <Route exact path="/tasks" component={TodoList} />
-    <Route exact path="/tracker" component={Tracker} />
-    <Route component={NoMatch} />
+    <ProtectedRoute exact path="/contacts" component={ContactList} />
+    <ProtectedRoute exact path="/tasks" component={TodoList} />
+    <ProtectedRoute exact path="/tracker" component={Tracker} />
+    <ProtectedRoute component={NoMatch} />
   </Switch>
   </FetchUser>
   </>

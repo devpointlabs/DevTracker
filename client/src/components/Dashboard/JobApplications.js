@@ -7,15 +7,8 @@ import { getApplications } from "../../reducers/applications";
 import moment from "moment";
 
 class JobApplications extends React.Component {
-  componentDidMount() {
-    let {
-      auth: { user },
-      dispatch
-    } = this.props;
-    dispatch(getApplications(user.id));
-  }
 
-  componentWillReceiveProps() {
+  componentDidMount() {
     let {
       auth: { user },
       dispatch
@@ -155,6 +148,7 @@ const Title = styled.h3`
   font-size: 14px;
   width: 100%;
   padding: 10px 0 0;
+  color: #666;
 `;
 
 const LastUpdated = styled.p`

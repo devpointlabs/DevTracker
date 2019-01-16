@@ -9,8 +9,15 @@ import ApplicationsTable from "./ApplicationsTable";
 
 class Tracker extends React.Component {
   state = {
-    openApplication: false
+    openApplication: false,
+    input: ''
   };
+
+  handleChange = ({target: {name, value}}) => {
+    this.setState({
+      [name]: value
+    })
+  }
 
   componentDidMount() {
     let {
@@ -56,19 +63,21 @@ class Tracker extends React.Component {
 
   render() {
     let {
-      auth: { user }, applications
+      auth: { user },
+      applications
     } = this.props;
-    let { openApplication } = this.state;
+    let { openApplication, input } = this.state;
+    if(input.length > 0) {
+      applications = applications.filter(app => {
+        if(app.company_name.toLowerCase().includes(input.toLowerCase())) {
+          return app
+        }
+      })
+    }
     return (
       <>
         <NavBar />
         <ApplicationsContainer>
-          <Button onClick={this.openApplication}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-              <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-            </svg>
-            Add Job
-          </Button>
           {openApplication ? (
             <ApplicationForm
               closeForm={this.openApplication}
@@ -76,7 +85,24 @@ class Tracker extends React.Component {
               update={this.updateApplications}
             />
           ) : null}
-          <ApplicationTitle>Job Applications</ApplicationTitle>
+          <TableHeader>
+            <ApplicationTitle>Job Applications</ApplicationTitle>
+            <ButtonContainer>
+              <CompanyFilter 
+                name="input"
+                value={input}
+                placeholder="Search by company name..."
+                onChange={this.handleChange}
+              />
+              <Button onClick={this.openApplication}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                </svg>
+                Add Job
+              </Button>
+            </ButtonContainer>
+          </TableHeader>
+
           <ApplicationsTable
             applications={applications}
             colorPicker={this.returnColor}
@@ -88,13 +114,43 @@ class Tracker extends React.Component {
   }
 }
 
+const TableHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const CompanyFilter = styled.input`
+  min-width: 300px;
+  margin: 0 10px;
+  font-size: 16px;
+  color: #666;
+  padding: 15px 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  &::placeholder {
+    color: #ccc;
+  }
+`;
+
 const ApplicationsContainer = styled.div`
   height: 100%;
   min-height: calc(100vh - 90px);
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 50px 1em;
+  padding: 25px 1em;
   position: relative;
 `;
 
@@ -105,10 +161,6 @@ const ApplicationTitle = styled.h1`
 `;
 
 const Button = styled.button`
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 50px 16px 0 0;
   -webkit-appearance: button;
   padding: 15px 30px;
   font-size: 16px;

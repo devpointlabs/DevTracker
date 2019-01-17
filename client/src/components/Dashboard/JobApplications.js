@@ -88,16 +88,18 @@ class JobApplications extends React.Component {
               </AddNew>
               {applications.map(app => {
                 return (
-                  <Application key={app.id} color={this.returnColor(app.status)}>
-                    <ApplicationStatus>
-                      <StatusCircle color={this.returnColor(app.status)} />
-                      <JobStatus>{app.status}</JobStatus>
-                    </ApplicationStatus>
-                    <Title>{app.title} @ {app.company_name}</Title>
-                    <LastUpdated>
-                      Updated {moment(app.updated_at).fromNow()}
-                    </LastUpdated>
-                  </Application>
+                  <Link to={`/applications/${app.id}`} key={app.id} >
+                    <Application color={this.returnColor(app.status)}>
+                      <ApplicationStatus>
+                        <StatusCircle color={this.returnColor(app.status)} />
+                        <JobStatus>{app.status}</JobStatus>
+                      </ApplicationStatus>
+                      <Title>{app.title} @ {app.company_name}</Title>
+                      <LastUpdated>
+                        Updated {moment(app.updated_at).fromNow()}
+                      </LastUpdated>
+                    </Application>
+                  </Link>
                 );
               })}
             </ApplicationList>
@@ -125,7 +127,7 @@ const Application = styled.div`
   padding: 1em;
   cursor: pointer;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.03);
   }
 `;
 
@@ -136,6 +138,7 @@ const ApplicationStatus = styled.span`
 
 const JobStatus = styled.p`
   font-size: 14px;
+  color: #666;
 `;
 
 const Title = styled.h3`
@@ -262,9 +265,7 @@ const ApplicationsContainer = styled.div`
   padding: 1.25em;
   background-color: white;
   border-radius: 5px;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   position: relative;
 `;
 

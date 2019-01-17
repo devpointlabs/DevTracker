@@ -10,6 +10,7 @@ import { Route, Switch } from "react-router-dom";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import ContactList from './components/Contact/ContactList'
 import Tracker from './components/Tracker/Tracker';
+import Application from './components/Application/Application';
 import './App.scss';
 
 const App = () => (
@@ -24,6 +25,7 @@ const App = () => (
     <ProtectedRoute exact path="/contacts" component={ContactList} />
     <ProtectedRoute exact path="/tasks" component={Todos} />
     <ProtectedRoute exact path="/tracker" component={Tracker} />
+    <ProtectedRoute exact path="/applications/:id" component={Application} />
     <ProtectedRoute component={NoMatch} />
   </Switch>
   </FetchUser>

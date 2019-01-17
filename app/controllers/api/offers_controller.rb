@@ -1,14 +1,14 @@
 class Api::OffersController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_user
+    before_action :set_application
     before_action :set_offer, only: [:update, :destroy]
 
     def index
-        render json: @user.offers.all
+        render json: @application.offers.all
     end
 
     def create
-        offer = @user.offer.new(offer_params)
+        offer = @application.offer.new(offer_params)
         if offer.save
             render json: offer
         else
@@ -34,8 +34,8 @@ class Api::OffersController < ApplicationController
         params.require(:offer).permit(:salary, :accepted)
     end
 
-    def set_user
-        @user = User.find(params[:user_id])
+    def set_application
+        @application = Application.find(params[:application_id])
     end
 
     def set_offer

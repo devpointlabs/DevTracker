@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from "styled-components";
 import moment from "moment";
 
 class TodoList extends Component {
@@ -8,22 +8,30 @@ class TodoList extends Component {
   };
 
   showCompletedToggle = () => {
-    this.setState(state => ({showCompleted: !state.showCompleted}));
-  }
+    this.setState(state => ({ showCompleted: !state.showCompleted }));
+  };
 
   render() {
     let { todos, toggle, remove } = this.props;
     let { showCompleted } = this.state;
-    let completed = todos.filter(todo => {
-      if (todo.completed) {
-        return todo;
-      } else return null;
-    });
-    let active = todos.filter(todo => {
-      if (!todo.completed) {
-        return todo;
-      } else return null;
-    });
+    let completed = todos
+      .filter(todo => {
+        if (todo.completed) {
+          return todo;
+        } else return null;
+      })
+      .sort((a, b) => {
+        return new Date(a.date) - new Date(b.date);
+      });
+    let active = todos
+      .filter(todo => {
+        if (!todo.completed) {
+          return todo;
+        } else return null;
+      })
+      .sort((a, b) => {
+        return new Date(a.date) - new Date(b.date);
+      });
     return (
       <>
         {showCompleted ? (
@@ -34,11 +42,8 @@ class TodoList extends Component {
             </HeaderContainer>
             {completed.map(todo => {
               return (
-                <Task key={todo.id}>
-                  <CheckContainer
-                    completed={todo.completed}
-                    onClick={() => toggle(todo)}
-                  >
+                <Task key={todo.id} onClick={() => toggle(todo)}>
+                  <CheckContainer completed={todo.completed}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 512 512"
@@ -74,21 +79,29 @@ class TodoList extends Component {
             </HeaderContainer>
             {active.map(todo => {
               return (
-                <Task key={todo.id}>
-                  <CheckContainer
-                    completed={todo.completed}
-                    onClick={() => toggle(todo)}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
-                    >
-                      <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z" />
-                    </svg>
+                <Task key={todo.id} onClick={() => toggle(todo)}>
+                  <CheckContainer date={todo.date}>
+                    {moment().diff(todo.date, "hours") > -12 ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                      >
+                        <path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm42-104c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42zm-81.37-211.401l6.8 136c.319 6.387 5.591 11.401 11.985 11.401h41.17c6.394 0 11.666-5.014 11.985-11.401l6.8-136c.343-6.854-5.122-12.599-11.985-12.599h-54.77c-6.863 0-12.328 5.745-11.985 12.599z" />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                      >
+                        <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z" />
+                      </svg>
+                    )}
                   </CheckContainer>
                   <TaskInfo>
                     <TaskName>{todo.name}</TaskName>
-                    <TaskDate>Due: {moment().to(todo.date)}</TaskDate>
+                    <TaskDate date={todo.date}>
+                      Due {moment().to(todo.date)}
+                    </TaskDate>
                   </TaskInfo>
                   <EditDelete>
                     <Delete onClick={() => remove(todo.id)}>
@@ -132,7 +145,7 @@ const Button = styled.button`
   font-size: 14px;
   color: #fff;
   border-radius: 5px;
-  padding: 10px 10px;
+  padding: 15px 30px;
   background-color: #8e2de2;
   outline: none;
   cursor: pointer;
@@ -154,7 +167,13 @@ const CheckContainer = styled.div`
   svg {
     width: 25px;
     height: 25px;
-    fill: ${props => (props.completed ? "#5CB85C" : "#ccc")};
+    fill: ${props => {
+      if (props.completed) {
+        return "#5CB85C";
+      } else if (moment().diff(props.date, "hours") > -12) {
+        return "#eb4d4b";
+      } else return "#ccc";
+    }};
   }
 `;
 const TaskInfo = styled.div`
@@ -167,7 +186,14 @@ const TaskName = styled.h3`
   padding-bottom: 5px;
 `;
 const TaskDate = styled.p`
-  color: rgba(0, 0, 0, 0.3);
+  color: ${props => {
+    let newDate = moment();
+    let difference = newDate.diff(props.date, "hours");
+    if (difference > -12) {
+      return "#eb4d4b";
+    } else return "rgba(0,0,0,0.4)";
+  }};
+  font-size: 14px;
 `;
 const EditDelete = styled.div`
   display: flex;
@@ -175,18 +201,6 @@ const EditDelete = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
-// const Edit = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: center;
-//   align-items: center;
-//   svg {
-//     width: 20px;
-//     height: 20px;
-//     fill: #ccc;
-//   }
-// `;
 
 const Delete = styled.div`
   display: flex;
@@ -214,6 +228,7 @@ const Task = styled.li`
   flex-direction: row;
   align-items: center;
   border-radius: 5px;
+  cursor: pointer;
   &:hover {
     background-color: rgba(0, 0, 0, 0.02);
   }

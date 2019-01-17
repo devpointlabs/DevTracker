@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { getTodos, toggleComplete } from "../../reducers/todos";
 import moment from "moment";
+import alert from "sweetalert2";
 
 class Tasks extends React.Component {
   componentDidMount() {
@@ -12,7 +13,7 @@ class Tasks extends React.Component {
   }
 
   toggleComplete = ({ completed, date, id, name, user_id }) => {
-    console.log(completed, name, date, id, user_id );
+    console.log(completed, name, date, id, user_id);
     let { dispatch, user } = this.props;
     if (completed) {
       let updatedTodo = { completed: false, date, id, name, user_id };
@@ -21,16 +22,22 @@ class Tasks extends React.Component {
       let updatedTodo = { completed: true, date, id, name, user_id };
       dispatch(toggleComplete(user, updatedTodo));
     }
+    alert(
+      "Task Completed",
+      "You have successfully completed the task.",
+      "success"
+    );
   };
 
   render() {
     let { todos } = this.props;
-    let active = todos.filter(todo => {
-      return todo.completed === false;
-    });
-    active = active.sort((a,b) => {
-      return new Date(a.date) - new Date(b.date);
-    })
+    let active = todos
+      .filter(todo => {
+        return todo.completed === false;
+      })
+      .sort((a, b) => {
+        return new Date(a.date) - new Date(b.date);
+      });
     return (
       <TasksContainer>
         <SectionTitle>Tasks</SectionTitle>
@@ -66,21 +73,32 @@ class Tasks extends React.Component {
           ) : (
             <TodoList>
               {active.map(todo => (
-                <Task key={todo.id}>
+                <Task key={todo.id} onClick={() => this.toggleComplete(todo)}>
                   <CheckContainer
                     completed={todo.completed}
-                    onClick={() => this.toggleComplete(todo)}
+                    date={todo.date}
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 512 512"
-                    >
-                      <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z" />
-                    </svg>
+                    {moment().diff(todo.date, "hours") > -12 ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                      >
+                        <path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm42-104c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42zm-81.37-211.401l6.8 136c.319 6.387 5.591 11.401 11.985 11.401h41.17c6.394 0 11.666-5.014 11.985-11.401l6.8-136c.343-6.854-5.122-12.599-11.985-12.599h-54.77c-6.863 0-12.328 5.745-11.985 12.599z" />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                      >
+                        <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 48c110.532 0 200 89.451 200 200 0 110.532-89.451 200-200 200-110.532 0-200-89.451-200-200 0-110.532 89.451-200 200-200m140.204 130.267l-22.536-22.718c-4.667-4.705-12.265-4.736-16.97-.068L215.346 303.697l-59.792-60.277c-4.667-4.705-12.265-4.736-16.97-.069l-22.719 22.536c-4.705 4.667-4.736 12.265-.068 16.971l90.781 91.516c4.667 4.705 12.265 4.736 16.97.068l172.589-171.204c4.704-4.668 4.734-12.266.067-16.971z" />
+                      </svg>
+                    )}
                   </CheckContainer>
                   <TaskInfo>
                     <TaskName>{todo.name}</TaskName>
-                    <TaskDate>Due: {moment().to(todo.date)}</TaskDate>
+                    <TaskDate date={todo.date}>
+                      Due {moment().to(todo.date)}
+                    </TaskDate>
                   </TaskInfo>
                 </Task>
               ))}
@@ -107,6 +125,10 @@ const Task = styled.li`
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0,0,0,0.02);
+  }
   &:not(:first-child) {
     margin-top: 10px;
   }
@@ -120,13 +142,14 @@ const CheckContainer = styled.div`
   min-width: 100px;
   transition: 0.3s linear;
   cursor: pointer;
-  &:hover > svg {
-    fill: #5CB85C;
-  }
   svg {
     width: 25px;
     height: 25px;
-    fill: ${props => (props.completed ? "#5CB85C" : "#ccc")};
+    fill: ${props => {
+      if(moment().diff(props.date, "hours") > -12) {
+        return "#eb4d4b";
+      } else return "#ccc"
+    }};
   }
 `;
 
@@ -140,7 +163,14 @@ const TaskName = styled.h4`
   padding-bottom: 5px;
 `;
 const TaskDate = styled.p`
-  color: rgba(0, 0, 0, 0.3);
+  color: ${props => {
+    let newDate = moment();
+    let difference = newDate.diff(props.date, "hours");
+    if (difference > -12) {
+      return "#eb4d4b";
+    } else return "rgba(0,0,0,0.4)";
+  }};
+  font-size: 14px;
 `;
 
 const TasksContent = styled.div`
@@ -190,9 +220,7 @@ const TasksContainer = styled.div`
   padding: 1.25em;
   background-color: white;
   border-radius: 5px;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.13);
   position: relative;
 `;
 

@@ -28,6 +28,9 @@ class Tasks extends React.Component {
     let active = todos.filter(todo => {
       return todo.completed === false;
     });
+    active = active.sort((a,b) => {
+      return new Date(a.date) - new Date(b.date);
+    })
     return (
       <TasksContainer>
         <SectionTitle>Tasks</SectionTitle>
@@ -104,7 +107,9 @@ const Task = styled.li`
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
-  margin-top: 10px;
+  &:not(:first-child) {
+    margin-top: 10px;
+  }
 `;
 
 const CheckContainer = styled.div`
@@ -113,7 +118,11 @@ const CheckContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-width: 100px;
+  transition: 0.3s linear;
   cursor: pointer;
+  &:hover > svg {
+    fill: #5CB85C;
+  }
   svg {
     width: 25px;
     height: 25px;

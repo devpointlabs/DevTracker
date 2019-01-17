@@ -22,7 +22,7 @@ class TodoForm extends React.Component {
       completed: false
     };
     this.addTodo(task);
-    this.setState({ name: "", date: '' });
+    this.setState({ name: "", date: "" });
     alert(
       "Task Added!",
       "The task you submitted has been successfully added!",
@@ -62,7 +62,7 @@ class TodoForm extends React.Component {
           onChange={this.handleDate}
           className="date-picker"
         />
-        <input type="submit" value="Submit" className="submit"/>
+        <input type="submit" value="Submit" className="submit" />
       </Form>
     );
   }
@@ -94,7 +94,7 @@ const Form = styled.form`
     margin-top: 15px;
     padding: 15px 30px;
     -webkit-appearance: button;
-    background-color: #8E2DE2;
+    background-color: #8e2de2;
     font-size: 16px;
     color: white;
     border: none;
@@ -102,7 +102,7 @@ const Form = styled.form`
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
-    box-shadow: 2px 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
     &:hover {
       box-shadow: none;
     }
@@ -110,26 +110,34 @@ const Form = styled.form`
 
   .label {
     align-self: flex-start;
-    margin-top: 10px;
+    margin-top: 15px;
   }
   .date-picker {
     width: 760px;
-    padding: 15px 10px;
+    height: 52px;
     border: none;
     outline: none;
     font-size: 18px;
     border-bottom: 2px solid #f1f2f6;
+    transition: 0.4s linear;
+    &:focus {
+      border-color: #8e2de2;
+    }
   }
 
   .task-name {
     width: 100%;
-    padding: 15px 10px;
+    padding: 15px 10px 14px;
     border: none;
     border-bottom: 2px solid #f1f2f6;
     outline: none;
     background: white;
     color: #666;
     font-size: 18px;
+    transition: 0.4s linear;
+    &:focus {
+      border-color: #8e2de2;
+    }
     &::placeholder {
       color: #ccc;
       padding-left: 5px;

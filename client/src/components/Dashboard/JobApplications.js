@@ -161,30 +161,23 @@ const StatusCircle = styled.div`
 `;
 
 const SeeAllButton = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  color: #666;
-  font-size: 14px;
-  margin: 1.25em;
+position: absolute;
+top: 0;
+right: 0;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+color: #6E54A3;
+font-size: 14px;
+margin: 1.25em;
 
-  &:hover {
-    color: #6E54A3;
-  }
-
-  &:hover > svg {
-    fill: #6E54A3;
-  }
-
-  svg {
-    width: 15px;
-    height: 15px;
-    margin-left: 5px;
-  }
+svg {
+  width: 15px;
+  fill: #6E54A3;
+  height: 15px;
+  margin-left: 5px;
+}
 `;
 
 const AddNew = styled.div`

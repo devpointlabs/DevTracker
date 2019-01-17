@@ -119,6 +119,7 @@ const Form = styled.form`
     outline: none;
     font-size: 18px;
     border-bottom: 2px solid #f1f2f6;
+    transition: 0.4s linear;
     &:focus {
       border-color: #8e2de2;
     }

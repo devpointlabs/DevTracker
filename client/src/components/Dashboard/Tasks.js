@@ -97,7 +97,7 @@ class Tasks extends React.Component {
                   <TaskInfo>
                     <TaskName>{todo.name}</TaskName>
                     <TaskDate date={todo.date}>
-                      Due: {moment().to(todo.date)}
+                      Due {moment().to(todo.date)}
                     </TaskDate>
                   </TaskInfo>
                 </Task>
@@ -168,7 +168,7 @@ const TaskDate = styled.p`
     let difference = newDate.diff(props.date, "hours");
     if (difference > -12) {
       return "#eb4d4b";
-    } else return "#666";
+    } else return "rgba(0,0,0,0.4)";
   }};
   font-size: 14px;
 `;

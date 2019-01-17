@@ -22,7 +22,7 @@ class TodoForm extends React.Component {
       completed: false
     };
     this.addTodo(task);
-    this.setState({ name: "", date: "" });
+    this.setState({ name: "", date: new Date() });
     alert(
       "Task Added!",
       "The task you submitted has been successfully added!",

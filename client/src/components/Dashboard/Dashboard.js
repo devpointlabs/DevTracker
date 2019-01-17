@@ -38,7 +38,7 @@ class Dashboard extends React.Component {
                   <Events />
                 </Tile>
                 <Tile>
-                  <Tasks />
+                  <Tasks user={user}/>
                 </Tile>
               </LeftContainer>
               <RightContainer>

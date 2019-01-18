@@ -21,21 +21,10 @@ class Todos extends Component {
     if(completed) {
       let updatedTodo = {completed: false, date, id, name, user_id};
       dispatch(toggleComplete(user, updatedTodo));
-      alert(
-        "Task Removed",
-        "You have successfully removed the task from completed",
-        "success"
-      );
     } else {
       let updatedTodo = {completed: true, date, id, name, user_id};
       dispatch(toggleComplete(user, updatedTodo));
-      alert(
-        "Task Completed",
-        "You have successfully completed the task.",
-        "success"
-      );
     }
-    
   }
 
   deleteTodo = (id) => {

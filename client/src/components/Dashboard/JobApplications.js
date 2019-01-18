@@ -42,8 +42,7 @@ class JobApplications extends React.Component {
   };
 
   render() {
-    let { applications } = this.props;
-    let { openForm } = this.props;
+    let { applications, openForm } = this.props;
     return (
       <ApplicationsContainer>
         <SectionTitle>Job Applications</SectionTitle>
@@ -56,7 +55,7 @@ class JobApplications extends React.Component {
           </SeeAllButton>
         </Link>
         <ApplicationsContent>
-          {this.props.applications.length === 0 ? (
+          {applications.length === 0 ? (
             <>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

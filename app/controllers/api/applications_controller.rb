@@ -1,10 +1,14 @@
 class Api::ApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
-  before_action :set_application, only: [:update, :destroy]
+  before_action :set_application, only: [:show, :update, :destroy]
 
   def index
     render json: Application.all_data(@user.id)
+  end
+
+  def show
+    render json: Application.single_record(@application.id, @user)
   end
 
   def create
@@ -37,7 +41,7 @@ class Api::ApplicationsController < ApplicationController
   end
 
   def set_application
-    @application = @user.application.find(params[:id])
+    @application = Application.find(params[:id])
   end
 
   def application_params

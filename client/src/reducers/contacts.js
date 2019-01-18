@@ -3,6 +3,7 @@ import axios from "axios"
 const ADD_CONTACT = "ADD_CONTACT";
 const GET_CONTACTS = "GET_CONTACTS";
 const DELETE_CONTACT = "DELETE_CONTACT"
+const UPDATE_CONTACT = "UPDATE_CONTACT  "
 
 export const getContacts = (user_id) => {
   return (dispatch) => {
@@ -14,10 +15,10 @@ export const getContacts = (user_id) => {
   };
 };
 
-export const addContact = (contact) => {
+export const addContact = ( user, contact) => {
   return (dispatch) => {
-    axios.post(`/api/users/${contact.user_id}/contacts`, { contact })
-      .then(res => dispatch({ type: ADD_CONTACT, contact: res.data[0] }))
+    axios.post(`/api/users/${user.id}/contacts`, { contact })
+      .then(res => dispatch({ type: ADD_CONTACT, contact: res.data }))
       .catch(err => console.log(err));
   };
 };
@@ -25,7 +26,7 @@ export const addContact = (contact) => {
 export const deleteContact = (user_id, contact_id) => {
   return (dispatch) => {
     axios.delete(`/api/users/${user_id}/contacts/${contact_id}`)
-      .then(() => dispatch({ type: DELETE_CONTACT, user_id, contact_id }))
+      .then(() => dispatch({ type: DELETE_CONTACT, contact_id }))
   }
 }
 
@@ -42,16 +43,14 @@ export default (state = [], action) => {
       return action.contacts;
     case ADD_CONTACT:
       return [action.contact, ...state];
-    default:
-      return state;
-    case UPDATE_APP:
+    case UPDATE_CONTACT:
       return state.map(c => {
         if (c.id === action.contact.id)
           return action.contact
         return c
       })
-    case DELETE_APP:
-      return state.filter(c => c.id !== action.id)
+    case DELETE_CONTACT:
+      return state.filter(c => c.id !== action.contact_id)
     default:
       return state;
   }

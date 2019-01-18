@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import TodoForm from "./TodoForm";
 import { connect } from "react-redux";
 import { AuthConsumer } from "../../providers/AuthProvider";
@@ -10,16 +10,16 @@ import alert from 'sweetalert2';
 
 
 class Todos extends Component {
-  
+
   componentDidMount() {
     const { auth: { user }, dispatch } = this.props;
     dispatch(getTodos(user.id));
   }
 
-  toggleComplete = ({completed, date, id, name, user_id}) => {
-    let {auth: {user}, dispatch} = this.props;
-    if(completed) {
-      let updatedTodo = {completed: false, date, id, name, user_id};
+  toggleComplete = ({ completed, date, id, name, user_id }) => {
+    let { auth: { user }, dispatch } = this.props;
+    if (completed) {
+      let updatedTodo = { completed: false, date, id, name, user_id };
       dispatch(toggleComplete(user, updatedTodo));
       alert(
         "Task Removed",
@@ -27,7 +27,7 @@ class Todos extends Component {
         "success"
       );
     } else {
-      let updatedTodo = {completed: true, date, id, name, user_id};
+      let updatedTodo = { completed: true, date, id, name, user_id };
       dispatch(toggleComplete(user, updatedTodo));
       alert(
         "Task Completed",
@@ -35,11 +35,10 @@ class Todos extends Component {
         "success"
       );
     }
-    
   }
 
   deleteTodo = (id) => {
-    let {auth: {user}, dispatch} = this.props;
+    let { auth: { user }, dispatch } = this.props;
     dispatch(deleteTodo(user, id));
     alert(
       "Success!",
@@ -55,7 +54,7 @@ class Todos extends Component {
         <NavBar />
         <TodoContainer>
           <TodoForm user={user} />
-          <TodoList todos={todos} toggle={this.toggleComplete} remove={this.deleteTodo}/>
+          <TodoList todos={todos} toggle={this.toggleComplete} remove={this.deleteTodo} />
         </TodoContainer>
       </>
     );

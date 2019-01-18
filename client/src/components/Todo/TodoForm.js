@@ -8,14 +8,8 @@ import alert from "sweetalert2";
 class TodoForm extends React.Component {
   state = { name: "", date: new Date() };
 
-  // we don't need this: 
-  addTodo = todo => {
-    const { dispatch, user } = this.props;
-    dispatch(addTodo(user.id, todo));
-  };
-
   handleSubmit = e => {
-    //const { dispatch, user } = this.props;
+    const { dispatch, user } = this.props;
     e.preventDefault();
     const { name, date } = this.state;
     let task = {
@@ -23,9 +17,7 @@ class TodoForm extends React.Component {
       date,
       completed: false
     };
-    // you could just call this 
-    // dispatch(addTodo(user.id, todo));
-    this.addTodo(task);
+    dispatch(addTodo(user.id, task));
     this.setState({ name: "", date: new Date() });
     alert(
       "Task Added!",

@@ -34,7 +34,7 @@ class TodoList extends Component {
       });
     return (
       <>
-        { showCompleted ? 
+        {showCompleted ?
           <TaskContainer>
             <HeaderContainer>
               <Title>Completed Tasks</Title>
@@ -70,7 +70,7 @@ class TodoList extends Component {
               );
             })}
           </TaskContainer>
-        :
+          :
           <TaskContainer>
             <HeaderContainer>
               <Title>Active Tasks</Title>

@@ -8,8 +8,8 @@ import FetchUser from "./components/Auth/FetchUser";
 import TodoList from "./components/Todo/TodoList";
 import { Route, Switch } from "react-router-dom";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
-import ContactList from './components/Contact/ContactList'
 import Tracker from './components/Tracker/Tracker';
+import Contacts from "./components/Contact/Contacts";
 import './App.scss';
 
 const App = () => (
@@ -21,7 +21,7 @@ const App = () => (
     <Route exact path="/login" component={Login} />
     <ProtectedRoute exact path="/profile" component={Profile} />
     <Route exact path="/register" component={Register} />
-    <ProtectedRoute exact path="/contacts" component={ContactList} />
+    <ProtectedRoute exact path="/contacts" component={Contacts} />
     <ProtectedRoute exact path="/tasks" component={TodoList} />
     <ProtectedRoute exact path="/tracker" component={Tracker} />
     <ProtectedRoute component={NoMatch} />

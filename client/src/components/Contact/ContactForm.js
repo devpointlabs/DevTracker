@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect, } from 'react-redux'; 
-import { updateContact, addContact } from '../../reducers/contacts'
+import { addContact } from '../../reducers/contacts'
 import styled from 'styled-components';
 // import ContactList from './ContactList';
 // import Contact from './Contact'

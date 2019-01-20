@@ -13,9 +13,9 @@ export const getCompanies = () => {
   };
 };
 
-export const addCompany = (id, name, zip, state, city, website_url) => {
+export const addCompany = (id, name, website_url) => {
   return dispatch => {
-    let company = { id, name, zip, state, city, website_url };
+    let company = { id, name, website_url };
     axios
       .post("/api/companies", { company })
       .then(res => dispatch({ type: ADD_COMPANY, company: res.data }))

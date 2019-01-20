@@ -22,11 +22,10 @@ class Api::ApplicationsController < ApplicationController
   end
 
   def update
-    @application.save(application_params)
-    if application.save
-      render json: @application
+    if @application.update(application_params)
+      render json: Application.single_record(@application.id, @user)
     else
-      render json: {errors: application.errors}
+      render json: { errors: @app.errors.full_messages.join(',') }, status: 422
     end
   end
 
@@ -45,6 +44,6 @@ class Api::ApplicationsController < ApplicationController
   end
 
   def application_params
-    params.require(:application).permit(:submission_date, :notes, :title, :status, :posting_url, :user_id, :company_id)
+    params.require(:application).permit(:id, :submission_date, :city, :state, :title, :status, :posting_url, :user_id, :company_id)
   end
 end

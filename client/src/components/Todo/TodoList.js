@@ -176,21 +176,24 @@ const CheckContainer = styled.div`
       }
     `;
 const TaskInfo = styled.div`
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      padding: 1em;
-    `;
-const TaskName = styled.h3`
-      padding-bottom: 5px;
-    `;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1em;
+`;
+const TaskName = styled.p`
+  padding-bottom: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+`;
 const TaskDate = styled.p`
   color: ${props => {
     let newDate = moment();
     let difference = newDate.diff(props.date, "hours");
     if (difference > -12) {
       return "#eb4d4b";
-    } else return "rgba(0,0,0,0.4)";
+    } else return "#b3b3b3";
   }};
         font-size: 14px;
       `;

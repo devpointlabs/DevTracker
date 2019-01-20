@@ -94,6 +94,7 @@ const DashboardContainer = styled.div`
   margin: 0 auto;
   padding: 25px 1em;
   animation: ${fadeIn} 0.5s linear;
+  position: relative;
 `;
 
 const DashboardTitle = styled.h1`

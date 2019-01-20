@@ -91,7 +91,7 @@ const Form = styled.form`
     padding: 15px 30px;
     -webkit-appearance: button;
     background-color: #8e2de2;
-    font-size: 16px;
+    font-size: 14px;
     color: white;
     border: none;
     outline: none;

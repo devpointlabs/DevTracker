@@ -7,19 +7,17 @@ class Application < ApplicationRecord
   def self.all_data(user)
     select('
       applications.id, 
-      applications.submission_date, 
-      applications.notes, 
+      applications.submission_date,
       applications.title, 
       applications.status, 
       applications.user_id, 
       applications.created_at, 
       applications.updated_at, 
-      applications.posting_url, 
+      applications.posting_url,
+      applications.city,
+      applications.state,
       c.id AS company_id, 
-      c.name AS company_name, 
-      c.city AS company_city, 
-      c.state AS company_state, 
-      c.zip AS company_zip, 
+      c.name AS company_name,
       c.website_url AS company_url
       ')
     .joins('INNER JOIN companies c ON c.id = applications.company_id')
@@ -30,19 +28,17 @@ class Application < ApplicationRecord
   def self.single_record(application_id, user)
     select('
       applications.id, 
-      applications.submission_date, 
-      applications.notes, 
+      applications.submission_date,
       applications.title, 
-      applications.status,  
+      applications.status, 
       applications.user_id, 
       applications.created_at, 
       applications.updated_at, 
-      applications.posting_url, 
+      applications.posting_url,
+      applications.city,
+      applications.state,
       c.id AS company_id, 
-      c.name AS company_name, 
-      c.city AS company_city, 
-      c.state AS company_state, 
-      c.zip AS company_zip, 
+      c.name AS company_name,
       c.website_url AS company_url
       ')
     .joins('INNER JOIN companies c ON c.id = applications.company_id')

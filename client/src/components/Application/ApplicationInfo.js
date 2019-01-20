@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { status_list, states, titles } from "../Dashboard/Options";
 import Dropdown from "react-dropdown";
-// import {connect} from 'react-redux';
+import {updateApplication} from '../../reducers/applications';
+import {connect} from 'react-redux';
+import alert from 'sweetalert2';
 
 class ApplicationInfo extends Component {
    state = {
@@ -16,7 +18,7 @@ class ApplicationInfo extends Component {
 
    componentDidMount() {
       let {
-         application: { city, title, state, posting_url, status }
+         application: { city, title, state, posting_url, status}
       } = this.props;
       this.setState({
          title: title,
@@ -53,6 +55,21 @@ class ApplicationInfo extends Component {
     })
   }
 
+
+  handleSubmit = (e) => {
+    let {title, city, state, status, posting_url } = this.state;
+    let {application: { id }, user, dispatch } = this.props;
+    e.preventDefault();
+    let updatedApp = {title, city, state, status, posting_url};
+    dispatch(updateApplication(updatedApp, user, id));
+    this.setState({editing: false})
+    alert(
+      "Application updated!",
+      "Your changes have been saved!",
+      "success"
+    )
+  }
+
    render() {
       let { application } = this.props;
       let { editing, title, city, state, status, posting_url } = this.state;
@@ -76,10 +93,10 @@ class ApplicationInfo extends Component {
                   </>
                )}
             </EditButton>
-            <Form>
+            <Form onSubmit={this.handleSubmit}>
                <label>Company Name</label>
                <Input
-                  value={application.company_name}
+                  defaultValue={application.company_name}
                   disabled={true}
                   name="company_name"
                   autoFocus
@@ -87,8 +104,8 @@ class ApplicationInfo extends Component {
                />
                <label>Company Website</label>
                <Input
-                  disabled={true}
-                  value={application.company_url}
+                  disabled={true} 
+                  defaultValue={application.company_url}
                   className="company-field"
                />
                <label>Job Title</label>
@@ -243,4 +260,4 @@ const CompanyContainer = styled.div`
    width: 100%;
 `;
 
-export default ApplicationInfo;
+export default connect()(ApplicationInfo);

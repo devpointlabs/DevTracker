@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import PhoneCallForm from "./PhoneCallForm";
+import InterviewForm from "./InterviewForm";
 
 class NewActivity extends Component {
    state = {
@@ -53,7 +54,7 @@ class NewActivity extends Component {
                   Offer
                </Button>
             </FormSelection>
-            {phone ? <PhoneCallForm app_id={application.id}/> : interview ? <></> : <></>}
+            {phone ? <PhoneCallForm app_id={application.id}/> : interview ? <InterviewForm app_id={application.id}/> : <></>}
          </NewActivityContainer>
       );
    }

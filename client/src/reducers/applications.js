@@ -28,10 +28,10 @@ export const getApplication = (user, id, callback) => {
   }
 }
 
-export const addApplication = (application) => {
+export const addApplication = (application, user_id) => {
   return dispatch => {
     axios
-      .post(`/api/users/${application.user_id}/applications`, { application })
+      .post(`/api/users/${user_id}/applications`, { application })
       .then(res => {
         return dispatch({ type: ADD_APPLICATION, application: res.data[0] })
       })

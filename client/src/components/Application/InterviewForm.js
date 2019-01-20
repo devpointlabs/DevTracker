@@ -3,13 +3,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { addCall } from "../../reducers/calls";
+import { addInterview } from "../../reducers/interviews";
 import alert from "sweetalert2";
 
-class PhoneCallForm extends Component {
+class InterviewForm extends Component {
    state = {
       date: new Date(),
-      participants: "",
+      title: "",
       notes: ""
    };
 
@@ -28,44 +28,44 @@ class PhoneCallForm extends Component {
    handleSubmit = e => {
       e.preventDefault();
       let { dispatch, app_id } = this.props;
-      dispatch(addCall({ ...this.state }, app_id));
+      dispatch(addInterview({ ...this.state }, app_id));
       alert(
-          "Call added!",
-          "Your phone call has been successfully scheduled!",
+          "Interview added!",
+          "Your interview has been successfully scheduled!",
           "success"
       )
       this.setState({
           date: new Date(),
-          participants: "",
+          title: "",
           notes: ""
       })
    };
 
    render() {
-      let { date, participants, notes } = this.state;
+      let { date, title, notes } = this.state;
       return (
          <Form onSubmit={this.handleSubmit}>
-            <label>Date</label>
+            <label>Interview Date</label>
             <DatePicker
                name="date"
                selected={date}
                onChange={this.handleDate}
                className="date-picker"
             />
-            <label>Participants</label>
+            <label>Job Title</label>
             <Input
-               name="participants"
+               name="title"
                required
-               value={participants}
+               value={title}
                onChange={this.handleChange}
-               placeholder="List of participants"
+               placeholder="Job Title"
             />
             <label>Notes</label>
             <Textarea
                name="notes"
                value={notes}
                onChange={this.handleChange}
-               placeholder="Notes about call..."
+               placeholder="Notes about interview..."
             />
             <input type="submit" value="Submit" className="submit" />
          </Form>
@@ -134,5 +134,5 @@ const Input = styled.input`
    border-radius: 5px;
 `;
 
-export default connect()(PhoneCallForm);
+export default connect()(InterviewForm);
 

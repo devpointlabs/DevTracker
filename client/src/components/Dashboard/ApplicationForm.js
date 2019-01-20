@@ -129,7 +129,7 @@ class ApplicationForm extends React.Component {
             id: appId
          };
          dispatch(addCompany(companyId, company_name, company_url));
-         dispatch(addApplication(newApplication));
+         dispatch(addApplication(newApplication, user.id));
          alert(
             "Application Added!",
             "The application you submitted has been successfully created",
@@ -147,7 +147,7 @@ class ApplicationForm extends React.Component {
             submission_date: app_submission_date,
             id: appId
          };
-         dispatch(addApplication(newApplication));
+         dispatch(addApplication(newApplication, user.id));
          alert(
             "Application Added!",
             "The application you submitted has been successfully created",

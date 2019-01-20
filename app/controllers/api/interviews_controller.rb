@@ -8,7 +8,7 @@ class Api::InterviewsController < ApplicationController
     end
 
     def create
-        interview = @application.interview.new(interview_params)
+        interview = @application.interviews.new(interview_params)
         if interview.save
             render json: offer
         else

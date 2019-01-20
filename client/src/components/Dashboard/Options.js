@@ -1,4 +1,5 @@
 export const states = [
+    { value: 'UT', label: 'Utah' },
     { value: 'AL', label: 'Alabama' },
     { value: 'AK', label: 'Alaska' },
     { value: 'AZ', label: 'Arizona' },
@@ -42,7 +43,6 @@ export const states = [
     { value: 'SD', label: 'South Dakota' },
     { value: 'TN', label: 'Tennessee' },
     { value: 'TX', label: 'Texas' },
-    { value: 'UT', label: 'Utah' },
     { value: 'VT', label: 'Vermont' },
     { value: 'VA', label: 'Virginia' },
     { value: 'WA', label: 'Washington' },

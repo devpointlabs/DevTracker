@@ -179,6 +179,13 @@ class ApplicationForm extends React.Component {
                   </svg>
                </CloseMenu>
                <FormTitle>New Application</FormTitle>
+               <label>Date Submitted</label>
+               <DatePicker
+                  name="app_submission_date"
+                  selected={app_submission_date}
+                  onChange={this.handleDate}
+                  className="date-picker"
+               />
                <label>Application URL</label>
                <input
                   required
@@ -188,13 +195,6 @@ class ApplicationForm extends React.Component {
                   className="input"
                   placeholder="https://www.sofi.com/careers"
                   autoFocus
-               />
-               <label>Date Submitted</label>
-               <DatePicker
-                  name="app_submission_date"
-                  selected={app_submission_date}
-                  onChange={this.handleDate}
-                  className="date-picker"
                />
                <label>Company</label>
                <SearchContainer>
@@ -214,6 +214,15 @@ class ApplicationForm extends React.Component {
                      </SearchResults>
                   )}
                </SearchContainer>
+               <label>Company URL</label>
+               <input
+                  name="company_url"
+                  value={company_url}
+                  onChange={this.handleChange}
+                  className="input"
+                  required
+                  placeholder="https://www.sofi.com"
+               />
                <label>City</label>
                <input
                   name="app_city"
@@ -231,15 +240,6 @@ class ApplicationForm extends React.Component {
                   required
                   onChange={this.handleStateSelect}
                   placeholder="Select"
-               />
-               <label>Company URL</label>
-               <input
-                  name="company_url"
-                  value={company_url}
-                  onChange={this.handleChange}
-                  className="input"
-                  required
-                  placeholder="https://www.sofi.com"
                />
                <Dropdown
                   name="app_title"
@@ -309,7 +309,10 @@ const CloseMenu = styled.div`
 `;
 
 const Form = styled.form`
-   display: block;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
    height: auto;
    background-color: white;
    border-radius: 5px;
@@ -317,7 +320,23 @@ const Form = styled.form`
    padding: 2em;
    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
    position: relative;
-   width: 400px;
+   width: 450px;
+
+   .Dropdown-root {
+      margin-top: 10px;
+      width: 100%;
+
+      .Dropdown-control {
+         border: none;
+         background-color: rgba(0,0,0,0.03);
+         color: #666;
+      }
+   }
+
+   label {
+      margin: 10px 0 0;
+      font-size: 14px;
+   }
 
    .submit {
       width: 100%;
@@ -340,6 +359,7 @@ const Form = styled.form`
       border: none;
       padding: 10px;
       border-radius: 5px;
+      margin-top: 10px;
    }
 
    .input {
@@ -350,6 +370,7 @@ const Form = styled.form`
       background-color: rgba(0, 0, 0, 0.03);
       outline: none;
       font-size: 14px;
+      margin: 10px 0 0;
 
       &::placeholder {
          padding-left: 5px;

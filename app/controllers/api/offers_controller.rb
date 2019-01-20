@@ -8,7 +8,7 @@ class Api::OffersController < ApplicationController
     end
 
     def create
-        offer = @application.offer.new(offer_params)
+        offer = @application.offers.new(offer_params)
         if offer.save
             render json: offer
         else
@@ -31,7 +31,7 @@ class Api::OffersController < ApplicationController
     private
 
     def offer_params
-        params.require(:offer).permit(:salary, :accepted)
+        params.require(:offer).permit(:salary, :accepted, :notes)
     end
 
     def set_application

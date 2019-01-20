@@ -43,6 +43,7 @@ class AuthProvider extends React.Component {
     .then( res => {
       this.setState({ user: res.data.data, });
       history.push("/")
+      window.location.reload();
     })
     .catch( err => {
       errorCallback(err);

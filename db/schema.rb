@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_19_061927) do
+ActiveRecord::Schema.define(version: 2019_01_20_185337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 2019_01_19_061927) do
     t.string "city"
     t.index ["company_id"], name: "index_applications_on_company_id"
     t.index ["user_id"], name: "index_applications_on_user_id"
+  end
+
+  create_table "calls", force: :cascade do |t|
+    t.date "date"
+    t.string "participants"
+    t.text "notes"
+    t.bigint "application_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["application_id"], name: "index_calls_on_application_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -69,6 +79,7 @@ ActiveRecord::Schema.define(version: 2019_01_19_061927) do
     t.bigint "application_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "notes"
     t.index ["application_id"], name: "index_offers_on_application_id"
   end
 
@@ -124,6 +135,7 @@ ActiveRecord::Schema.define(version: 2019_01_19_061927) do
 
   add_foreign_key "applications", "companies"
   add_foreign_key "applications", "users"
+  add_foreign_key "calls", "applications"
   add_foreign_key "contacts", "users"
   add_foreign_key "interviews", "applications"
   add_foreign_key "offers", "applications"

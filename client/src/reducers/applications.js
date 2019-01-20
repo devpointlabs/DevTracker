@@ -4,6 +4,7 @@ const ADD_APPLICATION = "ADD_APPLICATION";
 const GET_APPLICATIONS = "GET_APPLICATIONS";
 const GET_APPLICATION = "GET_APPLICATION";
 const UPDATE_APPLICATION = "UPDATE_APPLICATION";
+const UPDATE_TIME = "UPDATE_TIME";
 
 export const getApplications = (user_id) => {
   return dispatch => {
@@ -12,6 +13,15 @@ export const getApplications = (user_id) => {
       dispatch({ type: GET_APPLICATIONS, applications: res.data })
     })
     .catch(err => console.log(err));
+  }
+}
+
+export const updateTime = (user, id) => {
+  let currentTime = new Date();
+  return dispatch => {
+    axios
+      .put(`/api/users/${user.id}/applications/${id}`, {updated_at: currentTime})
+      .then(res => dispatch({ type: UPDATE_TIME, application: res.data }))
   }
 }
 
@@ -62,7 +72,12 @@ export default (state = [], action) => {
     case UPDATE_APPLICATION:
       return state.map(a => {
         if(a.id === action.application.id) {
-          console.log(action.application);
+          return action.application
+        } else return a
+      })
+    case UPDATE_TIME:
+      return state.map(a => {
+        if(a.id === action.application.id) {
           return action.application
         } else return a
       })

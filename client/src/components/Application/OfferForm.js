@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { addOffer } from "../../reducers/offers";
 import alert from "sweetalert2";
+import { updateTime } from "../../reducers/applications";
 
 class OfferForm extends Component {
    state = {
@@ -27,8 +28,9 @@ class OfferForm extends Component {
 
    handleSubmit = e => {
       e.preventDefault();
-      let { dispatch, app_id } = this.props;
+      let { dispatch, app_id, user } = this.props;
       dispatch(addOffer({ ...this.state }, app_id));
+      dispatch(updateTime(user, app_id));
       alert(
          "Offer added!",
          "Your offer has been successfully added!",

@@ -21,7 +21,7 @@ class NewActivity extends Component {
    };
 
    render() {
-      let { application } = this.props;
+      let { application, user } = this.props;
       let { phone, interview } = this.state;
       return (
          <NewActivityContainer>
@@ -55,7 +55,7 @@ class NewActivity extends Component {
                   Offer
                </Button>
             </FormSelection>
-            {phone ? <PhoneCallForm app_id={application.id}/> : interview ? <InterviewForm app_id={application.id}/> : <OfferForm app_id={application.id}/>}
+            {phone ? <PhoneCallForm app_id={application.id} user={user}/> : interview ? <InterviewForm app_id={application.id} user={user}/> : <OfferForm app_id={application.id} user={user}/>}
          </NewActivityContainer>
       );
    }

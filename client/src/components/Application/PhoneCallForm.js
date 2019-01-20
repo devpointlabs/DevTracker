@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { addCall } from "../../reducers/calls";
 import alert from "sweetalert2";
+import { updateTime } from "../../reducers/applications";
+
 
 class PhoneCallForm extends Component {
    state = {
@@ -27,8 +29,9 @@ class PhoneCallForm extends Component {
 
    handleSubmit = e => {
       e.preventDefault();
-      let { dispatch, app_id } = this.props;
+      let { dispatch, app_id, user } = this.props;
       dispatch(addCall({ ...this.state }, app_id));
+      dispatch(updateTime(user, app_id));
       alert(
           "Call added!",
           "Your phone call has been successfully scheduled!",

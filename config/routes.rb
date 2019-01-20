@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :users do
       resources :applications
       resources :todos
+      resources :contacts
     end
     resources :companies
     resources :applications do

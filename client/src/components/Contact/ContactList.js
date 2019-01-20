@@ -1,67 +1,74 @@
 import React from 'react';
-import Contact from './Contact';
-import ContactForm from './ContactForm';
-import axios from 'axios';
-import { AuthConsumer } from "../../providers/AuthProvider"
+import styled from 'styled-components';
 
 class ContactList extends React.Component {
-  state = { contacts: [] };
 
-
-  componentDidMount() {
-    const { auth: { user: { id } } } = this.props
-    axios.get(`/api/users/${id}/contacts`)
-      .then(res => {
-        this.setState({ contacts: res.data })
-      })
-  }
-
-  // deleteContact = (contactId) => {
-  //   const { auth: { user: { id } } } = this.props
-  //   axios.delete(`/api/users/${id}/contacts/${contactId}`)
-  //     .then(res => {
-  //       const contacts = this.state.contacts.filter(contact => {
-  //         if (contact.id !== contactId)
-  //           return contact;
-
-  //       })
-  //       this.setState({ contacts })
-  //     })
-  // }
-
-  addContact = (contact) => { 
-    const {auth: {user: { id }}} = this.props;
-    const {contacts} = this.state; 
-    axios.post(`/api/users/${id}/contacts`, contact)
-      .then(({ data }) => {
-        this.setState({ contacts: [data, ...contacts] })
-      })
+  state = {
+    showForm: false,
   };
 
+
   render() {
-    const { contacts } = this.state;
-    return (
-      <div>
-        <ContactForm addContact={this.addContact} />
-        {contacts.map(contact =>
-          <Contact key={contact.id} {...contact} deleteContact={this.deleteContact} />
-        )}
-      </div>
-    );
-  }
-}
+    let { contacts, remove } = this.props
 
-
-
-
-export default class ConnectedContactList extends React.Component {
-  render() {
-    return (
-      < AuthConsumer >
-        {auth =>
-          < ContactList {...this.props} auth={auth} />
-        }
-      </AuthConsumer>
+    return contacts.map( contact =>
+      
+      
+        <Contact key={contact.id} >
+        <ContactInfo>
+          <ContactName>{contact.first_name}-{contact.last_name}</ContactName>
+          <ContactDetails>
+            {contact.title}
+            {contact.email}
+            {contact.linkedin}
+            {contact.workphone}
+            {contact.personal_phone}
+          </ContactDetails>
+        </ContactInfo>
+      </Contact>
     )
   }
 }
+// const PageContainer = styled.div`
+//   position: relative;
+//   height: 100%;
+//   min-height: calc(100vh - 90px);
+//   width: 100%;
+//   padding: 1em;
+// `;
+
+const ContactDetails = styled.div`
+  flex-direction: row;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 1em;
+  width: 100%;
+  `;
+
+const ContactName = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1em;
+  
+
+
+`;
+
+const Contact = styled.div`
+`;
+
+
+
+const ContactInfo = styled.div`
+   display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1em;
+`;
+
+// 
+
+export default ContactList;
+
+

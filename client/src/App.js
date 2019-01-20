@@ -22,7 +22,7 @@ const App = () => (
     <ProtectedRoute exact path="/profile" component={Profile} />
     <Route exact path="/register" component={Register} />
     <ProtectedRoute exact path="/contacts" component={Contacts} />
-    <ProtectedRoute exact path="/tasks" component={TodoList} />
+    <ProtectedRoute exact path="/tasks" component={Todos} />
     <ProtectedRoute exact path="/tracker" component={Tracker} />
     <ProtectedRoute path="/applications/:id" component={FetchApp} />
     <ProtectedRoute component={NoMatch} />

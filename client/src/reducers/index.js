@@ -3,12 +3,14 @@ import companies from './companies';
 import applications from './applications';
 import contacts from './contacts'
 import todos from './todos';
+import calls from './calls';
 
 const rootReducer = combineReducers({
     companies,
     applications,
     contacts,
-    todos
+    todos,
+    calls
 });
 
 export default rootReducer;

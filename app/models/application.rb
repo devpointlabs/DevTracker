@@ -3,7 +3,7 @@ class Application < ApplicationRecord
   belongs_to :company
   has_many :interviews, dependent: :destroy
   has_many :offers, dependent: :destroy
-  has_many :phone_calls, dependent: :destroy
+  has_many :calls, dependent: :destroy
 
   def self.all_data(user)
     select('

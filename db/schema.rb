@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_19_061927) do
+ActiveRecord::Schema.define(version: 2019_01_20_075744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,16 @@ ActiveRecord::Schema.define(version: 2019_01_19_061927) do
     t.index ["application_id"], name: "index_offers_on_application_id"
   end
 
+  create_table "phone_calls", force: :cascade do |t|
+    t.date "date"
+    t.string "participants"
+    t.text "notes"
+    t.bigint "application_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["application_id"], name: "index_phone_calls_on_application_id"
+  end
+
   create_table "todos", force: :cascade do |t|
     t.string "name"
     t.boolean "completed"
@@ -127,5 +137,6 @@ ActiveRecord::Schema.define(version: 2019_01_19_061927) do
   add_foreign_key "contacts", "users"
   add_foreign_key "interviews", "applications"
   add_foreign_key "offers", "applications"
+  add_foreign_key "phone_calls", "applications"
   add_foreign_key "todos", "users"
 end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :applications do
       resources :interviews
       resources :offers
+      resources :phone_calls
     end
   end
 

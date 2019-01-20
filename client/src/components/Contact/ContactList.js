@@ -9,7 +9,7 @@ class ContactList extends React.Component {
 
 
   render() {
-    let { contacts, remove } = this.props
+    let { contacts} = this.props
 
     return contacts.map( contact =>
       

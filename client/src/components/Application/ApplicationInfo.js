@@ -162,11 +162,11 @@ class ApplicationInfo extends Component {
 }
 
 const SubmitButton = styled.button`
-   color: #666;
    padding: 15px;
    margin-top: 10px;
-   background-color: #6e54a3;
+   background-color: #8e2de2;
    font-size: 14px;
+   font-weight: lighter;
    border: none;
    outline: none;
    color: white;
@@ -187,7 +187,7 @@ const EditButton = styled.button`
    cursor: pointer;
    font-size: 14px;
    color: white;
-   background-color: #6e54a3;
+   background-color: #8e2de2;
    border: none;
    outline: none;
    font-weight: lighter;

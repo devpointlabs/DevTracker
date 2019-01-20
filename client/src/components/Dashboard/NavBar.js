@@ -239,7 +239,7 @@ const AccountMenu = styled.ul`
   top: 0;
   right: 0;
   width: 250px;
-  margin-top: 75px;
+  margin-top: 95px;
   margin-right: 5px;
   border-radius: 5px;
   background-color: white;

@@ -2,6 +2,7 @@ import axios from "axios";
 
 const ADD_APPLICATION = "ADD_APPLICATION";
 const GET_APPLICATIONS = "GET_APPLICATIONS";
+const GET_APPLICATION = "GET_APPLICATION";
 
 export const getApplications = (user_id) => {
   return dispatch => {
@@ -10,6 +11,19 @@ export const getApplications = (user_id) => {
       dispatch({ type: GET_APPLICATIONS, applications: res.data })
     })
     .catch(err => console.log(err));
+  }
+}
+
+export const getApplication = (user, id, callback) => {
+  return dispatch => {
+    axios
+      .get(`/api/users/${user.id}/applications/${id}`)
+      .then(res => {
+        dispatch({ type: GET_APPLICATION, application: res.data })
+      })
+      .then(
+        callback()
+      )
   }
 }
 
@@ -30,6 +44,8 @@ export default (state = [], action) => {
       return action.applications;
     case ADD_APPLICATION:
       return [action.application, ...state];
+    case GET_APPLICATION:
+      return action.application;
     default:
       return state;
   }

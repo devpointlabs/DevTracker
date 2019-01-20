@@ -42,8 +42,7 @@ class JobApplications extends React.Component {
   };
 
   render() {
-    let { applications } = this.props;
-    let { openForm } = this.props;
+    let { applications, openForm } = this.props;
     return (
       <ApplicationsContainer>
         <SectionTitle>Job Applications</SectionTitle>
@@ -56,7 +55,7 @@ class JobApplications extends React.Component {
           </SeeAllButton>
         </Link>
         <ApplicationsContent>
-          {this.props.applications.length === 0 ? (
+          {applications.length === 0 ? (
             <>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -88,16 +87,18 @@ class JobApplications extends React.Component {
               </AddNew>
               {applications.map(app => {
                 return (
-                  <Application key={app.id} color={this.returnColor(app.status)}>
-                    <ApplicationStatus>
-                      <StatusCircle color={this.returnColor(app.status)} />
-                      <JobStatus>{app.status}</JobStatus>
-                    </ApplicationStatus>
-                    <Title>{app.title} @ {app.company_name}</Title>
-                    <LastUpdated>
-                      Updated {moment(app.updated_at).fromNow()}
-                    </LastUpdated>
-                  </Application>
+                  <Link to={`/applications/${app.id}`} key={app.id} >
+                    <Application color={this.returnColor(app.status)}>
+                      <ApplicationStatus>
+                        <StatusCircle color={this.returnColor(app.status)} />
+                        <JobStatus>{app.status}</JobStatus>
+                      </ApplicationStatus>
+                      <Title>{app.title} @ {app.company_name}</Title>
+                      <LastUpdated>
+                        Updated {moment(app.updated_at).fromNow()}
+                      </LastUpdated>
+                    </Application>
+                  </Link>
                 );
               })}
             </ApplicationList>
@@ -125,7 +126,7 @@ const Application = styled.div`
   padding: 1em;
   cursor: pointer;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.03);
   }
 `;
 
@@ -136,6 +137,7 @@ const ApplicationStatus = styled.span`
 
 const JobStatus = styled.p`
   font-size: 14px;
+  color: #666;
 `;
 
 const Title = styled.h3`
@@ -161,30 +163,23 @@ const StatusCircle = styled.div`
 `;
 
 const SeeAllButton = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  color: #666;
-  font-size: 14px;
-  margin: 1.25em;
+position: absolute;
+top: 0;
+right: 0;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+color: #6E54A3;
+font-size: 14px;
+margin: 1.25em;
 
-  &:hover {
-    color: #6E54A3;
-  }
-
-  &:hover > svg {
-    fill: #6E54A3;
-  }
-
-  svg {
-    width: 15px;
-    height: 15px;
-    margin-left: 5px;
-  }
+svg {
+  width: 15px;
+  fill: #6E54A3;
+  height: 15px;
+  margin-left: 5px;
+}
 `;
 
 const AddNew = styled.div`
@@ -269,9 +264,7 @@ const ApplicationsContainer = styled.div`
   padding: 1.25em;
   background-color: white;
   border-radius: 5px;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   position: relative;
 `;
 

@@ -108,6 +108,7 @@ const Form = styled.form`
       outline: none;
       border-radius: 5px;
       background-color: #8e2de2;
+      cursor: pointer;
       margin-top: 10px;
    }
 `;

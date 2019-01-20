@@ -3,7 +3,7 @@ import axios from "axios";
 const GET_INTERVIEWS = "GET_INTERVIEWS";
 const ADD_INTERVIEW = "ADD_INTERVIEW";
 const DELETE_INTERVIEW = "DELETE_INTERVIEW";
-const UPDATE_INTERVIEW = "UPDATE_INTERVIEW";
+// const UPDATE_INTERVIEW = "UPDATE_INTERVIEW";
 
 export const getInterviews = (id) => {
     return dispatch => {

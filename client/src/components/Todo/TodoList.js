@@ -182,8 +182,11 @@ const TaskInfo = styled.div`
   width: 100%;
   padding: 1em;
 `;
-const TaskName = styled.h3`
+const TaskName = styled.p`
   padding-bottom: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
 `;
 const TaskDate = styled.p`
   color: ${props => {
@@ -191,7 +194,7 @@ const TaskDate = styled.p`
     let difference = newDate.diff(props.date, "hours");
     if (difference > -12) {
       return "#eb4d4b";
-    } else return "rgba(0,0,0,0.4)";
+    } else return "#b3b3b3";
   }};
   font-size: 14px;
 `;

@@ -18,7 +18,6 @@ class Application extends Component {
       return (
         <>
           <ApplicationContainer>
-            
             <ApplicationTitle>
               {application_data.title} @ {application_data.company_name}
             </ApplicationTitle>

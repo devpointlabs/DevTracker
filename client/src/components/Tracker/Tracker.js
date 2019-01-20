@@ -171,7 +171,7 @@ const ButtonContainer = styled.div`
   .status-selection {
     min-width: 200px;
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 14px;
     
     .Dropdown-placeholder {
       color: #666;
@@ -194,10 +194,11 @@ const ButtonContainer = styled.div`
 const CompanyFilter = styled.input`
   min-width: 300px;
   margin: 0 10px;
-  font-size: 12px;
+  font-size: 14px;
   color: #666;
   height: 48px;
   padding: 15px 10px;
+  caret-color: #6e54a3;
   border-radius: 5px;
   outline: none;
   border: none;
@@ -205,7 +206,7 @@ const CompanyFilter = styled.input`
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   &::placeholder {
-    color: #666;
+    color: #b3b3b3;
   }
 `;
 

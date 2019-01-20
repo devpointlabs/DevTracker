@@ -23,7 +23,7 @@ export const states = [
     { value: 'MI', label: 'Michigan' },
     { value: 'MN', label: 'Minnesota' },
     { value: 'MS', label: 'Mississippi' },
-    { value: 'MA', label: 'Missouri' },
+    { value: 'MO', label: 'Missouri' },
     { value: 'MT', label: 'Montana' },
     { value: 'NE', label: 'Nebraska' },
     { value: 'NV', label: 'Nevada' },
@@ -53,6 +53,18 @@ export const states = [
 
 export const application_status = [
     { value: 'None', label: 'None', color: '' },
+    { value: 'Interested', label: 'Interested', color: '#8C8C8C' },
+    { value: 'Applied', label: 'Applied', color: '#6DA7D6' },
+    { value: 'Phone Call', label: 'Phone Call', color: '#D567F5' },
+    { value: 'Assignment', label: 'Assignment', color: '#ECB269' },
+    { value: 'Interview', label: 'Interview', color: '#2A79DA' },
+    { value: 'Offer', label: 'Offer', color: '#4BCE55' },
+    { value: 'Accepted', label: 'Accepted', color: '#168000' },
+    { value: 'Withdrawn', label: 'Withdrawn', color: '#666' },
+    { value: 'Not Interested', label: 'Not Interested', color: '#BF5152' }
+]
+
+export const status_list = [
     { value: 'Interested', label: 'Interested', color: '#8C8C8C' },
     { value: 'Applied', label: 'Applied', color: '#6DA7D6' },
     { value: 'Phone Call', label: 'Phone Call', color: '#D567F5' },

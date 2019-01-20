@@ -13,7 +13,6 @@ class Tasks extends React.Component {
   }
 
   toggleComplete = ({ completed, date, id, name, user_id }) => {
-    console.log(completed, name, date, id, user_id);
     let { dispatch, user } = this.props;
     if (completed) {
       let updatedTodo = { completed: false, date, id, name, user_id };

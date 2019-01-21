@@ -10,11 +10,12 @@ import {deleteOffer} from '../../reducers/offers';
 import {deleteInterview} from '../../reducers/interviews';
 import {deleteCall} from '../../reducers/calls';
 import alert from 'sweetalert2';
+import { updateTime } from "../../reducers/applications";
 
 class Application extends Component {
 
   removeActivity = (type, id) => {
-    let {application, dispatch} = this.props;
+    let {application, dispatch, auth: {user}} = this.props;
     console.log(type, id);
     switch(type) {
       case 'offer':
@@ -29,6 +30,7 @@ class Application extends Component {
         }).then(res => {
           if(res.value) {
             dispatch(deleteOffer(application[0].id, id));
+            dispatch(updateTime(user, application[0].id));
             alert(
               "Success",
               "Offer successfully removed!",
@@ -49,6 +51,7 @@ class Application extends Component {
       }).then(res => {
         if(res.value) {
           dispatch(deleteInterview(application[0].id, id));
+          dispatch(updateTime(user, application[0].id));
           alert(
             "Success",
             "Offer successfully removed!",
@@ -69,6 +72,7 @@ class Application extends Component {
       }).then(res => {
         if(res.value) {
           dispatch(deleteCall(application[0].id, id));
+          dispatch(updateTime(user, application[0].id));
           alert(
             "Success",
             "Offer successfully removed!",

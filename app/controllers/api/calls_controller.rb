@@ -35,7 +35,7 @@ class Api::CallsController < ApplicationController
     end
 
     def set_call
-        @call = PhoneCall.find(params[:id])
+        @call = Call.find(params[:id])
     end
 
     def call_params

@@ -1,4 +1,5 @@
 import React from 'react';
+import Dropzone from 'react-dropzone'
 import { AuthConsumer, } from '../../providers/AuthProvider';
 import styled from 'styled-components';
 
@@ -19,12 +20,17 @@ class Profile extends React.Component {
       github: '',
       linkedin: '',
       resume: '',
+      file: '',
     },
   };
 
+  onDrop = (files) => {
+    this.setState({ formValues: { ...this.state.formValues, file: files[0], } });
+  }
+
   componentDidMount() {
-    const { auth: { user: { email, first_name, last_name, image, cohort, dob, college_degree, employment_status, sex, github, linkedin, resume, admin }, }, } = this.props;
-    this.setState({ formValues: { email, first_name, last_name, image, cohort, dob, college_degree, employment_status, sex, github, linkedin, resume, admin }, });
+    const { auth: { user: { email, first_name, last_name, cohort, dob, college_degree, employment_status, sex, github, linkedin, resume, admin }, }, } = this.props;
+    this.setState({ formValues: { email, first_name, last_name, cohort, dob, college_degree, employment_status, sex, github, linkedin, resume, admin }, });
   }
 
   toggleEdit = () => {
@@ -72,7 +78,6 @@ class Profile extends React.Component {
     const { formValues: { email,
       first_name,
       last_name,
-      image,
       cohort,
       dob,
       college_degree,
@@ -81,9 +86,30 @@ class Profile extends React.Component {
       github,
       linkedin,
       resume,
-      } } = this.state;
+    } } = this.state;
     return (
       <Form onSubmit={this.handleSubmit}>
+        <Dropzone
+          onDrop={this.onDrop}
+          multiple={false}
+        >
+          {({ getRootProps, getInputProps, isDragActive }) => {
+            return (
+              <div
+                {...getRootProps()}
+                style={styles.dropzone}
+              >
+                <input {...getInputProps()} />
+                {
+                  isDragActive ?
+                    <p>Drop files here...</p>
+                    :
+                    <p>Try dropping some files here, or click to select files to upload.</p>
+                }
+              </div>
+            )
+          }}
+        </Dropzone>
         <label>Email</label>
         <input
           label="Email"
@@ -104,12 +130,6 @@ class Profile extends React.Component {
           value={last_name}
           onChange={this.handleChange}
         />
-        <label>Profile Image</label>
-        <input
-          name="image"
-          value={image}
-          onChange={this.handleChange}
-        />
         <label>Cohort</label>
         <input
           name="cohort"
@@ -119,7 +139,7 @@ class Profile extends React.Component {
         <label>Date of Birth</label>
         <input
           name="dob"
-          value={dob}   
+          value={dob}
           onChange={this.handleChange}
         />
         <label>College Degree</label>
@@ -206,6 +226,12 @@ const Form = styled.form`
   }
 
 `
+
+const styles = {
+  dropzone: {
+    height: "300px",
+  }
+}
 
 const ProfileImage = styled.img`
 `

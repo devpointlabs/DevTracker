@@ -5,6 +5,7 @@ import contacts from './contacts'
 import todos from './todos';
 import calls from './calls';
 import interviews from './interviews';
+import offers from './offers';
 
 const rootReducer = combineReducers({
     companies,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     contacts,
     todos,
     calls,
-    interviews
+    interviews,
+    offers
 });
 
 export default rootReducer;

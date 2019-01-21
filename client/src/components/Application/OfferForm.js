@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import DatePicker from "react-datepicker";
+import Dropdown from "react-dropdown";
 import "react-datepicker/dist/react-datepicker.css";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { addCall } from "../../reducers/calls";
+import { addOffer } from "../../reducers/offers";
 import alert from "sweetalert2";
 import { updateTime } from "../../reducers/applications";
 
-
-class PhoneCallForm extends Component {
+class OfferForm extends Component {
    state = {
-      date: new Date(),
-      participants: "",
+      salary: "",
+      accepted: "",
       notes: ""
    };
 
@@ -21,54 +20,60 @@ class PhoneCallForm extends Component {
       });
    };
 
-   handleDate = date => {
+   handleAccepted = ({ value }) => {
       this.setState({
-         date: date
+         accepted: value
       });
    };
 
    handleSubmit = e => {
       e.preventDefault();
       let { dispatch, app_id, user } = this.props;
-      dispatch(addCall({ ...this.state }, app_id));
+      dispatch(addOffer({ ...this.state }, app_id));
       dispatch(updateTime(user, app_id));
       alert(
-          "Call added!",
-          "Your phone call has been successfully scheduled!",
-          "success"
-      )
+         "Offer added!",
+         "Your offer has been successfully added!",
+         "success"
+      );
       this.setState({
-          date: new Date(),
-          participants: "",
-          notes: ""
-      })
+         salary: "",
+         accepted: "",
+         notes: ""
+      });
    };
 
    render() {
-      let { date, participants, notes } = this.state;
+      let { salary, accepted, notes } = this.state;
+      let options = [
+         { value: "Yes", label: "Yes" },
+         { value: "No", label: "No" }
+      ];
       return (
          <Form onSubmit={this.handleSubmit}>
-            <label>Date</label>
-            <DatePicker
-               name="date"
-               selected={date}
-               onChange={this.handleDate}
-               className="date-picker"
-            />
-            <label>Participants</label>
+            <label>Salary Offered</label>
             <Input
-               name="participants"
+               name="salary"
                required
-               value={participants}
+               pattern="[0-9]*"
+               value={salary}
                onChange={this.handleChange}
-               placeholder="List of participants"
+               placeholder="Ex. 65000"
+            />
+            <label>Accepted</label>
+            <Dropdown
+               name="accepted"
+               options={options}
+               className="select-menu"
+               value={accepted}
+               onChange={this.handleAccepted}
             />
             <label>Notes</label>
             <Textarea
                name="notes"
                value={notes}
                onChange={this.handleChange}
-               placeholder="Notes about call..."
+               placeholder="Notes about offer..."
             />
             <input type="submit" value="Submit" className="submit" />
          </Form>
@@ -89,16 +94,14 @@ const Form = styled.form`
       margin: 10px 0;
    }
 
-   .date-picker {
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      outline: none;
-      padding: 10px;
-      font-size: 14px;
-      color: #666;
+   .select-menu {
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.03);
+      .Dropdown-control {
+         height: 37px;
+         background-color: rgba(0, 0, 0, 0.03);
+         color: #666;
+         border: none;
+      }
    }
 
    .submit {
@@ -138,5 +141,4 @@ const Input = styled.input`
    border-radius: 5px;
 `;
 
-export default connect()(PhoneCallForm);
-
+export default connect()(OfferForm);

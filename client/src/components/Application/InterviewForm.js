@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { addInterview } from "../../reducers/interviews";
 import alert from "sweetalert2";
+import { updateTime } from "../../reducers/applications";
+
 
 class InterviewForm extends Component {
    state = {
@@ -27,8 +29,9 @@ class InterviewForm extends Component {
 
    handleSubmit = e => {
       e.preventDefault();
-      let { dispatch, app_id } = this.props;
+      let { dispatch, app_id, user } = this.props;
       dispatch(addInterview({ ...this.state }, app_id));
+      dispatch(updateTime(user, app_id));
       alert(
           "Interview added!",
           "Your interview has been successfully scheduled!",
@@ -108,6 +111,7 @@ const Form = styled.form`
       outline: none;
       border-radius: 5px;
       background-color: #8e2de2;
+      cursor: pointer;
       margin-top: 10px;
    }
 `;

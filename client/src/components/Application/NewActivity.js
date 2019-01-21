@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import PhoneCallForm from "./PhoneCallForm";
 import InterviewForm from "./InterviewForm";
+import OfferForm from './OfferForm';
 
 class NewActivity extends Component {
    state = {
@@ -20,8 +21,8 @@ class NewActivity extends Component {
    };
 
    render() {
-      let { application } = this.props;
-      let { phone, interview, offer } = this.state;
+      let { application, user } = this.props;
+      let { phone, interview } = this.state;
       return (
          <NewActivityContainer>
             <SectionTitle>New Activity</SectionTitle>
@@ -54,7 +55,7 @@ class NewActivity extends Component {
                   Offer
                </Button>
             </FormSelection>
-            {phone ? <PhoneCallForm app_id={application.id}/> : interview ? <InterviewForm app_id={application.id}/> : <></>}
+            {phone ? <PhoneCallForm app_id={application.id} user={user}/> : interview ? <InterviewForm app_id={application.id} user={user}/> : <OfferForm app_id={application.id} user={user}/>}
          </NewActivityContainer>
       );
    }

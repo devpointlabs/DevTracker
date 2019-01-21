@@ -4,6 +4,7 @@ import { getApplication } from "../../reducers/applications";
 import { getOffers } from "../../reducers/offers";
 import { getInterviews } from "../../reducers/interviews";
 import { getCalls } from "../../reducers/calls";
+import { getNotes } from '../../reducers/notes';
 import {AuthConsumer} from "../../providers/AuthProvider";
 import Application from "./Application";
 import NavBar from '../Dashboard/NavBar';
@@ -17,6 +18,7 @@ class FetchApplication extends Component {
     dispatch(getInterviews(id));
     dispatch(getCalls(id));
     dispatch(getApplication(user, id, this.setLoaded));
+    dispatch(getNotes(id));
   }
 
   setLoaded = () => {
@@ -25,12 +27,12 @@ class FetchApplication extends Component {
 
   render() {
     const { loaded } = this.state;
-    let {offers, interviews, calls} = this.props;
+    let {offers, interviews, calls, notes} = this.props;
     if (loaded) {
       return (
         <>
         <NavBar />
-        <Application offers={offers} interviews={interviews} calls={calls}/>
+        <Application offers={offers} interviews={interviews} calls={calls} notes={notes}/>
         </>
       );
     } else return null
@@ -42,7 +44,8 @@ const mapStateToProps = state => {
       application: state.applications,
       interviews: state.interviews,
       offers: state.offers,
-      calls: state.calls
+      calls: state.calls,
+      notes: state.notes
      };
 };
 

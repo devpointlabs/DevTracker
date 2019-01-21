@@ -15,4 +15,10 @@ Rails.application.routes.draw do
       resources :notes
     end
   end
+
+  namespace :api do
+    resources :user do
+      resource :events, only: %w(show)
+    end
+  end
 end

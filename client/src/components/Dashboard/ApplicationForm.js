@@ -124,7 +124,6 @@ class ApplicationForm extends React.Component {
             city: app_city,
             state: app_state,
             company_id: companyId,
-            user_id: user.id,
             submission_date: app_submission_date,
             id: appId
          };

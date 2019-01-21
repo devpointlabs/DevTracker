@@ -29,12 +29,12 @@ class InterviewForm extends Component {
 
    handleSubmit = e => {
       e.preventDefault();
-      let { dispatch, app_id, user } = this.props;
+      let { dispatch, app_id, user, app } = this.props;
       dispatch(addInterview({ ...this.state }, app_id));
       dispatch(updateTime(user, app_id));
       alert(
-          "Interview added!",
-          "Your interview has been successfully scheduled!",
+          "Congratulations",
+          `Great job getting an interview with ${app.company_name}!`,
           "success"
       )
       this.setState({

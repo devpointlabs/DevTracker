@@ -21,7 +21,7 @@ export const addInterview = (interview, application_id) => {
 
 export const deleteInterview = (application_id, id) => {
     return dispatch => {
-        axios.post(`/api/applications/${application_id}/interviews/${id}`)
+        axios.delete(`/api/applications/${application_id}/interviews/${id}`)
         .then(res => dispatch({ type: DELETE_INTERVIEW, id }))
     }
 }

@@ -5,7 +5,7 @@ const ADD_OFFER = "ADD_OFFER";
 const DELETE_OFFER = "DELETE_OFFER";
 // const UPDATE_OFFER = "UPDATE_OFFER";
 
-export const getoffers = (id) => {
+export const getOffers = (id) => {
     return dispatch => {
         axios.get(`/api/applications/${id}/offers`)
         .then(res => dispatch({type: GET_OFFERS, offers: res.data }))
@@ -21,7 +21,7 @@ export const addOffer = (offer, application_id) => {
 
 export const deleteOffer = (application_id, id) => {
     return dispatch => {
-        axios.post(`/api/applications/${application_id}/offers/${id}`)
+        axios.delete(`/api/applications/${application_id}/offers/${id}`)
         .then(res => dispatch({ type: DELETE_OFFER, id }))
     }
 }

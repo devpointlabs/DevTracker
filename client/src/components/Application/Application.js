@@ -6,12 +6,86 @@ import ApplicationInfo from "./ApplicationInfo";
 import Activity from "./Acitivity";
 import NewActivity from "./NewActivity";
 import Notes from "./Notes";
+import {deleteOffer} from '../../reducers/offers';
+import {deleteInterview} from '../../reducers/interviews';
+import {deleteCall} from '../../reducers/calls';
+import alert from 'sweetalert2';
 
 class Application extends Component {
+
+  removeActivity = (type, id) => {
+    let {application, dispatch} = this.props;
+    console.log(type, id);
+    switch(type) {
+      case 'offer':
+        alert.fire({
+          title: "Are you sure?",
+          text: "You will have to create this event again.",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#8e2de2',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, remove it!'
+        }).then(res => {
+          if(res.value) {
+            dispatch(deleteOffer(application[0].id, id));
+            alert(
+              "Success",
+              "Offer successfully removed!",
+              "success"
+            )
+          }
+        })
+        break;
+      case 'interview':
+      alert.fire({
+        title: "Are you sure?",
+        text: "You will have to create this event again.",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#8e2de2',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, remove it!'
+      }).then(res => {
+        if(res.value) {
+          dispatch(deleteInterview(application[0].id, id));
+          alert(
+            "Success",
+            "Offer successfully removed!",
+            "success"
+          )
+        }
+      })
+      break;
+      case 'call':
+      alert.fire({
+        title: "Are you sure?",
+        text: "You will have to create this event again.",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#8e2de2',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, remove it!'
+      }).then(res => {
+        if(res.value) {
+          dispatch(deleteCall(application[0].id, id));
+          alert(
+            "Success",
+            "Offer successfully removed!",
+            "success"
+          )
+        }
+      })
+      break;
+      default:
+      // do nothing
+    }
+  }
+
   render() {
     const {
       auth: { user },
-      application
+      application, offers, interviews, calls
     } = this.props;
     let application_data = application[0];
     if (application_data) {
@@ -24,10 +98,20 @@ class Application extends Component {
             <ColumnContainers>
               <LeftContainer>
                 <ApplicationInfo user={user} application={application_data}/>
-                <NewActivity user={user}  application={application_data}/>
+                <NewActivity 
+                  user={user}
+                  application={application_data}
+                />
               </LeftContainer>
               <RightContainer>
-                <Activity user={user}  application={application_data}/>
+                <Activity 
+                  user={user} 
+                  application={application_data}
+                  calls={calls}
+                  interviews={interviews}
+                  offers={offers}
+                  remove={this.removeActivity}
+                />
                 <Notes user={user}  application={application_data}/>
               </RightContainer>
             </ColumnContainers>
@@ -94,7 +178,9 @@ const ApplicationContainer = styled.div`
 `;
 
 const mapStateToProps = state => {
-  return { application: state.applications };
+  return { 
+    application: state.applications
+  };
 };
 
 export class ConnectedApplication extends React.Component {

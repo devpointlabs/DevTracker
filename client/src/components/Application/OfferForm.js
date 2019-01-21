@@ -32,8 +32,8 @@ class OfferForm extends Component {
       dispatch(addOffer({ ...this.state }, app_id));
       dispatch(updateTime(user, app_id));
       alert(
-         "Offer added!",
-         "Your offer has been successfully added!",
+         "Congratulations!",
+         "Getting an offer is a really big deal, great job!",
          "success"
       );
       this.setState({

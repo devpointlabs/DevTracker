@@ -21,7 +21,7 @@ export const addCall = (call, application_id) => {
 
 export const deleteCall = (application_id, call_id) => {
     return dispatch => {
-        axios.post(`/api/applications/${application_id}/calls/${call_id}`)
+        axios.delete(`/api/applications/${application_id}/calls/${call_id}`)
         .then(res => dispatch({ type: DELETE_CALL, call_id }))
     }
 }

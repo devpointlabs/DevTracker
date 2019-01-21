@@ -10,7 +10,7 @@ class Api::InterviewsController < ApplicationController
     def create
         interview = @application.interviews.new(interview_params)
         if interview.save
-            render json: offer
+            render json: interview
         else
             render json: {errors: interview.errors}, status: :unprocessable_entity
         end

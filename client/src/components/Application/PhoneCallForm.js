@@ -29,12 +29,12 @@ class PhoneCallForm extends Component {
 
    handleSubmit = e => {
       e.preventDefault();
-      let { dispatch, app_id, user } = this.props;
+      let { dispatch, app_id, user, app } = this.props;
       dispatch(addCall({ ...this.state }, app_id));
       dispatch(updateTime(user, app_id));
       alert(
-          "Call added!",
-          "Your phone call has been successfully scheduled!",
+          "Phone call scheduled!",
+          `Be yourself and stay confident, and ${app.company_name} would be crazy to say no!`,
           "success"
       )
       this.setState({

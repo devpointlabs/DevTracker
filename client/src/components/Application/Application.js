@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import styled, { keyframes } from "styled-components";
 import { AuthConsumer } from "../../providers/AuthProvider";
 import ApplicationInfo from "./ApplicationInfo";
-import Activity from "./Acitivity";
+import Activity from "./Activity";
 import NewActivity from "./NewActivity";
 import Notes from "./Notes";
 import {deleteOffer} from '../../reducers/offers';
@@ -16,7 +16,6 @@ class Application extends Component {
 
   removeActivity = (type, id) => {
     let {application, dispatch, auth: {user}} = this.props;
-    console.log(type, id);
     switch(type) {
       case 'offer':
         alert.fire({

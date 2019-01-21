@@ -67,7 +67,6 @@ class Tasks extends React.Component {
                 Tasks help you be more efficient by staying on top of action
                 items. Set due dates to make sure nothing slips by.
               </p>
-              <button className="new-task">New Task</button>
             </>
           ) : (
             <TodoList>
@@ -178,23 +177,6 @@ const TasksContent = styled.div`
   justify-content: flex-start;
   align-items: center;
   padding: 2em 1em;
-
-  .new-task {
-    padding: 15px 30px;
-    -webkit-appearance: button;
-    margin-top: 20px;
-    background: #8e2de2;
-    color: white;
-    border: none;
-    font-size: 14px;
-    border-radius: 5px;
-    transition: 0.3s linear;
-    cursor: pointer;
-    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
-    &:hover {
-      box-shadow: none;
-    }
-  }
 
   .task {
     width: 100px;

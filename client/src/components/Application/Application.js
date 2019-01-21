@@ -88,7 +88,7 @@ class Application extends Component {
   render() {
     const {
       auth: { user },
-      application, offers, interviews, calls
+      application, offers, interviews, calls, notes
     } = this.props;
     let application_data = application[0];
     if (application_data) {
@@ -115,7 +115,7 @@ class Application extends Component {
                   offers={offers}
                   remove={this.removeActivity}
                 />
-                <Notes user={user}  application={application_data}/>
+                <Notes user={user}  application={application_data} notes={notes}/>
               </RightContainer>
             </ColumnContainers>
           </ApplicationContainer>

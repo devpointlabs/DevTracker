@@ -23,7 +23,6 @@ const Activity = ({ calls, application, interviews, offers, remove }) => {
       if (a.updated_at < b.updated_at) return 1;
       return 0;
    });
-   console.log(activity);
    return (
       <ActivityContainer>
          <SectionTitle>Activity for {application.company_name}</SectionTitle>
@@ -44,7 +43,7 @@ const Activity = ({ calls, application, interviews, offers, remove }) => {
                            </svg>
                         </EventIcon>
                         <CreatedAt>
-                           {moment(a.created_at).format("l")}
+                           {moment(a.created_at).calendar()}
                         </CreatedAt>
                         <Delete onClick={() => remove('offer', a.id)}>
                            <svg
@@ -78,7 +77,7 @@ const Activity = ({ calls, application, interviews, offers, remove }) => {
                            </svg>
                         </EventIcon>
                         <CreatedAt>
-                           {moment(a.created_at).format("l")}
+                           {moment(a.created_at).calendar()}
                         </CreatedAt>
                         <Delete onClick={() => remove('interview', a.id)}>
                            <svg
@@ -107,7 +106,7 @@ const Activity = ({ calls, application, interviews, offers, remove }) => {
                            </svg>
                         </EventIcon>
                         <CreatedAt>
-                           {moment(a.created_at).format("l")}
+                           {moment(a.created_at).calendar()}
                         </CreatedAt>
                         <Delete onClick={() => remove('call', a.id)}>
                            <svg

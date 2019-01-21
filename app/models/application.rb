@@ -4,6 +4,7 @@ class Application < ApplicationRecord
   has_many :interviews, dependent: :destroy
   has_many :offers, dependent: :destroy
   has_many :calls, dependent: :destroy
+  has_many :notes, dependent: :destroy
 
   def self.all_data(user)
     select('

@@ -210,6 +210,7 @@ const TextArea = styled.textarea`
 const Input = styled.input`
    padding: 10px 15px;
    -webkit-appearance: button;
+   outline: none;
    align-self: flex-end;
    margin-top: 1em;
    font-size: 14px;

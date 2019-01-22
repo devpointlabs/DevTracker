@@ -55,7 +55,7 @@ class JobApplications extends React.Component {
           </SeeAllButton>
         </Link>
         <ApplicationsContent>
-          {applications.length === 0 ? (
+          {!applications ? (
             <>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

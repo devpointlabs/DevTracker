@@ -96,40 +96,29 @@ class ApplicationForm extends React.Component {
       this.setState({ app_status: value });
    };
 
+   addApplication = (company_id) => {
+      let {user, dispatch} = this.props;
+      console.log(company_id)
+      let {app_posting_url, app_status, app_title, app_city, app_state, app_submission_date } = this.state;
+      let newApplication = {
+         posting_url: app_posting_url,
+         status: app_status,
+         title: app_title,
+         city: app_city,
+         state: app_state,
+         company_id: company_id,
+         submission_date: app_submission_date
+      };
+      dispatch(addApplication(newApplication, user.id));
+   }
+
    handleSubmit = e => {
       e.preventDefault();
       let { closeForm, dispatch, user } = this.props;
-      let {
-         company_name,
-         company_url,
-         company_id,
-         app_submission_date,
-         app_title,
-         app_status,
-         app_posting_url,
-         app_city,
-         app_state
-      } = this.state;
-      let companyId = Math.random()
-         .toString()
-         .substr(2, 8);
+      let {company_name, company_url, company_id, app_submission_date, app_title, app_status, app_posting_url, app_city, app_state } = this.state;
+      let companyId = Math.random().toString().substr(2, 8);
       if (!company_id) {
-         let newApplication = {
-            posting_url: app_posting_url,
-            status: app_status,
-            title: app_title,
-            city: app_city,
-            state: app_state,
-            company_id: companyId,
-            submission_date: app_submission_date
-         };
-         dispatch(addCompany(companyId, company_name, company_url));
-         dispatch(addApplication(newApplication, user.id));
-         alert(
-            "Application Added!",
-            "The application you submitted has been successfully created",
-            "success"
-         );
+         dispatch(addCompany(companyId, company_name, company_url, this.addApplication));
       } else {
          let newApplication = {
             posting_url: app_posting_url,
@@ -322,7 +311,7 @@ const Form = styled.form`
 
       .Dropdown-control {
          border: none;
-         background-color: rgba(0,0,0,0.03);
+         background-color: rgba(0, 0, 0, 0.03);
          color: #666;
       }
    }

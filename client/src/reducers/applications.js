@@ -43,19 +43,16 @@ export const addApplication = (application, user_id) => {
     axios
       .post(`/api/users/${user_id}/applications`, { application })
       .then(res => {
-        console.log(res);
         return dispatch({ type: ADD_APPLICATION, application: res.data[0] })
       })
       .catch(err => console.log(err));
   };
 };
 
-
 export const updateApplication = (application, user, id) => {
   return dispatch => {
     axios.put(`/api/users/${user.id}/applications/${id}`, {application})
     .then(res => {
-      console.log(res.data);
       dispatch({type: UPDATE_APPLICATION, application: res.data})})
   }
 }

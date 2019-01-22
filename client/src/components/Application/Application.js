@@ -23,8 +23,8 @@ class Application extends Component {
           text: "You will have to create this event again.",
           type: 'warning',
           showCancelButton: true,
-          confirmButtonColor: '#8e2de2',
-          cancelButtonColor: '#d33',
+          confirmButtonColor: '#10ac84',
+          cancelButtonColor: '#ee5253',
           confirmButtonText: 'Yes, remove it!'
         }).then(res => {
           if(res.value) {
@@ -44,8 +44,8 @@ class Application extends Component {
         text: "You will have to create this event again.",
         type: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#8e2de2',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#10ac84',
+        cancelButtonColor: '#ee5253',
         confirmButtonText: 'Yes, remove it!'
       }).then(res => {
         if(res.value) {
@@ -53,7 +53,7 @@ class Application extends Component {
           dispatch(updateTime(user, application[0].id));
           alert(
             "Success",
-            "Offer successfully removed!",
+            "Interview successfully removed!",
             "success"
           )
         }
@@ -65,8 +65,8 @@ class Application extends Component {
         text: "You will have to create this event again.",
         type: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#8e2de2',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#10ac84',
+        cancelButtonColor: '#ee5253',
         confirmButtonText: 'Yes, remove it!'
       }).then(res => {
         if(res.value) {
@@ -74,7 +74,7 @@ class Application extends Component {
           dispatch(updateTime(user, application[0].id));
           alert(
             "Success",
-            "Offer successfully removed!",
+            "Phone call successfully removed!",
             "success"
           )
         }

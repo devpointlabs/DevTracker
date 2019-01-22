@@ -32,6 +32,7 @@ class AuthProvider extends React.Component {
       .post("/api/auth", user)
       .then(res => {
         this.setState({ user: res.data });
+        window.location.reload();
         history.push("/");
       })
       .catch(err => {
@@ -43,8 +44,8 @@ class AuthProvider extends React.Component {
     axios.post("/api/auth/sign_in", user)
     .then( res => {
       this.setState({ user: res.data.data, });
-      history.push("/")
       window.location.reload();
+      history.push("/")
     })
     .catch( err => {
       errorCallback(err);

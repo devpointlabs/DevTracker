@@ -113,9 +113,6 @@ class ApplicationForm extends React.Component {
       let companyId = Math.random()
          .toString()
          .substr(2, 8);
-      let appId = Math.random()
-         .toString()
-         .substr(2, 5);
       if (!company_id) {
          let newApplication = {
             posting_url: app_posting_url,
@@ -124,8 +121,7 @@ class ApplicationForm extends React.Component {
             city: app_city,
             state: app_state,
             company_id: companyId,
-            submission_date: app_submission_date,
-            id: appId
+            submission_date: app_submission_date
          };
          dispatch(addCompany(companyId, company_name, company_url));
          dispatch(addApplication(newApplication, user.id));
@@ -143,8 +139,7 @@ class ApplicationForm extends React.Component {
             state: app_state,
             company_id: company_id,
             user_id: user.id,
-            submission_date: app_submission_date,
-            id: appId
+            submission_date: app_submission_date
          };
          dispatch(addApplication(newApplication, user.id));
          alert(

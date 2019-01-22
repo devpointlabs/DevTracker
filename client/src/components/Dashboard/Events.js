@@ -169,9 +169,9 @@ const Table = styled.table`
 const EventsContent = styled.div`
    display: flex;
    flex-direction: column;
-   justify-content: flex-start;
+   justify-content: center;
    align-items: center;
-   min-height: 300px;
+   min-height: 200px;
 
    .suitcase {
       width: 100px;

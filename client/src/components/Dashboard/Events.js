@@ -30,9 +30,9 @@ class Events extends React.Component {
          if (a.date > b.date) return 1;
          return 0;
       });
-      data.filter(d => {
+      data = data.filter(d => {
          let currentDate = new Date();
-         return d.date > currentDate;
+         return new Date(d.date) > currentDate;
       });
       return (
          <EventsContainer>

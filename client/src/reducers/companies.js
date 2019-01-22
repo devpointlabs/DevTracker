@@ -13,12 +13,15 @@ export const getCompanies = () => {
   };
 };
 
-export const addCompany = (id, name, website_url) => {
+export const addCompany = (id, name, website_url, callback) => {
   return dispatch => {
     let company = { id, name, website_url };
     axios
       .post("/api/companies", { company })
-      .then(res => dispatch({ type: ADD_COMPANY, company: res.data }))
+      .then(res => {
+        dispatch({ type: ADD_COMPANY, company: res.data })
+        callback(res.data.id);
+      })
       .catch(err => console.log(err));
   };
 };

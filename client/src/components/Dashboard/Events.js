@@ -133,7 +133,7 @@ const Table = styled.table`
    border-collapse: separate;
    border-spacing: 0 10px;
    th {
-      text-align: center;
+      text-align: left;
       font-weight: bold;
       text-transform: uppercase;
       font-size: 12px;
@@ -156,7 +156,7 @@ const Table = styled.table`
    td {
       font-size: 14px;
       padding: 10px;
-      text-align: center;
+      text-align: left;
    }
    tr:nth-child(even) {
      background-color: rgba(0,0,0,0.02);

@@ -91,6 +91,77 @@ export const titles = [
     { value: 'Other', label: 'Other' },
 ]
 
+export const cohorts = [
+    { value: "Spring 2015", label: "Spring 2015" },
+    { value: "Summer 2015", label: "Summer 2015" },
+    { value: "Fall 2015", label: "Fall 2015" },
+    { value: "Winter 2015", label: "Winter 2015" },
+    { value: "Spring 2016", label: "Spring 2016" },
+    { value: "Summer 2016", label: "Summer 2016" },
+    { value: "Fall 2016", label: "Fall 2016" },
+    { value: "Winter 2016", label: "Winter 2016" },
+    { value: "Spring 2017", label: "Spring 2017" },
+    { value: "Summer 2017", label: "Summer 2017" },
+    { value: "Fall 2017", label: "Fall 2017" },
+    { value: "Winter 2017", label: "Winter 2017" },
+    { value: "Spring 2018", label: "Spring 2018" },
+    { value: "Summer 2018", label: "Summer 2018" },
+    { value: "Fall 2018", label: "Fall 2018" },
+    { value: "Winter 2018", label: "Winter 2018" },
+    { value: "Spring 2019", label: "Spring 2019" },
+    { value: "Summer 2019", label: "Summer 2019" },
+    { value: "Fall 2019", label: "Fall 2019" },
+    { value: "Winter 2019", label: "Winter 2019" },
+    { value: "Spring 2020", label: "Spring 2020" },
+    { value: "Summer 2020", label: "Summer 2020" },
+    { value: "Fall 2020", label: "Fall 2020" },
+    { value: "Winter 2020", label: "Winter 2020" },
+    { value: "Spring 2021", label: "Spring 2021" },
+    { value: "Summer 2021", label: "Summer 2021" },
+    { value: "Fall 2021", label: "Fall 2021" },
+    { value: "Winter 2021", label: "Winter 2021" },
+    { value: "Spring 2022", label: "Spring 2022" },
+    { value: "Summer 2022", label: "Summer 2022" },
+    { value: "Fall 2022", label: "Fall 2022" },
+    { value: "Winter 2022", label: "Winter 2022" },
+    { value: "Spring 2023", label: "Spring 2023" },
+    { value: "Summer 2023", label: "Summer 2023" },
+    { value: "Fall 2023", label: "Fall 2023" },
+    { value: "Winter 2023", label: "Winter 2023" },
+    { value: "Spring 2024", label: "Spring 2024" },
+    { value: "Summer 2024", label: "Summer 2024" },
+    { value: "Fall 2024", label: "Fall 2024" },
+    { value: "Winter 2024", label: "Winter 2024" },
+    { value: "Spring 2025", label: "Spring 2025" },
+    { value: "Summer 2025", label: "Summer 2025" },
+    { value: "Fall 2025", label: "Fall 2025" },
+    { value: "Winter 2025", label: "Winter 2025" },
+]
+
+
+export const sex_options = [
+    { value: "Male", label: "Male" },
+    { value: "Female", label: "Female" },
+    { value: "Other", label: "Other", color: "" }
+ ];
+
+
+ export const employment_options = [
+    { value: "None", label: "None" },
+    { value: "Interviewing", label: "Interviewing" },
+    { value: "Applying", label: "Applying" },
+    { value: "Offer Accepted", label: "Offer Accepted" }
+ ];
+
+
+ export const college_options = [
+    { value: "None", label: "None" },
+    { value: "Bachelors", label: "Bachelors" },
+    { value: "Masters", label: "Master" },
+    { value: "PHD", label: "PHD" }
+ ];
+
+
 export default states;
 
 

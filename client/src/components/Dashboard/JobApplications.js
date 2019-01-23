@@ -25,21 +25,21 @@ class JobApplications extends React.Component {
   returnColor = status => {
     switch (status) {
       case "Interested":
-        return "rgba(140, 140, 140, 0.3)";
+        return "rgba(140, 140, 140, 0.6)";
       case "Applied":
-        return "rgba(109, 167, 214, 0.3)";
+        return "rgba(109, 167, 214, 0.6)";
       case "Phone Call":
-        return "rgba(213, 103, 245, 0.3)";
+        return "rgba(213, 103, 245, 0.6)";
       case "Assignment":
-        return "rgba(236, 178, 105, 0.3)";
+        return "rgba(236, 178, 105, 0.6)";
       case "Interview":
-        return "rgba(42, 121, 218, 0.3)";
+        return "rgba(42, 121, 218, 0.6)";
       case "Offer":
-        return "rgba(75, 206, 85, 0.3)";
+        return "rgba(75, 206, 85, 0.6)";
       case "Accepted":
-        return "rgba(22, 128, 0, 0.3)";
+        return "rgba(22, 128, 0, 0.6)";
       case "Withdrawn":
-        return "rgba(102, 102, 102, 0.3)";
+        return "rgba(102, 102, 102, 0.6)";
       case "Not Interested":
         return "#BF5152";
       default:
@@ -274,7 +274,7 @@ const ApplicationsContainer = styled.div`
   border-radius: 5px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   position: relative;
-  min-height: 300px;
+  min-height: 265px;
 `;
 
 const SectionTitle = styled.h3`

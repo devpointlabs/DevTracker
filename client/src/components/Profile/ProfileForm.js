@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Dropzone from "react-dropzone";
 import Dropdown from "react-dropdown";
+import {cohorts, sex_options, employment_options, college_options } from '../Dashboard/Options';
+import alert from 'sweetalert2';
+
 
 class ProfileForm extends Component {
    state = {
@@ -17,7 +20,6 @@ class ProfileForm extends Component {
       github: "",
       linkedin: "",
       resume: "",
-      file: ""
    };
 
    onDrop = files => {
@@ -108,7 +110,7 @@ class ProfileForm extends Component {
       } = this.state;
       let {
          user,
-         auth: { updateUser }
+         auth: { updateUser }, toggleEdit
       } = this.props;
       let github_link = github.replace('https://', '').replace('http://', '');
       let linkedin_link = linkedin.replace('https://', '').replace('http://', '');
@@ -130,9 +132,14 @@ class ProfileForm extends Component {
       });
       window.location.reload();
       this.setState({
-         editing: false,
-         file: ""
+         file: undefined
       });
+      toggleEdit();
+      alert(
+         "Success",
+         "Profile has been successfully updated!",
+         "success"
+      )
    };
 
    render() {

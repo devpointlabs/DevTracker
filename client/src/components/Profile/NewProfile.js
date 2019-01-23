@@ -26,7 +26,7 @@ class NewProfile extends Component {
                <EditButton onClick={this.toggleEdit}>
                   {editing ? "Editing Profile" : "Edit Profile"}
                </EditButton>
-               <ProfileForm auth={auth} user={user} editing={editing} />
+               <ProfileForm auth={auth} user={user} editing={editing} toggleEdit={this.toggleEdit} />
             </ProfileContainer>
          </>
       );

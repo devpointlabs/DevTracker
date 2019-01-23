@@ -21,4 +21,6 @@ Rails.application.routes.draw do
       resource :events, only: %w(show)
     end
   end
+
+  get '*other', to: 'static#index'
 end

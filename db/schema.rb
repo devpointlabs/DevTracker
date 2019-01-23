@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 2019_01_22_191455) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "cohort"
-    t.date "dob"
+    t.date "dob", default: "0001-01-01"
     t.string "college_degree", default: ""
     t.string "employment_status", default: ""
     t.string "sex", default: ""

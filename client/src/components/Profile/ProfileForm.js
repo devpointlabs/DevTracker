@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Dropzone from "react-dropzone";
 import Dropdown from "react-dropdown";
+import {cohorts, sex_options, employment_options, college_options } from '../Dashboard/Options';
 
 class ProfileForm extends Component {
    state = {
@@ -30,6 +31,10 @@ class ProfileForm extends Component {
 
    handleEmploymentSelect = ({ value }) => {
       this.setState({ employment_status: value });
+   };
+
+   handleCohortSelect = ({ value }) => {
+      this.setState({cohort: value });
    };
 
    handleCollegeSelect = ({ value }) => {
@@ -150,23 +155,6 @@ class ProfileForm extends Component {
          resume
       } = this.state;
       let { editing, user } = this.props;
-      let sex_options = [
-         { value: "Male", label: "Male" },
-         { value: "Female", label: "Female" },
-         { value: "Other", label: "Other", color: "" }
-      ];
-      let employment_options = [
-         { value: "None", label: "None" },
-         { value: "Interviewing", label: "Interviewing" },
-         { value: "Applying", label: "Applying" },
-         { value: "Offer Accepted", label: "Offer Accepted" }
-      ];
-      let college_options = [
-         { value: "None", label: "None" },
-         { value: "Bachelors", label: "Bachelors" },
-         { value: "Masters", label: "Master" },
-         { value: "PHD", label: "PHD" }
-      ];
       let profile_image;
       const defaultImage =
          "https://d30y9cdsu7xlg0.cloudfront.net/png/15724-200.png";
@@ -210,12 +198,14 @@ class ProfileForm extends Component {
                onChange={this.handleChange}
             />
             <label>Cohort</label>
-            <Input
+            <Dropdown
                name="cohort"
-               type="date"
+               options={cohorts}
                value={cohort}
-               disabled={!editing}
-               onChange={this.handleChange}
+               required
+               onChange={this.handleCohortSelect}
+               placeholder="Select cohort"
+               disabled={!editing}  
             />
             <label>Date of Birth</label>
             <Input
@@ -232,7 +222,7 @@ class ProfileForm extends Component {
                value={college_degree}
                required
                onChange={this.handleCollegeSelect}
-               placeholder="Select.."
+               placeholder="Select .."
                disabled={!editing}
             />
             <label>Employment Status</label>

@@ -139,6 +139,29 @@ export const cohorts = [
 ]
 
 
+export const sex_options = [
+    { value: "Male", label: "Male" },
+    { value: "Female", label: "Female" },
+    { value: "Other", label: "Other", color: "" }
+ ];
+
+
+ export const employment_options = [
+    { value: "None", label: "None" },
+    { value: "Interviewing", label: "Interviewing" },
+    { value: "Applying", label: "Applying" },
+    { value: "Offer Accepted", label: "Offer Accepted" }
+ ];
+
+
+ export const college_options = [
+    { value: "None", label: "None" },
+    { value: "Bachelors", label: "Bachelors" },
+    { value: "Masters", label: "Master" },
+    { value: "PHD", label: "PHD" }
+ ];
+
+
 export default states;
 
 

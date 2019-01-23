@@ -32,11 +32,9 @@
   "proxy": "http://localhost:3001",
   "scripts": {
     "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build": "cd client && npm install --only=dev && npm install && npm run build && cd ..",
-    "deploy": "cp -a client/build/. public/",
-    "heroku-postbuild": "npm run build && npm run deploy && echo 'Client Built'"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

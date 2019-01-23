@@ -209,7 +209,7 @@ class ProfileForm extends Component {
                disabled={!editing}
                onChange={this.handleChange}
             />
-            <label>Graduation Date</label>
+            <label>Cohort</label>
             <Input
                name="cohort"
                type="date"

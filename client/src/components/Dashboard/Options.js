@@ -99,7 +99,7 @@ export const cohorts = [
     { value: "Spring 2016", label: "Spring 2016" },
     { value: "Summer 2016", label: "Summer 2016" },
     { value: "Fall 2016", label: "Fall 2016" },
-    { value: "Winter 2016", label: "Winter 2016" }
+    { value: "Winter 2016", label: "Winter 2016" },
     { value: "Spring 2017", label: "Spring 2017" },
     { value: "Summer 2017", label: "Summer 2017" },
     { value: "Fall 2017", label: "Fall 2017" },

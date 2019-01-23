@@ -88,7 +88,7 @@ class Application extends Component {
   render() {
     const {
       auth: { user },
-      application, offers, interviews, calls, notes
+      application, offers, interviews, calls, notes, initial
     } = this.props;
     let application_data = application[0];
     if (application_data) {
@@ -100,7 +100,7 @@ class Application extends Component {
             </ApplicationTitle>
             <ColumnContainers>
               <LeftContainer>
-                <ApplicationInfo user={user} application={application_data}/>
+                <ApplicationInfo user={user} application={application_data} initial={initial}/>
                 <NewActivity 
                   user={user}
                   application={application_data}
@@ -178,13 +178,9 @@ const ApplicationContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  position: relative;
 `;
 
-const mapStateToProps = state => {
-  return { 
-    application: state.applications
-  };
-};
 
 export class ConnectedApplication extends React.Component {
   render() {
@@ -196,4 +192,4 @@ export class ConnectedApplication extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(ConnectedApplication);
+export default connect()(ConnectedApplication);

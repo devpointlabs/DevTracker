@@ -22,17 +22,17 @@ class FetchApplication extends Component {
   }
 
   setLoaded = () => {
-    this.setState({ loaded: true });
+    this.setState({ loaded: true});
   };
 
   render() {
     const { loaded } = this.state;
-    let {offers, interviews, calls, notes} = this.props;
     if (loaded) {
+      let {offers, interviews, calls, notes, application} = this.props;
       return (
         <>
         <NavBar />
-        <Application offers={offers} interviews={interviews} calls={calls} notes={notes}/>
+        <Application application={application} offers={offers} interviews={interviews} calls={calls} notes={notes}/>
         </>
       );
     } else return null

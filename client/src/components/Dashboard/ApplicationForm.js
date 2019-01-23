@@ -98,7 +98,6 @@ class ApplicationForm extends React.Component {
 
    addApplication = (company_id) => {
       let {user, dispatch} = this.props;
-      console.log(company_id)
       let {app_posting_url, app_status, app_title, app_city, app_state, app_submission_date } = this.state;
       let newApplication = {
          posting_url: app_posting_url,

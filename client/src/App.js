@@ -3,7 +3,7 @@ import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import NoMatch from "./components/NoMatch";
 import Dashboard from "./components/Dashboard/Dashboard";
-import Profile from "./components/Profile/Profile";
+import NewProfile from "./components/Profile/NewProfile";
 import FetchUser from "./components/Auth/FetchUser";
 import Todos from "./components/Todo/Todos";
 import { Route, Switch } from "react-router-dom";
@@ -19,7 +19,7 @@ const App = () => (
     <Switch>
       <ProtectedRoute exact path="/" component={Dashboard} />
       <Route exact path="/login" component={Login} />
-      <ProtectedRoute exact path="/profile" component={Profile} />
+      <ProtectedRoute exact path="/profile" component={NewProfile} />
       <Route exact path="/register" component={Register} />
       <ProtectedRoute exact path="/contacts" component={Contacts} />
       <ProtectedRoute exact path="/tasks" component={Todos} />

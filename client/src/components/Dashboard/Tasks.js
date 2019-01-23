@@ -203,6 +203,8 @@ const TasksContainer = styled.div`
   border-radius: 5px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.13);
   position: relative;
+  min-height: 300px;
+
 `;
 
 const SectionTitle = styled.h3`

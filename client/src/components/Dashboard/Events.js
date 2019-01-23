@@ -30,9 +30,9 @@ class Events extends React.Component {
          if (a.date > b.date) return 1;
          return 0;
       });
-      data.filter(d => {
+      data = data.filter(d => {
          let currentDate = new Date();
-         return d.date > currentDate;
+         return new Date(d.date) > currentDate;
       });
       return (
          <EventsContainer>
@@ -133,7 +133,7 @@ const Table = styled.table`
    border-collapse: separate;
    border-spacing: 0 10px;
    th {
-      text-align: center;
+      text-align: left;
       font-weight: bold;
       text-transform: uppercase;
       font-size: 12px;
@@ -156,7 +156,7 @@ const Table = styled.table`
    td {
       font-size: 14px;
       padding: 10px;
-      text-align: center;
+      text-align: left;
    }
    tr:nth-child(even) {
      background-color: rgba(0,0,0,0.02);
@@ -171,6 +171,7 @@ const EventsContent = styled.div`
    flex-direction: column;
    justify-content: center;
    align-items: center;
+   min-height: 200px;
 
    .suitcase {
       width: 100px;

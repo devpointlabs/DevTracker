@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_21_180953) do
+ActiveRecord::Schema.define(version: 2019_01_22_191455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 2019_01_21_180953) do
   create_table "contacts", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "job"
     t.string "title"
     t.string "email"
     t.string "linkedin"
@@ -126,8 +125,8 @@ ActiveRecord::Schema.define(version: 2019_01_21_180953) do
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "cohort", default: "0001-01-01"
-    t.date "dob", default: "0001-01-01"
+    t.date "cohort"
+    t.date "dob"
     t.string "college_degree", default: ""
     t.string "employment_status", default: ""
     t.string "sex", default: ""

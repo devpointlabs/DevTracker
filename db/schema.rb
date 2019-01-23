@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 2019_01_22_191455) do
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "cohort"
+    t.string "cohort"
     t.date "dob"
     t.string "college_degree", default: ""
     t.string "employment_status", default: ""

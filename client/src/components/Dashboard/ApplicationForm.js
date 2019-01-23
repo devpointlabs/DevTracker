@@ -274,7 +274,7 @@ const ApplicationContainer = styled.div`
    justify-content: center;
    align-items: center;
    animation: ${fadeIn} 0.3s linear;
-   overflow: hidden;
+   overflow: scroll;
 `;
 
 const CloseMenu = styled.div`
@@ -302,7 +302,7 @@ const Form = styled.form`
    padding: 2em;
    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
    position: relative;
-   width: 450px;
+   width: 600px;
 
    .Dropdown-root {
       margin-top: 10px;
@@ -346,13 +346,14 @@ const Form = styled.form`
 
    .input {
       width: 100%;
-      padding: 15px 10px;
+      padding: 10px;
       color: #666;
       border: none;
       background-color: rgba(0, 0, 0, 0.03);
       outline: none;
       font-size: 14px;
       margin: 10px 0 0;
+      border-radius: 5px;
 
       &::placeholder {
          padding-left: 5px;

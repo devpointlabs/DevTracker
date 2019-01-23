@@ -133,7 +133,6 @@ class ProfileForm extends Component {
          resume: resume_link,
          file
       });
-      window.location.reload();
       this.setState({
          editing: false,
          file: ""

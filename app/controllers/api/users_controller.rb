@@ -33,25 +33,24 @@ class Api::UsersController < ApplicationController
     user.github = params[:github] ? params[:github] : user.github 
     user.linkedin = params[:linkedin] ? params[:linkedin] : user.linkedin
     user.resume = params[:resume] ? params[:resume] : user.resume
-
-
     file = params[:file]
-
-    if file
+    
+    if file != "undefined"
       begin
         ext = File.extname(file.tempfile)
         cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true)
-        user.image = cloud_image["secure_url"]
+        user.image = cloud_image['secure_url']
       rescue => e
-        render json: {errors: e}, status: 422
+        render json: { errors: e }, status: 422
       end
     end
-
+    
     if user.save
       render json: user
     else
-      render json: {errors: user.errors.full_messages}, status: 422
+      render json: { errors: user.errors.full_messages }, status: 422
     end
+
   end
 
   def destroy

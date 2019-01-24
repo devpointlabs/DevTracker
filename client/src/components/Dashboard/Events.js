@@ -129,7 +129,6 @@ const GoButton = styled.button`
 
 const Table = styled.table`
    width: 100%;
-   margin-top: 1em;
    border-collapse: separate;
    border-spacing: 0 10px;
    th {
@@ -171,7 +170,7 @@ const EventsContent = styled.div`
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   padding: 25px;
+   padding: 25px 0 0;
 
    .suitcase {
       width: 100px;

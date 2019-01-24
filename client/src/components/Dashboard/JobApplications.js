@@ -15,7 +15,6 @@ class JobApplications extends React.Component {
   }
 
   componentDidMount() {
-    console.log('mounting');
     let {
       auth: { user },
       dispatch
@@ -34,7 +33,9 @@ class JobApplications extends React.Component {
       case "Assignment":
         return "rgba(236, 178, 105, 0.6)";
       case "Interview":
-        return "rgba(42, 121, 218, 0.6)";
+        return "rgba(42, 121, 218, 0.6)"; 
+      case "Interviewing":
+      return "rgba(42, 121, 218, 0.6)";
       case "Offer":
         return "rgba(75, 206, 85, 0.6)";
       case "Accepted":
@@ -224,6 +225,9 @@ const ApplicationList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1em;
+  @media (max-width: 425px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const ApplicationsContent = styled.div`
@@ -232,6 +236,9 @@ const ApplicationsContent = styled.div`
   justify-content: center;
   align-items: center;
   padding: 2em;
+  @media(max-width: 425px) {
+    padding: 1em;
+  }
 
   .new-application {
     padding: 15px 30px;
@@ -275,7 +282,7 @@ const ApplicationsContainer = styled.div`
   border-radius: 5px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   position: relative;
-  min-height: 300px;
+  height: 100%;
 `;
 
 const SectionTitle = styled.h3`

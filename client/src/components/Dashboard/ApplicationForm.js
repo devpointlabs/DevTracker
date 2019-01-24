@@ -86,6 +86,11 @@ class ApplicationForm extends React.Component {
       ));
    };
 
+   dispatchUpdate = () => {
+      let {triggerUpdate} = this.props;
+      triggerUpdate();
+   }
+
    handleStateSelect = ({ value }) => {
       this.setState({ app_state: value });
    };
@@ -99,8 +104,8 @@ class ApplicationForm extends React.Component {
    };
 
    addApplication = (company_id) => {
-      let { user, dispatch } = this.props;
-      let { app_posting_url, app_status, app_title, app_city, app_state, app_submission_date } = this.state;
+      let {user, dispatch } = this.props;
+      let {app_posting_url, app_status, app_title, app_city, app_state, app_submission_date } = this.state;
       let newApplication = {
          posting_url: app_posting_url,
          status: app_status,
@@ -110,7 +115,12 @@ class ApplicationForm extends React.Component {
          company_id: company_id,
          submission_date: app_submission_date
       };
-      dispatch(addApplication(newApplication, user.id));
+      dispatch(addApplication(newApplication, user.id, this.dispatchUpdate));
+      alert(
+         "Application Added!",
+         "The application you submitted has been successfully created",
+         "success"
+      );
    }
 
    handleSubmit = e => {

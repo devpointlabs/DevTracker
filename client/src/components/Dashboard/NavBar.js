@@ -355,6 +355,9 @@ const Navigation = styled.div`
   border: none;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   z-index: 99;
+  @media (max-width: 1200px) {
+    overflow-x: scroll;
+  }
 `;
 
 export class ConnectedNavBar extends React.Component {

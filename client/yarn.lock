@@ -2624,6 +2624,11 @@ cosmiconfig@^5.0.0, cosmiconfig@^5.0.5, cosmiconfig@^5.0.6:
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
 
+countup.js@^1.9.3:
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/countup.js/-/countup.js-1.9.3.tgz#ce3e50cd7160441e478f07da31895edcc0f1c9dd"
+  integrity sha1-zj5QzXFgRB5HjwfaMYle3MDxyd0=
+
 create-ecdh@^4.0.0:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/create-ecdh/-/create-ecdh-4.0.3.tgz#c9111b6f33045c4697f144787f9254cdc77c45ff"
@@ -8399,6 +8404,15 @@ react-app-polyfill@^0.2.0:
     promise "8.0.2"
     raf "3.4.0"
     whatwg-fetch "3.0.0"
+
+react-countup@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/react-countup/-/react-countup-4.0.0.tgz#cbce95c8f4d03fccc431bc52707dba23654621a8"
+  integrity sha512-l2GZY274KJir6Lvxahr+ZKT4xl9zzpSXO9dTvyKylm6jQcaSzk8TVECYlznTxWw4ctte3PBk+W1o3PeCXRyijg==
+  dependencies:
+    countup.js "^1.9.3"
+    prop-types "^15.6.2"
+    warning "^4.0.2"
 
 react-datepicker@^2.0.0:
   version "2.0.0"

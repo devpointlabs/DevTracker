@@ -7,29 +7,42 @@ import Tasks from "./Tasks";
 import { AuthConsumer } from "../../providers/AuthProvider";
 import ApplicationForm from "./ApplicationForm";
 import { withRouter } from "react-router-dom";
+import UserStats from './UserStats';
+import axios from 'axios';
 
 class Dashboard extends React.Component {
   state = {
     openApplication: false,
-    openTask: false
+    openTask: false,
+    stats: []
   };
 
   openApplication = () => {
     this.setState(state => ({ openApplication: !state.openApplication }));
   };
 
+  componentDidMount() {
+    axios.get(`/api/user/dashboard/stats`)
+    .then(res => this.setState({stats: res.data}));
+  }
+
+  triggerUpdate = () => {
+    axios.get(`/api/user/dashboard/stats`)
+    .then(res => this.setState({stats: res.data}));
+  }
+
   render() {
     let {
       auth: { user }
     } = this.props;
-    let { openApplication } = this.state;
+    let { openApplication, stats } = this.state;
     return (
       <>
         <NavBar />
         {!user.admin ? (
           <DashboardContainer>
             {openApplication ? (
-              <ApplicationForm closeForm={this.openApplication} user={user} />
+              <ApplicationForm closeForm={this.openApplication} user={user} triggerUpdate={this.triggerUpdate}/>
             ) : null}
             <DashboardTitle>Dashboard</DashboardTitle>
             <TilesContainer>
@@ -42,6 +55,9 @@ class Dashboard extends React.Component {
                 </Tile>
               </LeftContainer>
               <RightContainer>
+                <Tile>
+                  <UserStats stats={stats}/>
+                </Tile>
                 <Tile>
                   <JobApplications openForm={this.openApplication} />
                 </Tile>
@@ -107,6 +123,10 @@ const TilesContainer = styled.div`
   margin-top: 2em;
   width: 100%;
   display: flex;
+  @media (max-width: 1200px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const Tile = styled.div`
@@ -114,6 +134,12 @@ const Tile = styled.div`
   margin: 0 1em;
   &:first-child {
     margin-bottom: 1em;
+    @media(max-width: 1200px) {
+      margin-bottom: 0;
+    }
+  }
+  @media (max-width: 1200px) {
+    margin: 0;
   }
 `;
 

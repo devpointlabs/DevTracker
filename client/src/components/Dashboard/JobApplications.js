@@ -34,6 +34,8 @@ class JobApplications extends React.Component {
         return "rgba(236, 178, 105, 0.6)";
       case "Interview":
         return "rgba(42, 121, 218, 0.6)";
+      case "Interviewing":
+      return "rgba(42, 121, 218, 0.6)";
       case "Offer":
         return "rgba(75, 206, 85, 0.6)";
       case "Accepted":

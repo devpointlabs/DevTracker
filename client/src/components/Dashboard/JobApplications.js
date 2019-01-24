@@ -15,6 +15,7 @@ class JobApplications extends React.Component {
   }
 
   componentDidMount() {
+    console.log('mounting');
     let {
       auth: { user },
       dispatch
@@ -274,7 +275,7 @@ const ApplicationsContainer = styled.div`
   border-radius: 5px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   position: relative;
-  min-height: 265px;
+  min-height: 300px;
 `;
 
 const SectionTitle = styled.h3`

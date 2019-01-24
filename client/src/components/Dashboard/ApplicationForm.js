@@ -187,6 +187,7 @@ class ApplicationForm extends React.Component {
                      onChange={this.handleChange}
                      className="input"
                      placeholder="Sofi"
+                     required
                   />
                   {formPopulated > 0 ? null : (
                      <SearchResults>

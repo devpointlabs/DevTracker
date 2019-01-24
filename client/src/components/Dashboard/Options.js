@@ -69,7 +69,7 @@ export const status_list = [
     { value: 'Applied', label: 'Applied', color: '#6DA7D6' },
     { value: 'Phone Call', label: 'Phone Call', color: '#D567F5' },
     { value: 'Assignment', label: 'Assignment', color: '#ECB269' },
-    { value: 'Interview', label: 'Interview', color: '#2A79DA' },
+    { value: 'Interviewing', label: 'Interviewing', color: '#2A79DA' },
     { value: 'Offer', label: 'Offer', color: '#4BCE55' },
     { value: 'Accepted', label: 'Accepted', color: '#168000' },
     { value: 'Withdrawn', label: 'Withdrawn', color: '#666' },

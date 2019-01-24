@@ -22,5 +22,8 @@ Rails.application.routes.draw do
     end
   end
 
+  # Routes for custom stats for User Dashboard
+  get '/api/user/dashboard/stats', to: 'api/events#user_stats'
+
   get '*other', to: 'static#index'
 end

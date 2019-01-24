@@ -6,7 +6,29 @@ class Api::EventsController < ApplicationController
       render json: get_all_events(@user)
    end
 
+   def user_stats
+      render json: get_user_stats(@user)
+   end
+
    private
+
+   def get_user_stats(user)
+      interviews = []
+      applications = []
+      offers = []
+      # applications = {applications: @user.applications.count}
+      apps = @user.applications
+      apps.each {|a| applications << a}
+      apps.each do |app|
+         results = app.interviews
+         results.each {|i| interviews << i}
+      end
+      apps.each do |app|
+         results = app.offers
+         results.each {|o| offers << o}
+      end
+      return {interviews: interviews.size, applications: applications.size, offers: offers.size}
+   end
 
    def get_all_events(user)
       # SELECT ALL USER'S INTERVIEWS

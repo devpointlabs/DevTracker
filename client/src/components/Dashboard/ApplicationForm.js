@@ -109,6 +109,11 @@ class ApplicationForm extends React.Component {
          submission_date: app_submission_date
       };
       dispatch(addApplication(newApplication, user.id));
+      alert(
+         "Application Added!",
+         "The application you submitted has been successfully created",
+         "success"
+      );
    }
 
    handleSubmit = e => {
@@ -130,11 +135,6 @@ class ApplicationForm extends React.Component {
             submission_date: app_submission_date
          };
          dispatch(addApplication(newApplication, user.id));
-         alert(
-            "Application Added!",
-            "The application you submitted has been successfully created",
-            "success"
-         );
       }
       closeForm();
    };

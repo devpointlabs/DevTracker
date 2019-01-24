@@ -66,7 +66,6 @@ export const updateApplication = (application, user, id) => {
       axios
          .put(`/api/users/${user.id}/applications/${id}`, { application })
          .then(res => {
-            console.log(res.data);
             dispatch({ type: UPDATE_APPLICATION, application: res.data });
          });
    };

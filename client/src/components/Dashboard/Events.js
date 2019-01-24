@@ -171,7 +171,7 @@ const EventsContent = styled.div`
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   min-height: 200px;
+   padding: 25px;
 
    .suitcase {
       width: 100px;

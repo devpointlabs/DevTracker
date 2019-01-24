@@ -15,7 +15,6 @@ class JobApplications extends React.Component {
   }
 
   componentDidMount() {
-    console.log('mounting');
     let {
       auth: { user },
       dispatch
@@ -224,6 +223,9 @@ const ApplicationList = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1em;
+  @media (max-width: 425px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const ApplicationsContent = styled.div`
@@ -232,6 +234,9 @@ const ApplicationsContent = styled.div`
   justify-content: center;
   align-items: center;
   padding: 2em;
+  @media(max-width: 425px) {
+    padding: 1em;
+  }
 
   .new-application {
     padding: 15px 30px;

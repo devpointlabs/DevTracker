@@ -204,7 +204,9 @@ const TasksContainer = styled.div`
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.13);
   position: relative;
   min-height: 300px;
-
+  @media(max-width: 1200px) {
+    margin-top: 1em;
+  }
 `;
 
 const SectionTitle = styled.h3`

@@ -46,17 +46,17 @@ export const getApplication = (user, id, callback) => {
    };
 };
 
-export const addApplication = (application, user_id) => {
+export const addApplication = (application, user_id, callback) => {
    return dispatch => {
       axios
          .post(`/api/users/${user_id}/applications`, { application })
          .then(res => {
-            // console.log(res.data);
             return dispatch({
                type: ADD_APPLICATION,
                application: res.data[0]
             });
          })
+         .then(callback)
          .catch(err => console.log(err));
    };
 };

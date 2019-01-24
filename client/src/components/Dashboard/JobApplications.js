@@ -33,7 +33,7 @@ class JobApplications extends React.Component {
       case "Assignment":
         return "rgba(236, 178, 105, 0.6)";
       case "Interview":
-        return "rgba(42, 121, 218, 0.6)";
+        return "rgba(42, 121, 218, 0.6)"; 
       case "Interviewing":
       return "rgba(42, 121, 218, 0.6)";
       case "Offer":
@@ -282,7 +282,7 @@ const ApplicationsContainer = styled.div`
   border-radius: 5px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   position: relative;
-  min-height: 300px;
+  height: 100%;
 `;
 
 const SectionTitle = styled.h3`

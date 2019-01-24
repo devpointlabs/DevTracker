@@ -197,7 +197,7 @@ const EventsContainer = styled.div`
    background-color: white;
    border-radius: 5px;
    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.13);
-   min-height: 300px;
+   height: 100%;
 `;
 
 const SectionTitle = styled.h3`

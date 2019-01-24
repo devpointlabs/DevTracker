@@ -22,7 +22,8 @@ class ApplicationForm extends React.Component {
       company_name: "",
       company_url: "",
       company_id: undefined,
-      formPopulated: false
+      formPopulated: false,
+      error: false,
    };
 
    componentDidMount() {
@@ -78,6 +79,7 @@ class ApplicationForm extends React.Component {
             key={company.id}
             onClick={() => this.handleResultClick(company)}
             populated={this.state.formPopulated}
+            className="filtered"
          >
             {company.name}
          </Result>
@@ -124,25 +126,41 @@ class ApplicationForm extends React.Component {
    handleSubmit = e => {
       e.preventDefault();
       let { closeForm, dispatch, user } = this.props;
-      let {company_name, company_url, company_id, app_submission_date, app_title, app_status, app_posting_url, app_city, app_state } = this.state;
-      let companyId = Math.random().toString().substr(2, 8);
-      if (!company_id) {
-         dispatch(addCompany(companyId, company_name, company_url, this.addApplication));
+      let { company_name, company_url, company_id, app_submission_date, app_title, app_status, app_posting_url, app_city, app_state } = this.state;
+      let filtered = document.querySelector('.filtered');
+      let filterValue = filtered.innerHTML;
+      if (company_name === filterValue) {
+         this.setState({ error: true, })
+         alert(
+            "Error",
+            `Please select ${filterValue} from the highlighted list.`,
+            "error"
+         )
       } else {
-         let newApplication = {
-            posting_url: app_posting_url,
-            status: app_status,
-            title: app_title,
-            city: app_city,
-            state: app_state,
-            company_id: company_id,
-            user_id: user.id,
-            submission_date: app_submission_date
-         };
-         dispatch(addApplication(newApplication, user.id, this.dispatchUpdate));
-      }
-      closeForm();
-   };
+         let companyId = Math.random().toString().substr(2, 8);
+         if (!company_id) {
+            dispatch(addCompany(companyId, company_name, company_url, this.addApplication));
+         } else {
+            let newApplication = {
+               posting_url: app_posting_url,
+               status: app_status,
+               title: app_title,
+               city: app_city,
+               state: app_state,
+               company_id: company_id,
+               user_id: user.id,
+               submission_date: app_submission_date
+            };
+            dispatch(addApplication(newApplication, user.id));
+            alert(
+               "Application Added!",
+               "The application you submitted has been successfully created",
+               "success"
+            );
+         }
+         closeForm();
+      };
+   }
 
    render() {
       let {
@@ -154,7 +172,8 @@ class ApplicationForm extends React.Component {
          app_status,
          company_name,
          formPopulated,
-         company_url
+         company_url,
+         error,
       } = this.state;
       let { closeForm } = this.props;
       return (
@@ -195,7 +214,7 @@ class ApplicationForm extends React.Component {
                      required
                   />
                   {formPopulated > 0 ? null : (
-                     <SearchResults>
+                     <SearchResults error={error}>
                         {company_name.length > 0
                            ? this.filterResults().slice(0, 5)
                            : null}
@@ -376,18 +395,29 @@ const SearchContainer = styled.div`
 const SearchResults = styled.ul`
    list-style: none;
    width: 100%;
+   border: ${props => {
+      if (props.error) {
+         return "2px solid"
+      }
+   }};
+
+   border-color: ${props => {
+      if (props.error) {
+         return "green";
+      }
+   }};
 `;
 
 const Result = styled.li`
-   width: 100%;
-   padding: 15px 10px;
-   font-size: 15px;
-   cursor: pointer;
-   background-color: white;
-   border: 1px solid #ccc;
+width: 100%;
+padding: 15px 10px;
+font-size: 15px;
+cursor: pointer;
+background-color: white;
+border: 1px solid #ccc;
    &:hover {
-      background-color: #ccc;
-   }
+   background-color: #ccc;
+}
 `;
 
 const mapStateToProps = state => {

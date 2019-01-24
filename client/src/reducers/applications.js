@@ -4,6 +4,7 @@ const ADD_APPLICATION = "ADD_APPLICATION";
 const GET_APPLICATIONS = "GET_APPLICATIONS";
 const GET_APPLICATION = "GET_APPLICATION";
 const UPDATE_APPLICATION = "UPDATE_APPLICATION";
+const DELETE_APPLICATION = "DELETE_APPLICATION";
 const UPDATE_TIME = "UPDATE_TIME";
 
 export const getApplications = (user_id, callback) => {
@@ -71,6 +72,15 @@ export const updateApplication = (application, user, id) => {
    };
 };
 
+export const deleteApplication = (user, id, callback) => {
+   return dispatch => {
+      axios
+         .delete(`/api/users/${user.id}/applications/${id}`)
+         .then(res => dispatch({ type: DELETE_APPLICATION, id }))
+         .then(callback);
+   };
+};
+
 // REDUX REDUCER
 
 export default (state = [], action) => {
@@ -93,6 +103,8 @@ export default (state = [], action) => {
                return action.application;
             } else return a;
          });
+      case DELETE_APPLICATION:
+         return state.filter(a => a.id !== action.id);
       default:
          return state;
    }

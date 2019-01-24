@@ -15,6 +15,7 @@ class JobApplications extends React.Component {
   }
 
   componentDidMount() {
+    console.log('mounting');
     let {
       auth: { user },
       dispatch

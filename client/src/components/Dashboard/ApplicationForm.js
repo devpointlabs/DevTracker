@@ -87,7 +87,7 @@ class ApplicationForm extends React.Component {
    };
 
    dispatchUpdate = () => {
-      let {triggerUpdate} = this.props;
+      let { triggerUpdate } = this.props;
       triggerUpdate();
    }
 
@@ -104,8 +104,8 @@ class ApplicationForm extends React.Component {
    };
 
    addApplication = (company_id) => {
-      let {user, dispatch } = this.props;
-      let {app_posting_url, app_status, app_title, app_city, app_state, app_submission_date } = this.state;
+      let { user, dispatch } = this.props;
+      let { app_posting_url, app_status, app_title, app_city, app_state, app_submission_date } = this.state;
       let newApplication = {
          posting_url: app_posting_url,
          status: app_status,
@@ -127,16 +127,43 @@ class ApplicationForm extends React.Component {
       e.preventDefault();
       let { closeForm, dispatch, user } = this.props;
       let { company_name, company_url, company_id, app_submission_date, app_title, app_status, app_posting_url, app_city, app_state } = this.state;
-      // let filtered = document.querySelector('.filtered');
-      // let filterValue = filtered.innerHTML;
-      // if (company_name === filterValue) {
-      //    this.setState({ error: true, })
-      //    alert(
-      //       "Error",
-      //       `Please select ${filterValue} from the highlighted list.`,
-      //       "error"
-      //    )
-      // } else {
+      let filtered = document.querySelector('.filtered');
+      if (filtered) {
+         let filterValue = filtered.innerHTML;
+         if (company_name === filterValue) {
+            this.setState({ error: true, })
+            alert(
+               "Error",
+               `Please select ${filterValue} from the highlighted list.`,
+               "error"
+            )
+         } else {
+
+            let companyId = Math.random().toString().substr(2, 8);
+            if (!company_id) {
+               dispatch(addCompany(companyId, company_name, company_url, this.addApplication));
+            } else {
+               let newApplication = {
+                  posting_url: app_posting_url,
+                  status: app_status,
+                  title: app_title,
+                  city: app_city,
+                  state: app_state,
+                  company_id: company_id,
+                  user_id: user.id,
+                  submission_date: app_submission_date
+               };
+               dispatch(addApplication(newApplication, user.id));
+               alert(
+                  "Application Added!",
+                  "The application you submitted has been successfully created",
+                  "success"
+               );
+            }
+            closeForm();
+         };
+
+      } else {
          let companyId = Math.random().toString().substr(2, 8);
          if (!company_id) {
             dispatch(addCompany(companyId, company_name, company_url, this.addApplication));
@@ -159,8 +186,9 @@ class ApplicationForm extends React.Component {
             );
          }
          closeForm();
-      // };
+      };
    }
+
 
    render() {
       let {
@@ -178,7 +206,7 @@ class ApplicationForm extends React.Component {
       let { closeForm } = this.props;
       let filtered = document.querySelector('.filtered');
       console.log(filtered);
-      if(filtered) {
+      if (filtered) {
          console.log(filtered.innerHTML);
       }
       return (

@@ -30,8 +30,8 @@ class Todos extends Component {
       let updatedTodo = { completed: true, date, id, name, user_id };
       dispatch(toggleComplete(user, updatedTodo));
       alert(
-        "Task Completed",
-        "You have successfully completed the task.",
+        "Task Deleted",
+        "You have successfully deleted the task.",
         "success"
       );
     }

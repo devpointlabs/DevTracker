@@ -116,6 +116,7 @@ class ApplicationInfo extends Component {
                      value={title}
                      disabled={!editing}
                      onChange={this.handleTitle}
+                     editing={editing}
                   />
                   <label>Status</label>
                   <Dropdown
@@ -125,6 +126,7 @@ class ApplicationInfo extends Component {
                      value={status}
                      disabled={!editing}
                      onChange={this.handleStatus}
+                     editing={editing}
    
                   />
                   <label>City</label>
@@ -143,6 +145,7 @@ class ApplicationInfo extends Component {
                      value={state}
                      onChange={this.handleState}
                      disabled={!editing}
+                     editing={editing}
                   />
                   <label>Application URL</label>
                   <Input

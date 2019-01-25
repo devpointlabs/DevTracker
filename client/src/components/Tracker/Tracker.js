@@ -54,6 +54,8 @@ class Tracker extends React.Component {
         return "rgba(213, 103, 245, 0.3)";
       case "Assignment":
         return "rgba(236, 178, 105, 0.3)";
+      case "Interviewing":
+      return "rgba(42, 121, 218, 0.3)";
       case "Interview":
         return "rgba(42, 121, 218, 0.3)";
       case "Offer":

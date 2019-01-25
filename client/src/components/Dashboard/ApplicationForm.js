@@ -127,16 +127,16 @@ class ApplicationForm extends React.Component {
       e.preventDefault();
       let { closeForm, dispatch, user } = this.props;
       let { company_name, company_url, company_id, app_submission_date, app_title, app_status, app_posting_url, app_city, app_state } = this.state;
-      let filtered = document.querySelector('.filtered');
-      let filterValue = filtered.innerHTML;
-      if (company_name === filterValue) {
-         this.setState({ error: true, })
-         alert(
-            "Error",
-            `Please select ${filterValue} from the highlighted list.`,
-            "error"
-         )
-      } else {
+      // let filtered = document.querySelector('.filtered');
+      // let filterValue = filtered.innerHTML;
+      // if (company_name === filterValue) {
+      //    this.setState({ error: true, })
+      //    alert(
+      //       "Error",
+      //       `Please select ${filterValue} from the highlighted list.`,
+      //       "error"
+      //    )
+      // } else {
          let companyId = Math.random().toString().substr(2, 8);
          if (!company_id) {
             dispatch(addCompany(companyId, company_name, company_url, this.addApplication));
@@ -159,7 +159,7 @@ class ApplicationForm extends React.Component {
             );
          }
          closeForm();
-      };
+      // };
    }
 
    render() {

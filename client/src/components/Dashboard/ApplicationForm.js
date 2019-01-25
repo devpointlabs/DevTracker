@@ -162,7 +162,6 @@ class ApplicationForm extends React.Component {
             }
             closeForm();
          };
-
       } else {
          let companyId = Math.random().toString().substr(2, 8);
          if (!company_id) {
@@ -204,11 +203,6 @@ class ApplicationForm extends React.Component {
          error,
       } = this.state;
       let { closeForm } = this.props;
-      let filtered = document.querySelector('.filtered');
-      console.log(filtered);
-      if (filtered) {
-         console.log(filtered.innerHTML);
-      }
       return (
          <ApplicationContainer>
             <Form onSubmit={this.handleSubmit} autoComplete="off">

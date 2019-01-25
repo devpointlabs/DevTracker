@@ -17,10 +17,10 @@ class Api::NotesController < ApplicationController
    end
 
    def update
-      if note.update(note_params)
+      if @note.update(note_params)
          render json: @note
       else
-         render json: { errors: note.errors }
+         render json: { errors: @note.errors }
       end
    end
 

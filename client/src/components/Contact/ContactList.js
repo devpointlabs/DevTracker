@@ -1,74 +1,30 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import Contact from "./Contact";
+import styled from "styled-components";
 
-class ContactList extends React.Component {
+const ContactList = ({ contacts, user }) => {
+  let sorted_contacts = contacts.sort((a,b) => {   
+    if(a.last_name < b.last_name) return -1;
+    if(a.last_name > b.last_name) return 1;
+    return 0;
+  }); 
 
-  state = {
-    showForm: false,
-  };
+   return (
+      <ContactGrid>
+         {sorted_contacts.map(contact => (
+            <Contact {...contact} key={contact.id} user={user}/>
+         ))}
+      </ContactGrid>
+   );
+};
 
-
-  render() {
-    let { contacts} = this.props
-
-    return contacts.map( contact =>
-      
-      
-        <Contact key={contact.id} >
-        <ContactInfo>
-          <ContactName>{contact.first_name}-{contact.last_name}</ContactName>
-          <ContactDetails>
-            {contact.title}
-            {contact.email}
-            {contact.linkedin}
-            {contact.workphone}
-            {contact.personal_phone}
-          </ContactDetails>
-        </ContactInfo>
-      </Contact>
-    )
-  }
-}
-// const PageContainer = styled.div`
-//   position: relative;
-//   height: 100%;
-//   min-height: calc(100vh - 90px);
-//   width: 100%;
-//   padding: 1em;
-// `;
-
-const ContactDetails = styled.div`
-  flex-direction: row;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 1em;
-  width: 100%;
-  `;
-
-const ContactName = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 1em;
-  
-
-
+const ContactGrid = styled.div`
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   grid-gap: 1em;
+   width: 100%;
+   flex: 3;
+   margin-left: 1em;
 `;
-
-const Contact = styled.div`
-`;
-
-
-
-const ContactInfo = styled.div`
-   display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 1em;
-`;
-
-// 
 
 export default ContactList;
-
-

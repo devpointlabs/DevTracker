@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_22_191455) do
+ActiveRecord::Schema.define(version: 2019_01_24_220627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,12 +53,12 @@ ActiveRecord::Schema.define(version: 2019_01_22_191455) do
     t.string "title"
     t.string "email"
     t.string "linkedin"
-    t.string "workphone"
     t.string "personal_phone"
     t.string "note_box"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "company"
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
@@ -134,6 +134,9 @@ ActiveRecord::Schema.define(version: 2019_01_22_191455) do
     t.string "linkedin", default: ""
     t.string "resume", default: ""
     t.boolean "admin", default: false
+    t.integer "app_count", default: 0
+    t.integer "interview_count", default: 0
+    t.integer "offer_count", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -32,7 +32,7 @@ export const deleteContact = (user_id, contact_id) => {
 
 export const updateContact = (user, contact) => {
   return (dispatch) => {
-    axios.update(`/api/users/${user.id}/contacts/${contact.id}`, contact)
+    axios.put(`/api/users/${user.id}/contacts/${contact.id}`, contact)
       .then(res => dispatch({ type: UPDATE_CONTACT, contact: res.data }))
   }
 }

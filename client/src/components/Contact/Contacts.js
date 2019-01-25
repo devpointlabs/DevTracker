@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { deleteContact, getContacts } from "../../reducers/contacts";
+import { getContacts } from "../../reducers/contacts";
 import NavBar from "../Dashboard/NavBar";
 import styled, { keyframes } from "styled-components";
 import { AuthConsumer } from "../../providers/AuthProvider";
@@ -16,14 +16,6 @@ class Contacts extends Component {
       } = this.props;
       dispatch(getContacts(user.id));
    }
-
-   deleteContact = id => {
-      let {
-         auth: { user },
-         dispatch
-      } = this.props;
-      dispatch(deleteContact(user, id));
-   };
 
    render() {
       let {

@@ -10,4 +10,7 @@ class User < ActiveRecord::Base
   has_many :applications, dependent: :destroy
   has_many :companies, through: :applications
   has_many :todos, dependent: :destroy
+  after_create do
+    UserMailer.welcome_email(@user).deliver_now
+  end
 end

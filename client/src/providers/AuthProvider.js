@@ -25,15 +25,15 @@ class AuthProvider extends React.Component {
       axios
          .put(
             `/api/users/${id}?email=${user.email}&first_name=${
-               user.first_name
+            user.first_name
             }&last_name=${user.last_name}&image=${user.image}&cohort=${
-               user.cohort
+            user.cohort
             }&dob=${user.dob}&college_degree=${
-               user.college_degree
+            user.college_degree
             }&employment_status=${user.employment_status}&sex=${
-               user.sex
+            user.sex
             }&github=${user.github}&linkedin=${user.linkedin}&resume=${
-               user.resume
+            user.resume
             }`,
             data
          )

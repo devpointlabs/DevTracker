@@ -9,9 +9,9 @@ class ContactForm extends React.Component {
       last_name: "",
       job: "",
       title: "",
+      company: "",
       email: "",
       linkedin: "",
-      workphone: "",
       personal_phone: "",
       note_box: ""
    };
@@ -21,7 +21,7 @@ class ContactForm extends React.Component {
       dispatch(addContact(user, contact));
    };
 
-   handleSubmit = e => {
+   handleSubmit = e => {   
       e.preventDefault();
       const contact = { ...this.state };
       this.addContact(contact);
@@ -29,9 +29,9 @@ class ContactForm extends React.Component {
          first_name: "",
          last_name: "",
          title: "",
+         company: "",
          email: "",
          linkedin: "",
-         workphone: "",
          personal_phone: "",
          note_box: ""
       });
@@ -46,15 +46,15 @@ class ContactForm extends React.Component {
          first_name,
          last_name,
          title,
+         company,
          email,
          linkedin,
-         workphone,
          personal_phone,
          note_box
       } = this.state;
       return (
          <Form onSubmit={this.handleSubmit}>
-            <Title>Add Contact</Title>
+            <Title>New Contact</Title>
             <Field
                name="first_name"
                value={first_name}
@@ -70,31 +70,30 @@ class ContactForm extends React.Component {
                placeholder="Last name:"
             />
             <Field
+               name="company"
+               value={company}
+               onChange={this.handleChange}
+               required
+               placeholder="Company:"
+            />
+            <Field
                name="title"
                value={title}
-               placeholder="Title:"
+               placeholder="Job Title:"
                required
                onChange={this.handleChange}
             />
             <Field
-                type="email"
+               type="email"
                name="email"
                value={email}
                placeholder="Email:"
-               required
                onChange={this.handleChange}
             />
             <Field
                name="linkedin"
                value={linkedin}
-               placeholder="Linkedin:"
-               onChange={this.handleChange}
-            />
-            <Field
-              type="phone"
-               name="workphone"
-               value={workphone}
-               placeholder="Workphone:"
+               placeholder="LinkedIn:"
                onChange={this.handleChange}
             />
             <Field
@@ -104,7 +103,6 @@ class ContactForm extends React.Component {
                placeholder="Personal phone:"
                onChange={this.handleChange}
             />
-            {/* Change data type to text field */}
             <textarea
                name="note_box"
                value={note_box}
@@ -126,18 +124,12 @@ const Title = styled.h3`
 `;
 
 const Form = styled.form`
-   width: 20vw;
-   min-height: 100vh;
-   min-width: 300px;
-   height: 100%;
+   flex: 1;
+   height: auto;
    background-color: white;
-   overflow-y: scroll;
-   padding: 20px;
    border-radius: 5px;
-   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-   /* Change data type to text field  */
+   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.13);
+   padding: 1.25em;
    .notebox {
       width: 100%;
       min-height: 100px;
@@ -148,6 +140,7 @@ const Form = styled.form`
       background-color: rgba(0,0,0,0.02);
       color: #666;
       outline: none;
+      border-radius: 5px;
       &::placeholder {
         color: #b3b3b3;
       }
@@ -175,9 +168,10 @@ const Form = styled.form`
 
 const Field = styled.input`
    width: 100%;
-   padding: 15px;
+   padding: 10px;
    margin-bottom: 10px;
    border: none;
+   color: #666;
    outline: none;
    font-size: 14px;
    border-bottom: 2px solid #f1f2f6;

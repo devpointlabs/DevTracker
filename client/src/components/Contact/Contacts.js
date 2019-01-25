@@ -8,6 +8,7 @@ import ContactForm from "./ContactForm";
 import ContactList from "./ContactList";
 
 class Contacts extends Component {
+
    componentDidMount() {
       let {
          auth: { user },
@@ -27,14 +28,15 @@ class Contacts extends Component {
    render() {
       let {
          auth: { user },
-         contacts
+         contacts,
       } = this.props;
       return (
          <>
             <NavBar />
+            <ContactTitle>Contacts</ContactTitle>
             <ContactContainer>
                <ContactForm user={user} />
-               <ContactList contacts={contacts} remove={this.deleteContact} />
+               <ContactList contacts={contacts} user={user}/>
             </ContactContainer>
          </>
       );
@@ -50,18 +52,25 @@ const fadeIn = keyframes`
   }
 `;
 
+const ContactTitle = styled.h1`
+   font-weight: lighter;
+   font-family: "Open Sans", sans-serif;
+   color: #666;
+   margin: 25px 1em 0;
+`;
+
 const ContactContainer = styled.div`
-   width: 100%;
    height: 100%;
    min-height: calc(100vh - 90px);
-   display: flex;
-   flex-direction: row;
-   justify-content: flex-start;
-   align-items: center;
-   padding: 25px 1em;
+   width: 100%;
    max-width: 1400px;
+   margin: 0 auto;
+   padding: 25px 1em;
    animation: ${fadeIn} 0.5s linear;
    position: relative;
+   display: flex;
+   flex-direction: row;
+   align-items: flex-start;
 `;
 
 const mapStateToProps = state => {

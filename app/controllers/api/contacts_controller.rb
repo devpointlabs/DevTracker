@@ -1,7 +1,7 @@
 class Api::ContactsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
-  before_action :set_contact, only: [:contact, :destroy]
+  before_action :set_contact, only: [:update, :destroy]
 
   def index
     render json: @user.contacts.all
@@ -17,11 +17,10 @@ class Api::ContactsController < ApplicationController
   end
 
   def update
-    @contact.save(contact_params)
-    if contact.save
+    if @contact.update(contact_params)
       render json: @contact
     else
-      render json: {errors: contact.errors}
+      render json: {errors: @contact.errors}
     end
   end
 
@@ -32,14 +31,14 @@ class Api::ContactsController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:user_id])
+    @user = current_user
   end
 
   def set_contact
-    @contact = @user.contact.find(params[:id])
+    @contact = Contact.find(params[:id])
   end
 
   def contact_params
-    params.require(:contact).permit(:submission_date, :first_name, :last_name, :title, :email, :linkedin, :workphone, :personal_phone, :note_box)
+    params.require(:contact).permit(:submission_date, :first_name, :last_name, :title, :company, :email, :linkedin, :workphone, :personal_phone, :note_box)
   end
 end

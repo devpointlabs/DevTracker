@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { addContact } from "../../reducers/contacts";
 import styled from "styled-components";
+import alert from 'sweetalert2';
 
 class ContactForm extends React.Component {
    state = {
@@ -25,6 +26,11 @@ class ContactForm extends React.Component {
       e.preventDefault();
       const contact = { ...this.state };
       this.addContact(contact);
+      alert(   
+         "Success",
+         `You have added ${this.state.first_name} as a contact!`,
+         "success"
+      )
       this.setState({
          first_name: "",
          last_name: "",

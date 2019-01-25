@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import {connect} from 'react-redux';
-import { updateContact } from "../../reducers/contacts";
-import alert from 'sweetalert2';
+import { connect } from "react-redux";
+import { updateContact, deleteContact } from "../../reducers/contacts";
+import alert from "sweetalert2";
 
 class Contact extends Component {
    state = {
@@ -19,6 +19,30 @@ class Contact extends Component {
 
    toggleEdit = () => {
       this.setState(state => ({ editing: !state.editing }));
+   };
+
+   deleteContact = id => {
+      alert
+         .fire({
+            title: "Are you sure?",
+            text: "Are you sure you want to delete this contact?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#10ac84",
+            cancelButtonColor: "#ee5253",
+            confirmButtonText: "Yes, remove it!"
+         })
+         .then(res => {
+            if (res.value) {
+               let { user, dispatch } = this.props;
+               dispatch(deleteContact(user, id));
+               alert(
+                  "Success",
+                  "Contact has been deleted successfully",
+                  "success"
+               );
+            }
+         });
    };
 
    componentDidMount() {
@@ -62,24 +86,40 @@ class Contact extends Component {
       return null;
    };
 
-   handleSubmit = (e) => {
-      let {id, user, dispatch} = this.props;
-      let {first_name, last_name, company, title, personal_phone, email, linkedin, note_box } = this.state;
+   handleSubmit = e => {
+      let { id, user, dispatch } = this.props;
+      let {
+         first_name,
+         last_name,
+         company,
+         title,
+         personal_phone,
+         email,
+         linkedin,
+         note_box
+      } = this.state;
       e.preventDefault();
-      let updatedContact = {id, first_name, last_name, company, title, personal_phone, email, linkedin, note_box};
+      let updatedContact = {
+         id,
+         first_name,
+         last_name,
+         company,
+         title,
+         personal_phone,
+         email,
+         linkedin,
+         note_box
+      };
       dispatch(updateContact(user, updatedContact));
-      alert(
-         "Success",
-         "Contact has been updated successfully",
-         "success"
-      )
+      alert("Success", "Contact has been updated successfully", "success");
       this.toggleEdit();
-   }
+   };
 
    render() {
       let { editing } = this.state;
-      
+
       let {
+         id,
          first_name,
          last_name,
          company,
@@ -94,6 +134,13 @@ class Contact extends Component {
          .replace("http://", "");
       return (
          <Container>
+            {editing ? (
+               <DeleteButton onClick={() => this.deleteContact(id)}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                     <path d="M381.6 80l-34-56.7C338.9 8.8 323.3 0 306.4 0H205.6c-16.9 0-32.5 8.8-41.2 23.3l-34 56.7H40c-13.3 0-24 10.7-24 24v12c0 6.6 5.4 12 12 12h16.4L76 468.4c2.3 24.7 23 43.6 47.8 43.6h264.5c24.8 0 45.5-18.9 47.8-43.6L467.6 128H484c6.6 0 12-5.4 12-12v-12c0-13.3-10.7-24-24-24h-90.4zm-176-32h100.8l19.2 32H186.4l19.2-32zm182.6 416H123.8L92.6 128h326.7l-31.1 336z" />
+                  </svg>
+               </DeleteButton>
+            ) : null}
             <EditButton onClick={this.toggleEdit}>
                {editing ? "Cancel" : "Edit"}
             </EditButton>
@@ -220,6 +267,25 @@ class Contact extends Component {
    }
 }
 
+const DeleteButton = styled.button`
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   border: none;
+   outline: none;
+   cursor: pointer;
+   background-color: transparent;
+   padding: 1em;
+   &:hover > svg {
+      fill: red;
+   }
+   svg {
+      width: 15px;
+      height: 15px;
+      fill: #b3b3b3;
+   }
+`;
+
 const Form = styled.form`
    display: flex;
    flex-direction: column;
@@ -263,6 +329,7 @@ const MessageContainer = styled.div`
       border-radius: 5px;
       width: 100%;
       padding: 10px;
+      min-height: 75px;
    }
 `;
 

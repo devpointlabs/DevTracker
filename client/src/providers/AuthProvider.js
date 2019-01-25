@@ -45,11 +45,11 @@ class AuthProvider extends React.Component {
    handleRegister = (user, history, errorCallback) => {
       axios
          .post("/api/auth", user)
-         .then(res => {
+        .then(res => {
             this.setState({ user: res.data });
             window.location.reload();
             history.push("/");
-         })
+         }) 
          .catch(err => {
             errorCallback(err);
          });

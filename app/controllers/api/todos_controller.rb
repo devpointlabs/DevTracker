@@ -10,9 +10,10 @@ class Api::TodosController < ApplicationController
   end
 
   def create
-    todo = current_user.todos.new(todo_params)
+    @todo = current_user.todos.new(todo_params)
 
-    if todo.save
+    if @todo.save
+      TodosMailer.todo_email(@todo).deliver_now
       render json: todo
     else
       render json: todo.errors, status: 422

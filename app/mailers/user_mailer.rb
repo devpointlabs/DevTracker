@@ -1,8 +1,8 @@
 class UserMailer < ApplicationMailer
-  default from: "notifications@example.com"
+  default from: "DevTrackerW18@gmail.com"
 
   def welcome_email(user)
-    @user = params[:user]
+    @user = user
     @url = "https://dev-tracker19.herokuapp.com/login"
     mail(to: @user.email, subject: "Welcome to DevTracker!")
   end

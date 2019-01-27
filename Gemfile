@@ -16,6 +16,7 @@ group :development, :test do
   gem 'pry'
   gem 'faker'
   gem 'dotenv-rails'
+  gem 'figaro'
 end
 
 group :development do

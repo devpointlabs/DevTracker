@@ -13,7 +13,7 @@ class Api::TodosController < ApplicationController
     @todo = current_user.todos.new(todo_params)
 
     if @todo.save
-      TodosMailer.todo_email(@todo).deliver_now
+      TodosMailer.todo_email(@todo, @user).deliver_now
       render json: todo
     else
       render json: todo.errors, status: 422

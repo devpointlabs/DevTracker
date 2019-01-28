@@ -25,7 +25,7 @@ class RegisterForm extends React.Component {
 
   handleError = error => {
     console.log(error.response)
-    let errors = error.response.data.errors;
+    let errors = error.response.data.errors.full_messages[0];
     if (errors) {
       this.setState({
         error: true,

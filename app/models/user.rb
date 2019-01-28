@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
   has_many :todos, dependent: :destroy
 
   after_create do
-    binding.pry
     UserMailer.welcome_email(self).deliver_now
   end
 end

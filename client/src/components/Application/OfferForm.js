@@ -10,7 +10,7 @@ import { updateTime } from "../../reducers/applications";
 class OfferForm extends Component {
    state = {
       salary: "",
-      accepted: null,
+      accepted: "",
       notes: ""
    };
 
@@ -21,21 +21,21 @@ class OfferForm extends Component {
    };
 
    handleAccepted = ({ value }) => {
-      if(value === "Yes") {
-         this.setState({
-            accepted: true
-         })
-      } else {
-         this.setState({
-            accepted: false
-         })
-      }
+      this.setState({accepted: value})
    };
 
    handleSubmit = e => {
       e.preventDefault();
+      let {salary, accepted, notes} = this.state;
       let { dispatch, app_id, user } = this.props;
-      dispatch(addOffer({ ...this.state }, app_id));
+      let acceptedOffer;
+      if(accepted === "Yes") {
+         acceptedOffer = true;
+      } else if (accepted === "No") {
+         acceptedOffer = false;
+      }
+      let offer = {accepted: acceptedOffer, salary, notes};
+      dispatch(addOffer(offer, app_id));
       dispatch(updateTime(user, app_id));
       alert(
          "Congratulations!",

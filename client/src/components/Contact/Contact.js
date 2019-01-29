@@ -371,6 +371,10 @@ const SocialLink = styled.a`
    height: 100%;
    height: 30px;
 
+   &:first-child {
+      margin-right: 5px;
+   }
+
    svg {
       width: 30px;
       height: 30px;
